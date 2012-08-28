@@ -8,7 +8,7 @@
       var camera = new THREE.PerspectiveCamera( 75, webgl_defaults.width / webgl_defaults.height, 1, 1000 );
       camera.position.z = 100;
 
-      var geometry = new THREE.CubeGeometry( 50, 50, 50 );
+      var geometry = new THREE.CubeGeometry( 70, 70, 70 );
       var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
 
       var mesh = new THREE.Mesh( geometry, material );

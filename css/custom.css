@@ -3,3 +3,8 @@
   float: left;
   text-align: center;
 }
+
+blockquote.small {
+  font-size: 18px;
+  line-height: 22px;
+}
