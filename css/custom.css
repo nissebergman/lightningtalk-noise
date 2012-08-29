@@ -8,3 +8,7 @@ blockquote.small {
   font-size: 18px;
   line-height: 22px;
 }
+
+pre.small {
+  font-size: 15px;
+}

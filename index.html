@@ -62,31 +62,25 @@
 
         <section>
           <section>
-            <h2>Introduction to Rendering</h2>
-            <p>
-            How do we get from
-            </p>
-            <img class="float_left" style="display:inline" width="40%" height="70%" src="http://upload.wikimedia.org/wikipedia/commons/1/15/Vertex-Vertex_Meshes_%28VV%29.png">
-            <div class="float_left" style="line-height: 5; padding: 20px">to</div>
+            <h3> How do we get from </h3>
+            <img class="float_left" style="display:inline" src="images/Vertices.png">
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-webgl-sample="spinning_cube" class="float_left" style="display:inline" width="320" height="240"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
           <section>
-            <h2>Programmable Graphics Pipeline</h2>
-            <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279">
+            <h3>How it started: Software Rendering</h3>
           </section>
 
           <section>
-            <h2>Vertices and the Vertex Processor</h2>
+            <h3>How it was: Fixed Function Pipeline</h3>
           </section>
 
           <section>
-            <h2>Rasterization</h2>
-          </section>
-
-          <section>
-            <h2>The Fragment (or Pixel) Processor</h2>
+            <h3>How it is: Programmable Graphics Pipeline</h3>
+            <!-- <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279"> -->
+            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
           </section>
 
           <section>
@@ -97,19 +91,14 @@
 
         <section>
           <section>
-            <h2>History of hardware 3D Graphics</h2>
-            <ul>
-              <li>Software Renderer</li>
-              <li>Fixed Function Pipeline</li>
-              <li>Programmable Pipeline</li>
-            </ul>
-          </section>
-        </section>
-
-        <section>
-          <section>
             <h2>Vertex Processor</h2>
-            <p>Primarily for rasterizing!</p>
+            <p>Delivering an object near you from model space to screen space!</p>
+            <p>but how?</p>
+          </section>
+
+          <section>
+            <h3>Oh no! It's Linear Algebra</h3>
+            <p>Discuss how matrices transform coordinates between spaces</p>
           </section>
 
           <section>
@@ -120,7 +109,20 @@
 
         <section>
           <section>
-            <h2>Fragment Processor<h2>
+            <h2>Rasterization</h2>
+            <p>Converting the 2D object in screen space to pixels:</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Fragment or (Pixel) Processor</h2>
+            <p>This right here is the good stuff</p>
+          </section>
+
+          <section>
+            <h3>Applying Textures!</h3>
           </section>
 
           <section>
@@ -137,7 +139,119 @@
           </section>
 
           <section>
-            <h2>Post-Processing<h2>
+            <h2>Post-Processing</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Intro to Three JS: Spinning Cube</h3>
+            <pre class="small"><code contenteditable>
+function init(canvas) {
+  var scene = new THREE.Scene();
+
+  var camera = new THREE.PerspectiveCamera( 75, 320/240, 1, 1000 );
+  camera.position.z = 100;
+
+  var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+  var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+
+  var mesh = new THREE.Mesh( geometry, material );
+  scene.add( mesh );
+
+  var renderer = new THREE.CanvasRenderer({canvas: canvas});
+  renderer.setSize( 320, 240 );
+
+  function animate() {
+    // note: three.js includes requestAnimationFrame shim
+    requestAnimationFrame( animate );
+
+    mesh.rotation.x += 0.01;
+
+    renderer.render( scene, camera );
+  }
+
+  animate();
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Scene</h3>
+            <pre class="small"><code contenteditable>
+function init(canvas) {
+  var scene = new THREE.Scene();
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Camera</h3>
+            <pre class="small"><code contenteditable>
+  var camera = new THREE.PerspectiveCamera( 75, 320/240, 1, 1000 );
+  camera.position.z = 100;
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Geometry</h3>
+            <pre class="small"><code contenteditable>
+  var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Materials</h3>
+            <pre class="small"><code contenteditable>
+  var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Mesh</h3>
+            <pre class="small"><code contenteditable>
+  var mesh = new THREE.Mesh( geometry, material );
+  scene.add( mesh );
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Renderer</h3>
+            <pre class="small"><code contenteditable>
+  var renderer = new THREE.CanvasRenderer({canvas: canvas});
+  renderer.setSize( 320, 240 );
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>requestAnimationFrame?</h3>
+            <p>Welcome to the render (or game) loop</p>
+            <pre class="small"><code contenteditable>
+  function animate() {
+    // note: three.js includes requestAnimationFrame shim
+    requestAnimationFrame( animate );
+
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.02;
+    renderer.render( scene, camera );
+  }
+  animate();
+            </code></pre>
+          </section>
+
+          <section>
+            <h1>BOOM!</h1>
+            <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Cool Samples</h1>
+            <a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a>
+            <a href="hhttp://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a>
+            <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
+            <a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a>
+            <a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a>
           </section>
         </section>
 
