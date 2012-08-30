@@ -44,20 +44,29 @@
         </section>
 
         <section>
-          <h2>Rendering Techniques</h2>
-          <ul>
-            <li>
-            Rasterization (Topic of presentation)
-            <blockquote>The task of taking an image described in a vector graphics format (shapes) and converting it into a raster image (pixels or dots)</blockquote>
-            </li>
+          <section>
+            <h2>Rendering Techniques</h2>
+            <ul>
+              <li>
+              Rasterization (Topic of presentation)
+              <blockquote>The task of taking an image described in a vector graphics format (shapes) and converting it into a raster image (pixels or dots)</blockquote>
+              </li>
 
-            <li>Ray Casting
-              <blockquote class="small">The use of ray-surface intersection tests to solve a variety of problems in computer graphics</blockquote>
-            </li>
-            <li>Ray Tracing
-              <blockquote class="small">The technique for generating an image by tracing the path of light through pixels in an image plane and simulating the effects of its encounters with virtual objects</blockquote>
-            </li>
-          </ul>
+              <li>Ray Casting
+                <blockquote class="small">The use of ray-surface intersection tests to solve a variety of problems in computer graphics</blockquote>
+              </li>
+              <li>Ray Tracing
+                <blockquote class="small">The technique for generating an image by tracing the path of light through pixels in an image plane and simulating the effects of its encounters with virtual objects</blockquote>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Realtime vs Prerendered</h2>
+            <img class="float_left" src="http://origin.arstechnica.com/reviews/games/super-smash-bros-review.media/1.jpg">
+            <div class="float_left" style="line-height: 8; padding: 20px">vs</div>
+            <img class="float_left" style="width: 320px; " src="http://static.guim.co.uk/sys-images/Film/Pix/pictures/2009/11/13/1258137150094/Avatar-001.jpg">
+          </section>
         </section>
 
         <section>
@@ -70,11 +79,84 @@
           </section>
 
           <section>
+            <h2>What is a vertex?</h2>
+          </section>
+
+          <section>
+            <h2>What is a space?</h2>
+          </section>
+
+          <section>
+            <h2>Object Space</h2>
+          </section>
+
+          <section>
+            <h2>World Space</h2>
+          </section>
+
+          <section>
+            <h2>View (or Camera) Space</h2>
+          </section>
+
+          <section>
+            <h2>Screen (or Projection) Space</h2>
+          </section>
+
+          <section>
+            <h2>Model-View-Projection (MVP!) Matrix</h2>
+            <p>Putting it all together</p>
+          </section>
+
+          <section>
+            <h2>Vertex Processing</h2>
+          </section>
+
+          <section>
+            <h2>What is rasterization?</h2>
+            <p>Converting the 2D object in screen space to pixels:</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+          </section>
+
+          <section>
+            <h2>Pixel Processing</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Graphic Pipelines</h2>
+          </section>
+
+          <section>
             <h3>How it started: Software Rendering</h3>
+            <img style="width: 480px;" src="http://1.bp.blogspot.com/-tQMjfiveb88/T5HvOfXc63I/AAAAAAAAB38/P_Nmtyw7-v8/s1600/prince-of-persia.gif">
+            <ul>
+              <li>Entirely done on CPU</li>
+              <li>Unaided by graphics hardware</li>
+              <li>Ultimate flexibility</li>
+            </ul>
           </section>
 
           <section>
             <h3>How it was: Fixed Function Pipeline</h3>
+            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
+            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
+            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
+          </section>
+
+          <section>
+            <h3>How it was: Fixed Function Pipeline</h3>
+            <img src="https://developer.apple.com/Library/ios/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/application_pipeline.jpg">
+            <ul>
+              <li>Introduction of GPU hardware support</li>
+              <li>Sacrificed flexibility for speed</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>How it is: Programmable Graphics Pipeline</h3>
+            <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
+            <p>Best of both worlds (almost)</p>
           </section>
 
           <section>
@@ -109,15 +191,8 @@
 
         <section>
           <section>
-            <h2>Rasterization</h2>
-            <p>Converting the 2D object in screen space to pixels:</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-          </section>
-        </section>
-
-        <section>
-          <section>
             <h2>Fragment or (Pixel) Processor</h2>
+            <p>Adding color to pixels</p>
             <p>This right here is the good stuff</p>
           </section>
 
@@ -241,6 +316,29 @@ function init(canvas) {
           <section>
             <h1>BOOM!</h1>
             <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Vertex Shaders Revisited</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Fragment Shaders Revisited</h2>
+            <p>Fragment shaders with three JS</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Particles</h2>
+          </section>
+
+          <section>
+            <h2>GPGPU</h2>
           </section>
         </section>
 
