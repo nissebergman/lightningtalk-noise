@@ -9,6 +9,16 @@ blockquote.small {
   line-height: 22px;
 }
 
+blockquote.medium {
+  font-size: 28px;
+  line-height: 36px;
+}
+
 pre.small {
   font-size: 15px;
+}
+
+pre.medium {
+  font-size: 20px;
+  width: 100%;
 }
