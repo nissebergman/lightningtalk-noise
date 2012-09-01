@@ -409,7 +409,12 @@ function init(canvas) {
 
         <section>
           <section>
-            <h1>Cool Samples</h1>
+            <h2>John Carmack on WebGL</h2>
+            <div class="ytapiplayer" id="ytplayer"
+              data-youtube-url="http://www.youtube.com/v/ozxRRPJzZ78?enablejsapi=1&amp;version=3&amp;border=0"></div>
+          </section>
+          <section>
+            <h1>Cool Samples: TODO Incorporate into relevant slides</h1>
             <ul style="margin-top: 40px;">
               <li><a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a></li>
               <li><a href="hhttp://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a></li>
@@ -474,6 +479,7 @@ function init(canvas) {
     <script src="lib/js/three.js"></script>
     <script src="lib/js/jquery.min.js"></script>
     <script src="lib/js/underscore.min.js"></script>
+    <script src="lib/js/swfobject.js"></script>
     <script src="js/reveal.min.js"></script>
     <script src="js/stats_bootstrap.js"></script>
 
@@ -497,6 +503,7 @@ function init(canvas) {
           { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
           { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
           { src: 'js/webgl.js', async: true },
+          { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
         ]
       });
 
