@@ -48,16 +48,16 @@
             <h2>Rendering Techniques</h2>
             <ul>
               <li>
-              Rasterization (Topic of presentation)
-              <blockquote>The task of taking an image described in a vector graphics format (shapes) and converting it into a raster image (pixels or dots)</blockquote>
+              Rasterization
+              <blockquote style="width:90%">
+                The task of taking an image described in a vector graphics format (shapes)
+                and converting it into a raster image (pixels or dots)
+              </blockquote>
               </li>
-
-              <li>Ray Casting
-                <blockquote class="small">The use of ray-surface intersection tests to solve a variety of problems in computer graphics</blockquote>
-              </li>
-              <li>Ray Tracing
-                <blockquote class="small">The technique for generating an image by tracing the path of light through pixels in an image plane and simulating the effects of its encounters with virtual objects</blockquote>
-              </li>
+              <br/>
+              <br/>
+              <li>Ray Casting</li>
+              <li>Ray Tracing</li>
             </ul>
           </section>
 
@@ -133,11 +133,8 @@
 
         <section>
           <section>
-            <h2>Graphic Pipelines</h2>
-          </section>
-
-          <section>
-            <h3>How it started: Software Rendering</h3>
+            <h2>Graphic Pipelines: How it started</h2>
+            <h3>Software Rendering</h3>
             <img style="width: 480px;" src="http://1.bp.blogspot.com/-tQMjfiveb88/T5HvOfXc63I/AAAAAAAAB38/P_Nmtyw7-v8/s1600/prince-of-persia.gif">
             <ul>
               <li>Entirely done on CPU</li>
@@ -155,11 +152,16 @@
 
           <section>
             <h3>How it was: Fixed Function Pipeline</h3>
-            <img src="https://developer.apple.com/Library/ios/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Art/application_pipeline.jpg">
+            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
             <ul>
               <li>Introduction of GPU hardware support</li>
               <li>Sacrificed flexibility for speed</li>
             </ul>
+          </section>
+
+          <section>
+            <h2>The Graphics Card</h2>
+            <img src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
 
           <section>
@@ -175,14 +177,15 @@
           </section>
 
           <section>
-            <h2>The Graphics Card</h2>
-            <img src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
+            <h3>How it is: Programmable Graphics Pipeline</h3>
+            <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279">
           </section>
         </section>
 
         <section>
           <section>
             <h1>What is WebGL?</h1>
+            <p>OpenGL ES2.0 port built into the &lt;canvas&gt; DOM element</p>
           </section>
         </section>
 
@@ -259,10 +262,9 @@ function init(canvas) {
     requestAnimationFrame( animate );
 
     mesh.rotation.x += 0.01;
-
+    mesh.rotation.y += 0.02;
     renderer.render( scene, camera );
   }
-
   animate();
 }
             </code></pre>
@@ -279,8 +281,8 @@ function init(canvas) {
           <section>
             <h3>Camera</h3>
             <pre class="medium"><code contenteditable>
-  var camera = new THREE.PerspectiveCamera( 75, 320/240, 1, 1000 );
-  camera.position.z = 100;
+var camera = new THREE.PerspectiveCamera(75, 320/240, 1, 1000);
+camera.position.z = 100;
             </code></pre>
           </section>
 
@@ -294,7 +296,7 @@ function init(canvas) {
           <section>
             <h3>Materials</h3>
             <pre class="medium"><code contenteditable>
-  var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             </code></pre>
           </section>
 
@@ -338,10 +340,6 @@ function init(canvas) {
 
         <section>
           <section>
-            <h1>ThreeJS: The Details</h1>
-          </section>
-
-          <section>
             <h2>ThreeJS: Vertex Shaders</h2>
             <p>MVP Transformation</p>
           </section>
@@ -357,12 +355,30 @@ function init(canvas) {
         <section>
           <section>
             <h2>ThreeJS: Loading Meshes</h2>
-            <p>Loading Meshes from blender</p>
+            <p>Leverage CAD design tools to create models</p>
+            <p>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></p>
           </section>
 
           <section>
-            <h2>ThreeJS: Loading Animations</h2>
-            <p>Loading Animations from blender</p>
+            <h2>Blender</h2>
+            <p>Blender is a 3D Model content creation suite similar to Maya and 3D Studio Max</p>
+            <p>Can export to either Three js file format or Collada for rendering</p>
+          </section>
+
+          <section>
+            <h2>ThreeJS: File Format</h2>
+            <a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh</a>
+            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
+          </section>
+
+          <section>
+            <h2>ThreeJS: Importing Mesh</h2>
+            <p>Code snippet</p>
+          </section>
+
+          <section>
+            <h1>BOOM!</h1>
+            <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
           </section>
         </section>
 
@@ -373,6 +389,11 @@ function init(canvas) {
 
           <section>
             <h2>Particles</h2>
+          </section>
+
+          <section>
+            <h2>Showcase: A Million Particles</h2>
+            <a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a>
           </section>
         </section>
 
@@ -387,6 +408,11 @@ function init(canvas) {
           </section>
 
           <section>
+            <h2>Showcase: Skin Material</h2>
+            <a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a>
+          </section>
+
+          <section>
             <h2>Post-Processing: Blur</h2>
             <p>Multiple rendering passes...</p>
           </section>
@@ -396,71 +422,44 @@ function init(canvas) {
           </section>
 
           <section>
+            <h2>Showcase: Lighting</h2>
+            <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
+          </section>
+
+          <section>
             <h3>Game Time: Spot the feature!</h3>
             <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
           </section>
         </section>
 
         <section>
-          <section>
-            <h2>GPGPU</h2>
-          </section>
+          <h3>John Carmack on WebGL</h3>
+          <br/>
+          <div class="ytapiplayer" id="ytplayer"
+            data-youtube-url="http://www.youtube.com/v/ozxRRPJzZ78?enablejsapi=1&amp;version=3&amp;border=0"></div>
         </section>
 
         <section>
-          <section>
-            <h2>John Carmack on WebGL</h2>
-            <div class="ytapiplayer" id="ytplayer"
-              data-youtube-url="http://www.youtube.com/v/ozxRRPJzZ78?enablejsapi=1&amp;version=3&amp;border=0"></div>
-          </section>
-          <section>
-            <h1>Cool Samples: TODO Incorporate into relevant slides</h1>
-            <ul style="margin-top: 40px;">
-              <li><a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a></li>
-              <li><a href="hhttp://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a></li>
-              <li><a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a></li>
-              <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
-              <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
-            </ul>
-          </section>
+          <h1>A Mashup of Technologies</h1>
+          <ul style="margin-top: 40px;">
+            <li>This slide deck</li>
+            <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
+            <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
+          </ul>
         </section>
 
         <section>
-          <section data-state="alert">
-            <h2>Global State</h2>
-            <p>
-              Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-              will be added as a class to the document element when the slide is open. This lets you
-              apply broader style changes, like switching the background.
-            </p>
-            <a href="#/7/1" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-            </a>
-          </section>
-          <section data-state="blackout">
-            <h2>"blackout"</h2>
-            <a href="#/7/2" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-            </a>
-          </section>
-          <section data-state="soothe">
-            <h2>"soothe"</h2>
-            <a href="#/7/0" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-            </a>
-          </section>
+          <h2>Omissions. For next time...</h2>
+          <ul>
+            <li>Shadows</li>
+            <li>Animations</li>
+            <li>Terrain Rendering</li>
+            <li>Dynamic Level of Detail</li>
+            <li>Culling</li>
+            <li>...</li>
+          </ul>
         </section>
 
-        <section data-state="customevent">
-          <h2>Custom Events</h2>
-          <p>
-            Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-          </p>
-          <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
-  console.log( '"customevent" has fired' );
-} );
-          </code></pre>
-        </section>
       </div>
 
       <!-- The navigational controls UI -->
