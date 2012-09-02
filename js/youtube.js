@@ -3,6 +3,6 @@ $(function() {
     ytplayer = $(ytplayer);
     var url = ytplayer.data('youtube-url');
     var id = ytplayer.attr('id');
-    swfobject.embedSWF(url, id, "640", "360", "8", null, null);
+    swfobject.embedSWF(url, id, "853", "505", "8", null, null);
   });
 });
