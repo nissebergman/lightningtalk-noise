@@ -16,6 +16,8 @@
   head.js(
     "js/samples/intro.js",
     "js/samples/spinning_cube.js",
+    "js/samples/load_startrek_enterprise.js",
+    "js/samples/load_apache.js",
     initializeOnLoad
   );
 })();

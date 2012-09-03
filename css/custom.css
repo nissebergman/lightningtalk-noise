@@ -22,3 +22,15 @@ pre.medium {
   font-size: 21px;
   width: 100%;
 }
+
+.loaded_enterprise .state-background {
+  background: rgba( 0, 0, 0, 0.6 );
+}
+
+.loaded_apache .state-background {
+  /* background: rgba( 0, 0, 0, 0.6 ); */
+}
+
+.boom .state-background {
+  background: rgba( 0, 0, 0, 0.6 );
+}

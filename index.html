@@ -37,36 +37,34 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
-        <section>
+        <section data-state="boom">
           <h1>WebGL with Three JS</h1>
           <h3>Real time rendering in javascript</h3>
           <canvas data-webgl-sample="intro" width="640" height="480"></canvas>
         </section>
 
         <section>
-          <section>
-            <h2>Rendering Techniques</h2>
-            <ul>
-              <li>
-              Rasterization
-              <blockquote style="width:90%">
-                The task of taking an image described in a vector graphics format (shapes)
-                and converting it into a raster image (pixels or dots)
-              </blockquote>
-              </li>
-              <br/>
-              <br/>
-              <li>Ray Casting</li>
-              <li>Ray Tracing</li>
-            </ul>
-          </section>
+          <h2>Rendering Techniques</h2>
+          <ul>
+            <li>
+            Rasterization
+            <blockquote style="width:90%">
+              The task of taking an image described in a vector graphics format (shapes)
+              and converting it into a raster image (pixels or dots)
+            </blockquote>
+            </li>
+            <br/>
+            <br/>
+            <li>Ray Casting</li>
+            <li>Ray Tracing</li>
+          </ul>
+        </section>
 
-          <section>
-            <h2>Realtime vs Prerendered</h2>
-            <img class="float_left" src="http://origin.arstechnica.com/reviews/games/super-smash-bros-review.media/1.jpg">
-            <div class="float_left" style="line-height: 8; padding: 20px">vs</div>
-            <img class="float_left" style="width: 320px; " src="http://static.guim.co.uk/sys-images/Film/Pix/pictures/2009/11/13/1258137150094/Avatar-001.jpg">
-          </section>
+        <section>
+          <h2>Realtime vs Prerendered</h2>
+          <img class="float_left" src="http://origin.arstechnica.com/reviews/games/super-smash-bros-review.media/1.jpg">
+          <div class="float_left" style="line-height: 8; padding: 20px">vs</div>
+          <img class="float_left" style="width: 320px; " src="http://static.guim.co.uk/sys-images/Film/Pix/pictures/2009/11/13/1258137150094/Avatar-001.jpg">
         </section>
 
         <section>
@@ -81,6 +79,7 @@
           <section>
             <h3>Welcome to Linear Algebra</h3>
             <p>Discuss how matrices transform coordinates between spaces</p>
+            <img src="http://cronwtf.github.com/images/wtf.jpg">
           </section>
 
           <section>
@@ -314,6 +313,8 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
   var renderer = new THREE.CanvasRenderer({canvas: canvas});
   renderer.setSize( 320, 240 );
             </code></pre>
+            <p>The moment you add lighting, the CanvasRenderer's performance goes to shit.</p>
+            <p>Makes sense because now you have to perform a SIMD instruction on CPU</p>
           </section>
 
           <section>
@@ -332,7 +333,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             </code></pre>
           </section>
 
-          <section>
+          <section data-state="boom">
             <h1>BOOM!</h1>
             <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
           </section>
@@ -355,14 +356,20 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
         <section>
           <section>
             <h2>ThreeJS: Loading Meshes</h2>
-            <p>Leverage CAD design tools to create models</p>
-            <p>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></p>
+            <br/>
+            <ul>
+              <li>Leverage CAD design tools to create models</li>
+              <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
+            </ul>
           </section>
 
           <section>
             <h2>Blender</h2>
-            <p>Blender is a 3D Model content creation suite similar to Maya and 3D Studio Max</p>
-            <p>Can export to either Three js file format or Collada for rendering</p>
+            <br/>
+            <ul>
+              <li>Blender is a 3D Model content creation suite similar to Maya and 3D Studio Max</li>
+              <li>Can export to either Three js file format or Collada for rendering</li>
+            </ul>
           </section>
 
           <section>
@@ -373,12 +380,29 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
 
           <section>
             <h2>ThreeJS: Importing Mesh</h2>
-            <p>Code snippet</p>
+            <br/>
+            <pre class="medium"><code contenteditable>
+// REMOVED
+// var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+// var material = new THREE.MeshLambertMaterial({color: 0xdddddd});
+
+var loader = new THREE.JSONLoader();
+loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
+
+  mesh = new THREE.Mesh( geometry, geometry.materials[0] );
+  scene.add( mesh );
+            </code></pre>
           </section>
 
-          <section>
-            <h1>BOOM!</h1>
-            <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
+          <section data-state="loaded_enterprise">
+            <h2>BOOM!</h2>
+            <canvas data-webgl-sample="load_startrek_enterprise" width="960" height="720"></canvas>
+          </section>
+
+          <section data-state="loaded_apache">
+            <h2>BOOM! with Textures</h2>
+            <a href="images/FinalApacheTexture.png">Apache Texture File</a>
+            <canvas data-webgl-sample="load_apache" width="960" height="720"></canvas>
           </section>
         </section>
 
@@ -458,6 +482,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
         <section>
           <h2>Omissions. For next time...</h2>
           <ul>
+            <li>GPGPU</li>
             <li>Shadows</li>
             <li>Terrain Rendering</li>
             <li>Dynamic Level of Detail</li>
