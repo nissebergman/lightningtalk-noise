@@ -1,11 +1,11 @@
 (function() {
 
-  window.webgl_samples.spinning_cube = {
+  window.samples.spinning_cube = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
 
-      var camera = new THREE.PerspectiveCamera( 75, webgl_defaults.width / webgl_defaults.height, 1, 1000 );
+      var camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
       camera.position.z = 100;
 
       var geometry = new THREE.CubeGeometry( 70, 70, 70 );
@@ -15,7 +15,7 @@
       scene.add( mesh );
 
       var renderer = new THREE.CanvasRenderer({canvas: canvas});
-      renderer.setSize( webgl_defaults.width, webgl_defaults.height );
+      renderer.setSize( sample_defaults.width, sample_defaults.height );
 
       function animate() {
 

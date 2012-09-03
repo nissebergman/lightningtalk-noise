@@ -1,11 +1,11 @@
 (function() {
 
-  window.webgl_samples.intro = {
+  window.samples.intro = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
 
-      var camera = new THREE.PerspectiveCamera( 75, webgl_defaults.width / webgl_defaults.height, 1, 5000 );
+      var camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 5000 );
       camera.position.z = 100;
 
       var geometry = new THREE.TorusGeometry( 15, 15, 30, 30 );
@@ -22,7 +22,7 @@
       scene.add( axisHelper );
 
       var renderer = new THREE.CanvasRenderer({canvas: canvas});
-      renderer.setSize( webgl_defaults.width * 2, webgl_defaults.height * 2 );
+      renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
 
       function animate() {
 

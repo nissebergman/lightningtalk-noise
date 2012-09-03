@@ -40,7 +40,7 @@
         <section data-state="boom">
           <h1>WebGL with Three JS</h1>
           <h3>Real time rendering in javascript</h3>
-          <canvas data-webgl-sample="intro" width="640" height="480"></canvas>
+          <canvas data-sample="intro" width="640" height="480"></canvas>
         </section>
 
         <section>
@@ -72,7 +72,7 @@
             <h3> How do we get from </h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-webgl-sample="spinning_cube" class="float_left" style="display:inline" width="320" height="240"></canvas>
+            <canvas data-sample="spinning_cube" class="float_left" style="display:inline" width="320" height="240"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
@@ -335,7 +335,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
 
           <section data-state="boom">
             <h1>BOOM!</h1>
-            <canvas data-webgl-sample="spinning_cube" width="320" height="240"></canvas>
+            <canvas data-sample="spinning_cube" width="320" height="240"></canvas>
           </section>
         </section>
 
@@ -396,13 +396,13 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
           <section data-state="loaded_enterprise">
             <h2>BOOM!</h2>
-            <canvas data-webgl-sample="load_startrek_enterprise" width="960" height="720"></canvas>
+            <canvas data-sample="load_startrek_enterprise" width="960" height="720"></canvas>
           </section>
 
           <section data-state="loaded_apache">
             <h2>BOOM! with Textures</h2>
             <a href="images/FinalApacheTexture.png">Apache Texture File</a>
-            <canvas data-webgl-sample="load_apache" width="960" height="720"></canvas>
+            <canvas data-sample="load_apache" width="960" height="720"></canvas>
           </section>
         </section>
 
@@ -532,7 +532,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
           { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-          { src: 'js/webgl.js', async: true },
+          { src: 'js/samples.js', async: true },
           { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
         ]
       });

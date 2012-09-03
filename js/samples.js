@@ -1,15 +1,15 @@
 (function() {
-  window.webgl_defaults = {
+  window.sample_defaults = {
     width: 320,
     height: 240
   };
 
-  window.webgl_samples = {};
+  window.samples = {};
 
   function initializeOnLoad() {
-    $("[data-webgl-sample]").each(function() {
-      var index = $(this).data("webgl-sample");
-      window.webgl_samples[index].initialize(this);
+    $("[data-sample]").each(function() {
+      var index = $(this).data("sample");
+      window.samples[index].initialize(this);
     });
   };
 
