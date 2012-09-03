@@ -44,7 +44,7 @@
         scene.add( mesh );
 
         animate();
-      }, "images/");
+      }, "images");
     }
   };
 
