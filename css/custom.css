@@ -23,6 +23,13 @@ pre.medium {
   width: 100%;
 }
 
+pre.math {
+  font-size:24px;
+  width:100%;
+  background: white;
+  color: black;
+}
+
 .loaded_enterprise .state-background {
   background: rgba( 0, 0, 0, 0.6 );
 }
@@ -33,4 +40,8 @@ pre.medium {
 
 .boom .state-background {
   background: rgba( 0, 0, 0, 0.6 );
+}
+
+.white_bg {
+  background: white !important;
 }

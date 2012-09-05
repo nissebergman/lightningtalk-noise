@@ -1,11 +1,14 @@
 (function() {
 
-  window.samples.intro = {
+  var width = sample_defaults.width * 2;
+  var height = sample_defaults.height * 2;
 
-    initialize: function(canvas) {
+  window.samples.spinning_wireframe_torus = {
+
+    initialize: function(canvas, options) {
       var scene = new THREE.Scene();
 
-      var camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 5000 );
+      var camera = new THREE.PerspectiveCamera( 75, width / height, 1, 5000 );
       camera.position.z = 100;
 
       var geometry = new THREE.TorusGeometry( 15, 15, 30, 30 );
@@ -17,12 +20,12 @@
 
       var axisHelper = new THREE.AxisHelper();
       axisHelper.scale.x = axisHelper.scale.y = axisHelper.scale.z = 0.5;
-      axisHelper.position.x = -40;
-      axisHelper.rotation.y = 0.4;
+      // axisHelper.position.x = -40;
+      // axisHelper.rotation.y = 0.4;
       scene.add( axisHelper );
 
       var renderer = new THREE.CanvasRenderer({canvas: canvas});
-      renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
+      renderer.setSize( width, height );
 
       function animate() {
 

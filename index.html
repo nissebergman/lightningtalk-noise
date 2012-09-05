@@ -12,8 +12,8 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/theme/default.css">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,7 +40,7 @@
         <section data-state="boom">
           <h1>WebGL with Three JS</h1>
           <h3>Real time rendering in javascript</h3>
-          <canvas data-sample="intro" width="640" height="480"></canvas>
+          <canvas data-sample="spinning_wireframe_torus"></canvas>
         </section>
 
         <section>
@@ -72,26 +72,19 @@
             <h3> How do we get from </h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_cube" class="float_left" style="display:inline" width="320" height="240"></canvas>
+            <canvas data-sample="spinning_cube" class="float_left" style="display:inline"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
-          </section>
-
-          <section>
-            <h3>Welcome to Linear Algebra</h3>
-            <p>Discuss how matrices transform coordinates between spaces</p>
-            <img src="http://cronwtf.github.com/images/wtf.jpg">
           </section>
 
           <section>
             <h2>What is a vertex?</h2>
             <p>A vertex is a special kind of point that describes the corners or intersections of geometric shapes</p>
-            <img src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
+            <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
 
           <section>
             <h2>What is Euclidean Space?</h2>
-            <q>The term “Euclidean” distinguishes these spaces from the curved spaces of non-Euclidean geometry and Einstein's general theory of relativity, and is named for the Greek mathematician Euclid of Alexandria</q>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
+            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
           </section>
 
           <section>
@@ -107,10 +100,6 @@
           </section>
 
           <section>
-            <h2>Transferring between spaces</h2>
-          </section>
-
-          <section>
             <h2>View (or Camera) Space</h2>
           </section>
 
@@ -119,17 +108,7 @@
           </section>
 
           <section>
-            <h2>Model-View-Projection (MVP!) Matrix</h2>
-            <p>Putting it all together</p>
-          </section>
-
-          <section>
-            <h2>Vertex Processing</h2>
-          </section>
-
-          <section>
-            <h2>What is rasterization?</h2>
-            <p>Converting the 2D object in screen space to pixels:</p>
+            <h2>Rasterization: Shapes -> Pixels</h2>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
           </section>
 
@@ -138,7 +117,112 @@
           </section>
 
           <section>
-            <h2>Fragment (or Pixel) Processing</h2>
+            <h2>Transforming between Spaces</h2>
+            <blockquote>Model -> World -> Screen Space</blockquote>
+            <p>We need to transform the vertices in model space to world space, but how?</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Welcome to Linear Algebra</h1>
+            <img class="fragment" src="http://cronwtf.github.com/images/wtf.jpg">
+          </section>
+
+          <section>
+            <h3>Matrix, 2D Linear Transform!</h3>
+            <img class="float_left" src="http://tutorial.math.lamar.edu/Classes/LinAlg/LinearTransformations_files/image002.gif">
+            <br/>
+            <ol>
+              <li><img class="white_bg" src="images/matrix_multiplication_x_axis_start.png"></li>
+              <li class="fragment"><img class="white_bg" src="images/matrix_multiplication_x_axis_x.png"></li>
+              <li class="fragment"><img class="white_bg" src="images/matrix_multiplication_x_axis_y.png"></li>
+            </ol>
+          </section>
+
+          <section>
+            <h3>Matrices to Spaces</h3>
+            <br/>
+            <ul>
+              <li>
+                scaling by 2 in all directions:<br/>
+                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/2/6/a/26a088adf02ba09dc958acba0e81a3c3.png">
+              </li>
+
+              <li class="fragment">
+                rotation by 90 degrees counterclockwise:<br/>
+                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
+              </li>
+
+              <li class="fragment">
+                identity matrix (multiplying by it has no change):<br/>
+                <img class="white_bg" style="width: 200px" src="images/identity_matrix.png">
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3D Identity Matrix</h2>
+            <p>Just throw in another dimension</p>
+            <br/>
+            <pre class="math">
+
+           [1, 0, 0]  &lt;- X Components of Axis Vectors
+identity = [0, 1, 0]  &lt;- Y Components of Axis Vectors
+           [0, 0, 1]  &lt;- Z Components of Axis Vectors
+
+
+           [1, 0, 0] [x]   [x]
+           [0, 1, 0] [y] = [y]
+           [0, 0, 1] [z]   [z]
+
+            </pre>
+          </section>
+
+          <section>
+            <h3>Matrix, 3D Affine Transform!</h3>
+            <p>Adding translation...</p>
+            <br/>
+            <pre class="math">
+
+           [1, 0, 0, tx]  &lt;- X Components of Axis Vectors
+           [0, 1, 0, ty]  &lt;- Y Components of Axis Vectors
+           [0, 0, 1, tz]  &lt;- Z Components of Axis Vectors
+            ^  ^  ^   ^-------- Translation Vector
+
+           [1, 0, 0, tx] [x]   [x + tx]
+           [0, 1, 0, ty] [y] = [y + ty]
+           [0, 0, 1, tz] [z]   [z + tz]
+           [0, 0, 0,  1] [1]   [     1]
+
+            </pre>
+          </section>
+
+          <section>
+            <h2>Composite Transformation: Model-View-Projection (MVP!) Matrix</h2>
+            <p>Putting it all together</p>
+            <p>One reason order is significant is that transformations like rotation and scaling are done
+            with respect to the origin of the coordinate system. Scaling an object that is centered at the origin produces
+            a different result than scaling an object that has been moved away from the origin.
+            Similarly, rotating an object that is centered at the origin produces a different result than rotating an object
+            that has been moved away from the origin.</p>
+
+            <p>A single Matrix object can store a single transformation or a sequence of transformations.
+            The latter is called a composite transformation. The matrix of a composite transformation is obtained
+            by multiplying the matrices of individual transformations.</p>
+            <p>Then AB = C, that is, the matrix of the composition (or the product) of linear transformations
+            is the product of their matrices with respect to the given bases.</p>
+          </section>
+
+          <section>
+            <h2>Rendering Demystified</h2>
+            <canvas data-sample="spinning_cube"></canvas>
+            <canvas class="float-left" data-sample="spinning_wireframe_torus"></canvas>
+          </section>
+
+          <section>
+            <h2>Transporters will definitely use Linear Algebra</h2>
+            <img src="http://storiesbywilliams.files.wordpress.com/2012/05/transport.jpg">
           </section>
         </section>
 
@@ -156,13 +240,6 @@
 
           <section>
             <h3>How it was: Fixed Function Pipeline</h3>
-            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
-            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
-            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
-          </section>
-
-          <section>
-            <h3>How it was: Fixed Function Pipeline</h3>
             <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
             <ul>
               <li>Introduction of GPU hardware support</li>
@@ -171,14 +248,15 @@
           </section>
 
           <section>
-            <h2>The Graphics Card</h2>
-            <img src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
+            <h3>How it was: Fixed Function Pipeline</h3>
+            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
+            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
+            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
           </section>
 
           <section>
-            <h3>How it is: Programmable Graphics Pipeline</h3>
-            <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
-            <p>Best of both worlds (almost)</p>
+            <h2>The Graphics Card</h2>
+            <img src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
 
           <section>
@@ -190,6 +268,12 @@
           <section>
             <h3>How it is: Programmable Graphics Pipeline</h3>
             <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279">
+          </section>
+
+          <section>
+            <h3>How it is: Programmable Graphics Pipeline</h3>
+            <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
+            <p>Best of both worlds (almost)</p>
           </section>
         </section>
 
@@ -347,7 +431,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
 
           <section data-state="boom">
             <h1>BOOM!</h1>
-            <canvas data-sample="spinning_cube" width="320" height="240"></canvas>
+            <canvas data-sample="spinning_cube"></canvas>
           </section>
         </section>
 
@@ -408,20 +492,13 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
           <section data-state="loaded_enterprise">
             <h2>BOOM!</h2>
-            <canvas data-sample="load_startrek_enterprise" width="960" height="720"></canvas>
+            <canvas data-sample="load_startrek_enterprise"></canvas>
           </section>
 
           <section data-state="loaded_apache">
             <h2>BOOM! with Textures</h2>
             <a href="images/FinalApacheTexture.png">Apache Texture File</a>
-            <canvas data-sample="load_apache" width="960" height="720"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>ThreeJS: Animations</h2>
-            <p>Use blender!
+            <canvas data-sample="load_apache"></canvas>
           </section>
         </section>
 
@@ -476,6 +553,12 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
+          <section>
+            <h2>Video Textures</h2>
+          </section>
+        </section>
+
+        <section>
           <h3>John Carmack on WebGL</h3>
           <br/>
           <div class="ytapiplayer" id="ytplayer"
@@ -496,6 +579,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <ul>
             <li>GPGPU</li>
             <li>Shadows</li>
+            <li>Animations</li>
             <li>Terrain Rendering</li>
             <li>Dynamic Level of Detail</li>
             <li>Culling</li>
