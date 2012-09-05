@@ -15,6 +15,7 @@
 
   head.js(
     "js/samples/spinning_wireframe_torus.js",
+    "js/samples/spinning_wireframe_cube.js",
     "js/samples/spinning_cube.js",
     "js/samples/load_startrek_enterprise.js",
     "js/samples/load_apache.js",

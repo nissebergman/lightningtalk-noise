@@ -20,11 +20,9 @@
 
       var axisHelper = new THREE.AxisHelper();
       axisHelper.scale.x = axisHelper.scale.y = axisHelper.scale.z = 0.5;
-      // axisHelper.position.x = -40;
-      // axisHelper.rotation.y = 0.4;
       scene.add( axisHelper );
 
-      var renderer = new THREE.CanvasRenderer({canvas: canvas});
+      var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( width, height );
 
       function animate() {

@@ -37,7 +37,7 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
-        <section data-state="boom">
+        <section>
           <h1>WebGL with Three JS</h1>
           <h3>Real time rendering in javascript</h3>
           <canvas data-sample="spinning_wireframe_torus"></canvas>
@@ -72,7 +72,7 @@
             <h3> How do we get from </h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_cube" class="float_left" style="display:inline"></canvas>
+            <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
@@ -114,11 +114,14 @@
 
           <section>
             <h2>Coloring the pixels</h2>
+            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
+            <canvas data-sample="spinning_cube" class="float_left"></canvas>
           </section>
 
           <section>
-            <h2>Transforming between Spaces</h2>
-            <blockquote>Model -> World -> Screen Space</blockquote>
+            <h2>How do we transform between Spaces</h2>
+            <blockquote>Model -&gt; World -&gt; Screen Space</blockquote>
+            <br/>
             <p>We need to transform the vertices in model space to world space, but how?</p>
           </section>
         </section>
@@ -216,7 +219,7 @@ identity = [0, 1, 0]  &lt;- Y Components of Axis Vectors
 
           <section>
             <h2>Rendering Demystified</h2>
-            <canvas data-sample="spinning_cube"></canvas>
+            <canvas data-sample="spinning_wireframe_cube"></canvas>
             <canvas class="float-left" data-sample="spinning_wireframe_torus"></canvas>
           </section>
 
@@ -302,6 +305,8 @@ identity = [0, 1, 0]  &lt;- Y Components of Axis Vectors
             <h2>Fragment Processor</h2>
             <p>Adding color to pixels</p>
             <p>but how?</p>
+            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
+            <canvas data-sample="spinning_cube" class="float_left"></canvas>
           </section>
 
           <section>
@@ -569,6 +574,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <h1>A Mashup of Technologies</h1>
           <ul style="margin-top: 40px;">
             <li>This slide deck</li>
+            <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL0ErTmBDY23KxLoOHkBDgIT26MSXxCOJM8ehFNT/vrMTl4Q1ihL77nzffee7Cz/8+LW4/32zJJku8rO9sP2NwgwYx/8oLEAzEmdM1aDn40Ynh6djq6j1OgezGkWSr8mrWY0iFj+mSjYlP4xlLtWU7Cf2mVl1wVQqyikJ2q18ApXkcjUlmeAcSivdGOe+8x76XSShQWmBYyUqTWoVz8eZ1tXU9wvFpYxoKnTWRDSWha8zBUD/1H7UiJx320KUKBqfoXvro+fubM9g+z5ZSfXILAOSSIXMlSyARE2KQbZgseRAUynTHCxU5Vsj0RS+qOsGap9jzkT+TfD5p5Ovp8F+fHRsvIuEeGQlSi5XVJQlqAfBdUbm8zkJyAF53aUjFVNQ6p5sNjC7BJFm+p1dK5yRjc0yPub/xJANK0CxCaljKGFC8AQHBWrm9CkgWa3WE1IwDUqwHFdQZzObHVEK7R1YY1YKY2F2Zps0ZayFLElr0hWD/bSQGGAJK3J/ebtc0htQdQV44AkWVuuRLyeTHez9HVQn5AjfIMCMzXoAtJK1MCHQF8Q6CYI2sJFlOkC/MxIX+MgxHpgsmgguOgXGFkzs6wBdagZHrjFL31kt4utO6+F9di0QPAf2MRQVJAoDnhKtGugJrgT6MqSn5DPZEBeeuRT2LOpLyCtQA8Tzrbi7k9GbIa1jhtX5jAf+E653CU3SjmZvGaOMc6+P7AJqM4Bk/2Pv7agel7KeT3vWeXMFOHD2ANHF1W2ncdycJcUxdCdeYEcjTXY1hkPiMm4K0yBmjFBWVehvkeFo8LZdQLksljkYK3dsM6zubdVjgXdR/cV+1+dWjhY/zVV6zm4LbjhTJbW1wVv5iA1Pgy7fQ+W6Ux6/yxBtF55r3a6t+nH2plrot9MSp6eZ5/8A">Code Editor</a></li>
             <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
             <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
           </ul>
