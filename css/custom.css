@@ -14,8 +14,14 @@ blockquote.medium {
   line-height: 36px;
 }
 
-pre.small {
+.small {
   font-size: 15px;
+  line-height:18px;
+}
+
+.medium {
+  font-size: 20px;
+  line-height: 22px;
 }
 
 pre.medium {

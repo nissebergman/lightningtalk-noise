@@ -77,34 +77,37 @@
           </section>
 
           <section>
+            <h2>with Perspective Projection</h2>
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
+          </section>
+
+          <section>
             <h2>What is a vertex?</h2>
             <p>A vertex is a special kind of point that describes the corners or intersections of geometric shapes</p>
             <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
 
           <section>
-            <h2>What is Euclidean Space?</h2>
-            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
-          </section>
-
-          <section>
             <h2>Model (or Object) Space</h2>
-            <p>The space local to the object (or model) in question. It alone exists in this space and is often centered around (0,0,0).</p>
-            <img src="images/apache_model_space.png">
+            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
+            <!-- <img src="images/apache_model_space.png"> -->
           </section>
 
           <section>
             <h2>World Space</h2>
             <p>Where all objects are positioned. All objects placed in the actual representation of the world.</p>
-            <img src="http://www.simulshop.com/product/nemethdesigns/ec135/tn_fsx2008-49-47.jpg" style="height: 70%">
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
+            <!-- <img class="float_left" src="http://www.simulshop.com/product/nemethdesigns/ec135/tn_fsx2008-49-47.jpg" style="height: 70%"> -->
           </section>
 
           <section>
             <h2>View (or Camera) Space</h2>
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
           </section>
 
           <section>
             <h2>Screen (or Projection) Space</h2>
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
 
           <section>
@@ -113,16 +116,24 @@
           </section>
 
           <section>
-            <h2>Coloring the pixels</h2>
+            <h2>
+              Coloring the pixels:<br/>
+              Texture and Lighting
+            </h2>
+            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
             <canvas data-sample="spinning_cube" class="float_left"></canvas>
           </section>
 
           <section>
-            <h2>How do we transform between Spaces</h2>
+            <h2>How do we ...</h2>
+            <br/>
+            <br/>
+            <h2>transform between spaces?</h2>
             <blockquote>Model -&gt; World -&gt; Screen Space</blockquote>
             <br/>
-            <p>We need to transform the vertices in model space to world space, but how?</p>
+            <h2>Add color?</h2>
+            <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
           </section>
         </section>
 
@@ -133,59 +144,84 @@
           </section>
 
           <section>
-            <h3>Matrix, 2D Linear Transform!</h3>
+            <h3>Vector, meet Matrix!</h3>
+            <p>Now multiply...</p>
             <img class="float_left" src="http://tutorial.math.lamar.edu/Classes/LinAlg/LinearTransformations_files/image002.gif">
             <br/>
             <ol>
               <li><img class="white_bg" src="images/matrix_multiplication_x_axis_start.png"></li>
-              <li class="fragment"><img class="white_bg" src="images/matrix_multiplication_x_axis_x.png"></li>
-              <li class="fragment"><img class="white_bg" src="images/matrix_multiplication_x_axis_y.png"></li>
+              <li class="fragment">
+                <img class="white_bg" src="images/matrix_multiplication_x_axis_x.png">
+                ( 1 * x ) + ( 0 * y ) = x
+              </li>
+              <li class="fragment">
+                <img class="white_bg" src="images/matrix_multiplication_x_axis_y.png">
+                ( 0 * x ) + ( -1 * y ) = -y
+              </li>
             </ol>
           </section>
 
           <section>
-            <h3>Matrices to Spaces</h3>
+            <h3>Linear Transformations</h3>
             <br/>
-            <ul>
+            <img class="float_left" src="images/SRT_transformations.png">
+            <ul style="width:100px;">
               <li>
-                scaling by 2 in all directions:<br/>
-                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/2/6/a/26a088adf02ba09dc958acba0e81a3c3.png">
-              </li>
-
-              <li class="fragment">
-                rotation by 90 degrees counterclockwise:<br/>
-                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
-              </li>
-
-              <li class="fragment">
-                identity matrix (multiplying by it has no change):<br/>
+                identity:<br/>
                 <img class="white_bg" style="width: 200px" src="images/identity_matrix.png">
+              </li>
+
+              <li class="fragment">
+                scaling:<br/>
+                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/2/6/a/26a088adf02ba09dc958acba0e81a3c3.png">
+                <br/>
+              </li>
+
+              <li class="fragment">
+                rotation:<br/>
+                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
+                <br/>
               </li>
             </ul>
           </section>
 
           <section>
-            <h2>3D Identity Matrix</h2>
-            <p>Just throw in another dimension</p>
+            <h3>Affine Transformtions</h3>
+            <p>Adding translations</p>
             <br/>
             <pre class="math">
 
-           [1, 0, 0]  &lt;- X Components of Axis Vectors
-identity = [0, 1, 0]  &lt;- Y Components of Axis Vectors
-           [0, 0, 1]  &lt;- Z Components of Axis Vectors
+           [1, 0, tx]  &lt;- X Components of Axis Vectors
+           [0, 1, ty]  &lt;- Y Components of Axis Vectors
+           [0, 0,  1]
+            ^  ^   ^-------- Translation Vector
 
-
-           [1, 0, 0] [x]   [x]
-           [0, 1, 0] [y] = [y]
-           [0, 0, 1] [z]   [z]
+           [1, 0, tx] [x]   [x + tx]
+           [0, 1, ty] [y] = [y + ty]
+           [0, 0,  1] [1]   [     1]
 
             </pre>
           </section>
 
           <section>
-            <h3>Matrix, 3D Affine Transform!</h3>
-            <p>Adding translation...</p>
-            <br/>
+            <h2>Projection Matrix</h2>
+            <pre class="math">
+            [1, 0] [x]   [x]
+            [0, 0] [y] = [0]
+            </pre>
+            <p>We lost a dimension!</p>
+            <img src="http://www.arcsynthesis.org/gltut/Positioning/Persp2DProjection.svg">
+          </section>
+
+          <section>
+            <h2>Composite Transformation</h2>
+            <p>Putting it all together</p>
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
+            <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
+          </section>
+
+          <section>
+            <h3>3D Transformations</h3>
             <pre class="math">
 
            [1, 0, 0, tx]  &lt;- X Components of Axis Vectors
@@ -202,19 +238,9 @@ identity = [0, 1, 0]  &lt;- Y Components of Axis Vectors
           </section>
 
           <section>
-            <h2>Composite Transformation: Model-View-Projection (MVP!) Matrix</h2>
-            <p>Putting it all together</p>
-            <p>One reason order is significant is that transformations like rotation and scaling are done
-            with respect to the origin of the coordinate system. Scaling an object that is centered at the origin produces
-            a different result than scaling an object that has been moved away from the origin.
-            Similarly, rotating an object that is centered at the origin produces a different result than rotating an object
-            that has been moved away from the origin.</p>
-
-            <p>A single Matrix object can store a single transformation or a sequence of transformations.
-            The latter is called a composite transformation. The matrix of a composite transformation is obtained
-            by multiplying the matrices of individual transformations.</p>
-            <p>Then AB = C, that is, the matrix of the composition (or the product) of linear transformations
-            is the product of their matrices with respect to the given bases.</p>
+            <h3>3D Transformations</h3>
+            <p>Just add a dimension!</p>
+            <img src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
           </section>
 
           <section>
@@ -590,6 +616,14 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <li>Dynamic Level of Detail</li>
             <li>Culling</li>
             <li>and more ...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Credits</h2>
+          <ul>
+            <li><a href="https://www.e-education.psu.edu/geog486/l7_p9.html">Penn State Geography 486</a></li>
+            <li><a href="http://robertokoci.com/world-view-projection-matrix-unveiled/">Roberto Koci</a></li>
           </ul>
         </section>
 
