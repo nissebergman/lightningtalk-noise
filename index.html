@@ -78,7 +78,7 @@
 
           <section>
             <h2>with Perspective Projection</h2>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
+            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
           </section>
 
           <section>
@@ -116,24 +116,11 @@
           </section>
 
           <section>
-            <h2>
-              Coloring the pixels:<br/>
-              Texture and Lighting
-            </h2>
-            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <canvas data-sample="spinning_cube" class="float_left"></canvas>
-          </section>
-
-          <section>
-            <h2>How do we ...</h2>
+            <h2>But how do we ...</h2>
             <br/>
             <br/>
             <h2>transform between spaces?</h2>
             <blockquote>Model -&gt; World -&gt; Screen Space</blockquote>
-            <br/>
-            <h2>Add color?</h2>
-            <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
           </section>
         </section>
 
@@ -144,7 +131,12 @@
           </section>
 
           <section>
-            <h3>Vector, meet Matrix!</h3>
+            <h2>Transporters will definitely use Linear Algebra</h2>
+            <img src="http://storiesbywilliams.files.wordpress.com/2012/05/transport.jpg">
+          </section>
+
+          <section>
+            <h3>2D Vector, meet Matrix!</h3>
             <p>Now multiply...</p>
             <img class="float_left" src="http://tutorial.math.lamar.edu/Classes/LinAlg/LinearTransformations_files/image002.gif">
             <br/>
@@ -182,65 +174,39 @@
                 <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
                 <br/>
               </li>
+
+              <li class="fragment small">translation isn't a linear transformation!</li
             </ul>
           </section>
 
           <section>
             <h3>Affine Transformtions</h3>
             <p>Adding translations</p>
-            <br/>
-            <pre class="math">
-
-           [1, 0, tx]  &lt;- X Components of Axis Vectors
-           [0, 1, ty]  &lt;- Y Components of Axis Vectors
-           [0, 0,  1]
-            ^  ^   ^-------- Translation Vector
-
-           [1, 0, tx] [x]   [x + tx]
-           [0, 1, ty] [y] = [y + ty]
-           [0, 0,  1] [1]   [     1]
-
-            </pre>
+            <img src="http://people.gnome.org/~mathieu/libart/art-affine-matrix.png">
           </section>
 
           <section>
             <h2>Projection Matrix</h2>
-            <pre class="math">
-            [1, 0] [x]   [x]
-            [0, 0] [y] = [0]
+            <pre style="width: 50%" class="math float_left">
+        [1, 0] [x]   [x]
+        [0, 0] [y] = [0]
             </pre>
-            <p>We lost a dimension!</p>
+            <p>* We lost a dimension!</p>
             <img src="http://www.arcsynthesis.org/gltut/Positioning/Persp2DProjection.svg">
-          </section>
-
-          <section>
-            <h2>Composite Transformation</h2>
-            <p>Putting it all together</p>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
-            <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
-          </section>
-
-          <section>
-            <h3>3D Transformations</h3>
-            <pre class="math">
-
-           [1, 0, 0, tx]  &lt;- X Components of Axis Vectors
-           [0, 1, 0, ty]  &lt;- Y Components of Axis Vectors
-           [0, 0, 1, tz]  &lt;- Z Components of Axis Vectors
-            ^  ^  ^   ^-------- Translation Vector
-
-           [1, 0, 0, tx] [x]   [x + tx]
-           [0, 1, 0, ty] [y] = [y + ty]
-           [0, 0, 1, tz] [z]   [z + tz]
-           [0, 0, 0,  1] [1]   [     1]
-
-            </pre>
           </section>
 
           <section>
             <h3>3D Transformations</h3>
             <p>Just add a dimension!</p>
-            <img src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
+            <img class="white_bg float_left" src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
+            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
+          </section>
+
+          <section>
+            <h2>Composite Transformation</h2>
+            <p>Putting it all together</p>
+            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
+            <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
           </section>
 
           <section>
@@ -249,9 +215,93 @@
             <canvas class="float-left" data-sample="spinning_wireframe_torus"></canvas>
           </section>
 
+        </section>
+
+        <section>
           <section>
-            <h2>Transporters will definitely use Linear Algebra</h2>
-            <img src="http://storiesbywilliams.files.wordpress.com/2012/05/transport.jpg">
+            <h2>How do we get from</h2>
+            <br/>
+            <br/>
+            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
+            <div class="float_left" style="line-height: 8; padding: 20px">?</div>
+          </section>
+
+          <section>
+            <h2>
+              Coloring the pixels:<br/>
+              Texture and Lighting
+            </h2>
+            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
+            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
+          </section>
+
+          <section>
+            <h2>Texture: UV Mapping</h2>
+            <p>Getting the value of the color...<p>
+            <img src="http://www.bcu.ac.uk/_media/img/nti/gamer_camp/blog_postings/UvMapping.jpg">
+          </section>
+
+          <section>
+            <h2>Texture: UV Mapping</h2>
+            <img src="http://www.bcu.ac.uk/_media/img/nti/gamer_camp/blog_postings/PsxStyleSingleTextureMesh.jpg">
+          </section>
+
+          <section>
+            <h2>Lighting: Ambient</h2>
+            <p>Getting the strength of the color...</p>
+            <canvas data-sample="spinning_textured_cube"></canvas>
+          </section>
+
+          <section>
+            <h2>Lighting: Lambert</h2>
+            <p>Getting the strength of the color...</p>
+            <canvas data-sample="lighted_sphere"></canvas>
+          </section>
+
+          <section>
+            <h2>But how do we ...</h2>
+            <h2>get the amount of color from the light?</h2>
+            <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
+            <canvas data-sample="lighted_sphere"></canvas>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Welcome BACK to Linear Algebra</h1>
+            <img src="http://cronwtf.github.com/images/wtf.jpg">
+          </section>
+
+          <section>
+            <h2>The Normal</h2>
+            <img class="white_bg" src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcSQyYxnsLVkIT5QpVBGJ00IDOcIrLPMPUXIyabQYuXZQxOuIGKN">
+          </section>
+
+          <section>
+            <h2>Per Pixel Lighting</h2>
+            <img class="float_left" style="width: 30%"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <img src="http://www.upvector.com/content/tutorials/shading/shader_vectors.gif">
+          </section>
+
+          <section>
+            <h2>The dot product</h2>
+            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png">
+          </section>
+
+          <section>
+            <h2>Per Pixel Lighting</h2>
+            <img class="float_left" style="width: 30%"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <img src="http://www.upvector.com/content/tutorials/shading/reflection_vector.gif">
+          </section>
+
+          <section>
+            <h2>Showcase: Per pixel lighting</h2>
+            <canvas data-sample="bump_mapped_wall"></canvas>
           </section>
         </section>
 

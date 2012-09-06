@@ -17,6 +17,9 @@
     "js/samples/spinning_wireframe_torus.js",
     "js/samples/spinning_wireframe_cube.js",
     "js/samples/spinning_cube.js",
+    "js/samples/spinning_textured_cube.js",
+    "js/samples/lighted_sphere.js",
+    "js/samples/bump_mapped_wall.js",
     "js/samples/load_startrek_enterprise.js",
     "js/samples/load_apache.js",
     initializeOnLoad
