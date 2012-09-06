@@ -250,14 +250,19 @@
           </section>
 
           <section>
-            <h2>Lighting: Ambient</h2>
+            <h2>Lighting</h2>
             <p>Getting the strength of the color...</p>
+            <br/>
+            <img src="http://lh5.ggpht.com/_QLwms0mVa4w/Sfn4HH_HGxI/AAAAAAAAAS4/ZpGr11BjJVk/component.jpg">
+          </section>
+
+          <section>
+            <h2>Lighting: Ambient</h2>
             <canvas data-sample="spinning_textured_cube"></canvas>
           </section>
 
           <section>
             <h2>Lighting: Lambert</h2>
-            <p>Getting the strength of the color...</p>
             <canvas data-sample="lighted_sphere"></canvas>
           </section>
 
@@ -361,46 +366,34 @@
             <h1>What is WebGL?</h1>
             <p>OpenGL ES2.0 port built into the &lt;canvas&gt; DOM element</p>
           </section>
-        </section>
 
-        <section>
           <section>
-            <h2>Vertex Processor</h2>
-            <p>Delivering an object near you from model space to screen space!</p>
-            <p>but how?</p>
+            <h3> How do we get from </h3>
+            <img class="float_left" style="display:inline" src="images/Vertices.png">
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <canvas data-sample="webgl_spinning_cube" class="float_left" style="display:inline"></canvas>
+            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
           <section>
-            <h2>Vertex Shaders</h2>
-            <p>Programs run on the Vertex processor to tranform a vertex from model space to screen space</p>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Fragment Processor</h2>
-            <p>Adding color to pixels</p>
-            <p>but how?</p>
-            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <canvas data-sample="spinning_cube" class="float_left"></canvas>
-          </section>
-
-          <section>
-            <h3>Applying Textures!</h3>
-          </section>
-
-          <section>
-            <h2>Lighting Basics</h2>
-            <p>All done in the Fragment Shader</p>
-            <ul>
-              <li>Ambient</li>
-              <li>Diffuse</li>
-              <li>Specular</li>
-            </ul>
+            <pre class="code"><code>
+              // Overwhelm with WebGL boilerplate code. Gloss over.
+            </code></pre>
           </section>
 
           <section>
             <h2>Materials</h2>
+            <p>Encapsulates texture, lighting and other per pixel settings of a model</p>
+          </section>
+
+          <section>
+            <h2>Vertex Shader</h2>
+            <p>Programs run on the Vertex processor to tranform a vertex from model space to screen space</p>
+          </section>
+
+          <section>
+            <h2>Fragment Shader</h2>
+            <p>Programs run on the Fragment processor to add texture and lighting to a pixel</p>
           </section>
         </section>
 
@@ -416,8 +409,16 @@
           </section>
 
           <section>
+            <h3> How do we get from </h3>
+            <img class="float_left" style="display:inline" src="images/Vertices.png">
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <canvas data-sample="webgl_spinning_cube" class="float_left" style="display:inline"></canvas>
+            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
+          </section>
+
+          <section>
             <h3>Intro to ThreeJS: Spinning Cube</h3>
-            <pre class="small"><code contenteditable>
+            <pre class="code"><code>
 function init(canvas) {
   var scene = new THREE.Scene();
 
@@ -448,7 +449,7 @@ function init(canvas) {
 
           <section>
             <h3>Scene</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
 function init(canvas) {
   var scene = new THREE.Scene();
             </code></pre>
@@ -456,7 +457,7 @@ function init(canvas) {
 
           <section>
             <h3>Camera</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
 var camera = new THREE.PerspectiveCamera(75, 320/240, 1, 1000);
 camera.position.z = 100;
             </code></pre>
@@ -464,21 +465,21 @@ camera.position.z = 100;
 
           <section>
             <h3>Geometry</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
   var geometry = new THREE.CubeGeometry( 70, 70, 70 );
             </code></pre>
           </section>
 
           <section>
             <h3>Materials</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
 var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             </code></pre>
           </section>
 
           <section>
             <h3>Mesh</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
             </code></pre>
@@ -486,7 +487,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
 
           <section>
             <h3>Renderer</h3>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
   var renderer = new THREE.CanvasRenderer({canvas: canvas});
   renderer.setSize( 320, 240 );
             </code></pre>
@@ -497,7 +498,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
           <section>
             <h3>requestAnimationFrame?</h3>
             <p>Welcome to the render (or game) loop</p>
-            <pre class="medium"><code contenteditable>
+            <pre class="medium"><code>
   function animate() {
     // note: three.js includes requestAnimationFrame shim
     requestAnimationFrame( animate );
@@ -558,7 +559,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
           <section>
             <h2>ThreeJS: Importing Mesh</h2>
             <br/>
-            <pre class="medium"><code contenteditable>
+            <pre class="code"><code>
 // REMOVED
 // var geometry = new THREE.CubeGeometry( 70, 70, 70 );
 // var material = new THREE.MeshLambertMaterial({color: 0xdddddd});

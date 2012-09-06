@@ -1,3 +1,4 @@
 js/samples/bump_mapped_wall.js
 js/samples/lighted_sphere.js
 js/samples/spinning_textured_cube.js
+js/samples/webgl_spinning_cube.js
