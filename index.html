@@ -175,7 +175,7 @@
                 <br/>
               </li>
 
-              <li class="fragment small">translation isn't a linear transformation!</li
+              <li class="fragment small">translation isn't a linear transformation!</li>
             </ul>
           </section>
 
@@ -268,7 +268,7 @@
 
           <section>
             <h2>But how do we ...</h2>
-            <h2>get the amount of color from the light?</h2>
+            <h2>get the amount of color?</h2>
             <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
             <canvas data-sample="lighted_sphere"></canvas>
           </section>
@@ -652,6 +652,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <ul style="margin-top: 40px;">
             <li>This slide deck</li>
             <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL0ErTmBDY23KxLoOHkBDgIT26MSXxCOJM8ehFNT/vrMTl4Q1ihL77nzffee7Cz/8+LW4/32zJJku8rO9sP2NwgwYx/8oLEAzEmdM1aDn40Ynh6djq6j1OgezGkWSr8mrWY0iFj+mSjYlP4xlLtWU7Cf2mVl1wVQqyikJ2q18ApXkcjUlmeAcSivdGOe+8x76XSShQWmBYyUqTWoVz8eZ1tXU9wvFpYxoKnTWRDSWha8zBUD/1H7UiJx320KUKBqfoXvro+fubM9g+z5ZSfXILAOSSIXMlSyARE2KQbZgseRAUynTHCxU5Vsj0RS+qOsGap9jzkT+TfD5p5Ovp8F+fHRsvIuEeGQlSi5XVJQlqAfBdUbm8zkJyAF53aUjFVNQ6p5sNjC7BJFm+p1dK5yRjc0yPub/xJANK0CxCaljKGFC8AQHBWrm9CkgWa3WE1IwDUqwHFdQZzObHVEK7R1YY1YKY2F2Zps0ZayFLElr0hWD/bSQGGAJK3J/ebtc0htQdQV44AkWVuuRLyeTHez9HVQn5AjfIMCMzXoAtJK1MCHQF8Q6CYI2sJFlOkC/MxIX+MgxHpgsmgguOgXGFkzs6wBdagZHrjFL31kt4utO6+F9di0QPAf2MRQVJAoDnhKtGugJrgT6MqSn5DPZEBeeuRT2LOpLyCtQA8Tzrbi7k9GbIa1jhtX5jAf+E653CU3SjmZvGaOMc6+P7AJqM4Bk/2Pv7agel7KeT3vWeXMFOHD2ANHF1W2ncdycJcUxdCdeYEcjTXY1hkPiMm4K0yBmjFBWVehvkeFo8LZdQLksljkYK3dsM6zubdVjgXdR/cV+1+dWjhY/zVV6zm4LbjhTJbW1wVv5iA1Pgy7fQ+W6Ux6/yxBtF55r3a6t+nH2plrot9MSp6eZ5/8A">Code Editor</a></li>
+            <li><a href="http://cnn-ecosphere.com/">CNN EcoSphere</a></li>
             <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
             <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
           </ul>
@@ -699,6 +700,45 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
     <script src="lib/js/swfobject.js"></script>
     <script src="js/reveal.min.js"></script>
     <script src="js/stats_bootstrap.js"></script>
+
+    <!-- js files needed for WebGL specific samples (excluding three js) -->
+    <script src="lib/js/J3DI.js"></script>
+    <script src="lib/js/J3DIMath.js"></script>
+    <script src="lib/js/webgl-utils.js"></script>
+    <script src="lib/js/webgl-debug.js"></script>
+
+    <script id="vshader" type="x-shader/x-vertex">
+      uniform mat4 u_modelViewProjMatrix;
+      uniform mat4 u_normalMatrix;
+      uniform vec3 lightDir;
+
+      attribute vec3 vNormal;
+      attribute vec4 vColor;
+      attribute vec4 vPosition;
+
+      varying float v_Dot;
+      varying vec4 v_Color;
+
+      void main()
+      {
+          gl_Position = u_modelViewProjMatrix * vPosition;
+          v_Color = vColor;
+          vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
+          v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
+      }
+    </script>
+
+    <script id="fshader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      varying float v_Dot;
+      varying vec4 v_Color;
+
+      void main()
+      {
+          gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
+      }
+    </script>
 
     <script>
 
