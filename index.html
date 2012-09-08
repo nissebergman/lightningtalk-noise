@@ -369,8 +369,8 @@
 
           <section>
             <h3> How do we get from </h3>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <!-- <img class="float_left" style="display:inline" src="images/Vertices.png"> -->
+            <!-- <div class="float_left" style="line-height: 8; padding: 20px">to</div> -->
             <canvas data-sample="webgl_spinning_cube" class="float_left" style="display:inline"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
@@ -389,11 +389,42 @@
           <section>
             <h2>Vertex Shader</h2>
             <p>Programs run on the Vertex processor to tranform a vertex from model space to screen space</p>
+            <pre class="code"><code class="cpp">
+      uniform mat4 u_modelViewProjMatrix;
+      uniform mat4 u_normalMatrix;
+      uniform vec3 lightDir;
+
+      attribute vec3 vNormal;
+      attribute vec4 vColor;
+      attribute vec4 vPosition;
+
+      varying float v_Dot;
+      varying vec4 v_Color;
+
+      void main()
+      {
+          gl_Position = u_modelViewProjMatrix * vPosition;
+          v_Color = vColor;
+          vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
+          v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
+      }
+            </pre></code>
           </section>
 
           <section>
             <h2>Fragment Shader</h2>
             <p>Programs run on the Fragment processor to add texture and lighting to a pixel</p>
+            <pre class="code"><code class="cpp">
+      precision mediump float;
+
+      varying float v_Dot;
+      varying vec4 v_Color;
+
+      void main()
+      {
+          gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
+      }
+            </pre></code>
           </section>
         </section>
 
@@ -412,7 +443,7 @@
             <h3> How do we get from </h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="webgl_spinning_cube" class="float_left" style="display:inline"></canvas>
+            <canvas data-sample="spinning_cube" class="float_left" style="display:inline"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 

@@ -20,7 +20,7 @@
       function animate() {
 
         // note: three.js includes requestAnimationFrame shim
-        requestAnimationFrame( animate );
+        requestId = requestAnimationFrame( animate );
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
