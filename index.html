@@ -211,8 +211,12 @@
 
           <section>
             <h2>Rendering Demystified</h2>
-            <canvas data-sample="spinning_wireframe_cube"></canvas>
-            <canvas class="float-left" data-sample="spinning_wireframe_torus"></canvas>
+            <img class="float_left" style="display:inline" src="images/Vertices.png">
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <canvas data-sample="spinning_wireframe_cube" style="display:inline"></canvas>
+            <p class="medium">----------------------------------
+            <br/>
+            Model * World_View_Projection_Matrix</p>
           </section>
 
         </section>
@@ -299,9 +303,9 @@
 
           <section>
             <h2>Per Pixel Lighting</h2>
-            <img class="float_left" style="width: 30%"
+            <img class="float_left" style="width: 25%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <img src="http://www.upvector.com/content/tutorials/shading/reflection_vector.gif">
+            <img style="width: 70%" src="http://www.upvector.com/content/tutorials/shading/reflection_vector.gif">
           </section>
 
           <section>
@@ -864,7 +868,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <h1>A Mashup of Technologies</h1>
           <ul style="margin-top: 40px;">
             <li>This slide deck</li>
-            <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL0ErTmBDY23KxLoOHkBDgIT26MSXxCOJM8ehFNT/vrMTl4Q1ihL77nzffee7Cz/8+LW4/32zJJku8rO9sP2NwgwYx/8oLEAzEmdM1aDn40Ynh6djq6j1OgezGkWSr8mrWY0iFj+mSjYlP4xlLtWU7Cf2mVl1wVQqyikJ2q18ApXkcjUlmeAcSivdGOe+8x76XSShQWmBYyUqTWoVz8eZ1tXU9wvFpYxoKnTWRDSWha8zBUD/1H7UiJx320KUKBqfoXvro+fubM9g+z5ZSfXILAOSSIXMlSyARE2KQbZgseRAUynTHCxU5Vsj0RS+qOsGap9jzkT+TfD5p5Ovp8F+fHRsvIuEeGQlSi5XVJQlqAfBdUbm8zkJyAF53aUjFVNQ6p5sNjC7BJFm+p1dK5yRjc0yPub/xJANK0CxCaljKGFC8AQHBWrm9CkgWa3WE1IwDUqwHFdQZzObHVEK7R1YY1YKY2F2Zps0ZayFLElr0hWD/bSQGGAJK3J/ebtc0htQdQV44AkWVuuRLyeTHez9HVQn5AjfIMCMzXoAtJK1MCHQF8Q6CYI2sJFlOkC/MxIX+MgxHpgsmgguOgXGFkzs6wBdagZHrjFL31kt4utO6+F9di0QPAf2MRQVJAoDnhKtGugJrgT6MqSn5DPZEBeeuRT2LOpLyCtQA8Tzrbi7k9GbIa1jhtX5jAf+E653CU3SjmZvGaOMc6+P7AJqM4Bk/2Pv7agel7KeT3vWeXMFOHD2ANHF1W2ncdycJcUxdCdeYEcjTXY1hkPiMm4K0yBmjFBWVehvkeFo8LZdQLksljkYK3dsM6zubdVjgXdR/cV+1+dWjhY/zVV6zm4LbjhTJbW1wVv5iA1Pgy7fQ+W6Ux6/yxBtF55r3a6t+nH2plrot9MSp6eZ5/8A">Code Editor</a></li>
+            <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL2EqTuhUjTUtE2PdmDQ0BEjTHt342ngkduY4LQX1v+/sxJBAoqq27z7fd3e+u9m7r78u7v5cL0hq8uzsYFYvg1kKjOM6mOVgGElSpksw82FlVsenQ6cozS4DuxssFd+RJ7sbLFlyv9aqkvw4UZnSU3K4cl/s1DnTayGnJKqPagN6lantlKSCc5BOurfGQ299FjaezCxLTZxoURhS6mQ+TI0ppmGYa67Ukq6FSaslTVQemlQD0L9luKxExptjLiSKhmdo3tlomTs7sNxhSLZK3zMXAVkpjZFrlQNZVmt0siZLFAe6VmqdgaMqQgcSVR6KsqygDDnmTGSfBZ9/mHw6jQ6Tk7G1LlYkIFshudpSISXo34KblMzncxKRI/LUpyMF0yBNSxZ3YJcg1ql5hauFMdm7LONn1w3DaFgOmo1ImYCEEcEbHDTo2OvXgMEavRuRnBnQgmW4gzKNXXaEFCY4cmAmhUXYkz2uKpkYoSSpIU0xuL+aEh2UsCV3lzeLBb0GXRaAFzZw4bQB+TgZ9UQf9oQ6Iif4iyLMWNwioIUqhXWBPiLXJIpqxwYu0g77rZV4xwc+4g7kR6JKlgLXSn5v9AEZRxESe1afn869K0zVF1aK5KrRBvioTR9ED5H7bJwaVhq9nhKjK2gJfgq0ZSOfkjHZE++jfRn2IMpLyArQHcbzZ3HzMIMXIC0ThiX6gBfeCHd9Qpu5cfySNso4D9rM3iFbEm8CD3qqx2erZc7d9YZ8AXaMXTC5YeVNo/JxeSjFOXQrHqGnk0Z9neGpuEqq3HaInSOUFQXau0hxNgTPbUC5yhcZWJS/tu+W93PZY4U3Xv3DhjfnTo6Ib/YZA4/rJIxqZRzGvchXVFOptmjqPYkoFsYk7oHu+qAnr7JH603g27ppuXYIrYk3C+tJipPVzvr/">Code Editor</a></li>
             <li><a href="http://cnn-ecosphere.com/">CNN EcoSphere</a></li>
             <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
             <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
