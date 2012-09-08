@@ -30,8 +30,14 @@ pre.code {
   line-height:18px;
 }
 
+pre.supersmall {
+  font-size: 9px;
+  line-height:9px;
+}
+
 pre.medium {
   font-size: 21px;
+  line-height: 24px;
   width: 100%;
 }
 

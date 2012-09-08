@@ -11,9 +11,12 @@
       var index = $(this).data("sample");
       window.samples[index].initialize(this);
     });
-  };
+  }
 
   head.js(
+    "js/samples/particles.js",
+    "js/samples/blur_post_process.js",
+    "js/samples/bloom_post_process.js",
     "js/samples/webgl_spinning_cube.js",
     "js/samples/spinning_wireframe_torus.js",
     "js/samples/spinning_wireframe_cube.js",
@@ -23,6 +26,5 @@
     "js/samples/bump_mapped_wall.js",
     "js/samples/load_startrek_enterprise.js",
     "js/samples/load_apache.js",
-    initializeOnLoad
-  );
+    initializeOnLoad);
 })();
