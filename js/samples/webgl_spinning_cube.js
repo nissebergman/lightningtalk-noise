@@ -1,7 +1,6 @@
 (function() {
 
   // Slightly modified version of http://www.khronos.org/webgl/wiki/Tutorial
-
   function init(scene) {
     // Initialize
     var gl = WebGLUtils.setupWebGL(scene.canvas);
@@ -10,15 +9,15 @@
     }
 
     scene.program = simpleSetup(
-        gl,
-        // The ids of the vertex and fragment shaders
-        "vshader", "fshader",
-        // The vertex attribute names used by the shaders.
-        // The order they appear here corresponds to their index
-        // used later.
-        [ "vNormal", "vColor", "vPosition"],
-        // The clear color and depth values
-        [ 0, 0, 0, 0 ], 10000);
+      gl,
+      // The ids of the vertex and fragment shaders
+      "vshader", "fshader",
+      // The vertex attribute names used by the shaders.
+      // The order they appear here corresponds to their index
+      // used later.
+      [ "vNormal", "vColor", "vPosition"],
+      // The clear color and depth values
+      [ 0, 0, 0, 0 ], 10000);
 
     // Set up a uniform variable for the shaders
     gl.uniform3f(gl.getUniformLocation(scene.program, "lightDir"), 0, 0, 1);
@@ -30,12 +29,12 @@
 
     // Set up the array of colors for the cube's faces
     var colors = new Uint8Array(
-        [  0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,     // v0-v1-v2-v3 front
-           1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,     // v0-v3-v4-v5 right
-           0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,     // v0-v5-v6-v1 top
-           1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,     // v1-v6-v7-v2 left
-           1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,     // v7-v4-v3-v2 bottom
-           0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1 ]    // v4-v7-v6-v5 back
+      [  0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,     // v0-v1-v2-v3 front
+        1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,     // v0-v3-v4-v5 right
+        0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,     // v0-v5-v6-v1 top
+        1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,     // v1-v6-v7-v2 left
+        1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,     // v7-v4-v3-v2 bottom
+        0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1 ]    // v4-v7-v6-v5 back
     );
 
     // Set up the vertex buffer for the colors
@@ -48,7 +47,7 @@
     scene.u_normalMatrixLoc = gl.getUniformLocation(scene.program, "u_normalMatrix");
     scene.normalMatrix = new J3DIMatrix4();
     scene.u_modelViewProjMatrixLoc =
-            gl.getUniformLocation(scene.program, "u_modelViewProjMatrix");
+      gl.getUniformLocation(scene.program, "u_modelViewProjMatrix");
     scene.mvpMatrix = new J3DIMatrix4();
 
     // Enable all of the vertex attribute arrays.
@@ -78,14 +77,12 @@
     // Set the viewport and projection matrix for the scene
     gl.viewport(0, 0, canvas.width, canvas.height);
     scene.perspectiveMatrix = new J3DIMatrix4();
-
-    // function (eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz)
-    scene.perspectiveMatrix.lookat(0, 0, 10, 0, 0, 0, 0, 1, 0);
-    scene.perspectiveMatrix.perspective(30, canvas.width / canvas.height, 1, 10000);
+    scene.perspectiveMatrix.perspective(30, canvas.width/canvas.height, 1, 10000);
+    scene.perspectiveMatrix.lookat(0, 0, 7, 0, 0, 0, 0, 1, 0);
   }
 
   function drawPicture(scene, gl) {
-    //Make sure the canvas is sized correctly.
+    // Make sure the canvas is sized correctly.
     reshape(scene, gl);
 
     // Clear the canvas
@@ -110,9 +107,6 @@
     // Draw the cube
     gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
 
-    // Show the framerate
-    // framerate.snapshot();
-
     scene.currentAngle += scene.incAngle;
     if (scene.currentAngle > 360)
       scene.currentAngle -= 360;
@@ -121,17 +115,13 @@
   window.samples.webgl_spinning_cube = {
 
     initialize: function(canvas) {
-      //canvas = WebGLDebugUtils.makeLostContextSimulatingCanvas(canvas);
-      // tell the simulator when to lose context.
-      //canvas.loseContextInNCalls(15);
-
       var scene = { canvas: canvas };
 
       canvas.addEventListener('webglcontextlost', handleContextLost, false);
       canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
 
-      canvas.width = sample_defaults.width * 3;
-      canvas.height = sample_defaults.height * 3;
+      canvas.width = sample_defaults.width;
+      canvas.height = sample_defaults.height;
 
       var gl = init(scene);
       if (!gl) {
@@ -140,8 +130,8 @@
 
       scene.currentAngle = 0;
       scene.incAngle = 0.5;
-      // framerate = new Framerate("framerate");
 
+      var requestId;
       function animate() {
         drawPicture(scene, gl);
         requestId = window.requestAnimFrame(animate, canvas);
