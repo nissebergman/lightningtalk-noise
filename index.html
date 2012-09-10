@@ -88,7 +88,7 @@
           </section>
 
           <section>
-            <h2>Model (or Object) Space</h2>
+            <h2>Model Space</h2>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
             <!-- <img src="images/apache_model_space.png"> -->
           </section>
@@ -101,12 +101,12 @@
           </section>
 
           <section>
-            <h2>View (or Camera) Space</h2>
+            <h2>View Space</h2>
             <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
           </section>
 
           <section>
-            <h2>Screen (or Projection) Space</h2>
+            <h2>Projection Space</h2>
             <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
 
@@ -203,6 +203,13 @@
           </section>
 
           <section>
+            <h2>Rendering Demystified</h2>
+            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
+            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
+            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
+          </section>
+
+          <section>
             <h2>Composite Transformation</h2>
             <p>Putting it all together</p>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
@@ -290,26 +297,26 @@
           </section>
 
           <section>
-            <h2>Per Pixel Lighting</h2>
+            <h2>Lighting</h2>
             <img class="float_left" style="width: 30%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <img src="http://www.upvector.com/content/tutorials/shading/shader_vectors.gif">
           </section>
 
           <section>
-            <h2>The dot product</h2>
+            <h2>The Dot Product</h2>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png">
           </section>
 
           <section>
-            <h2>Per Pixel Lighting</h2>
+            <h2>Lighting</h2>
             <img class="float_left" style="width: 25%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <img style="width: 70%" src="http://www.upvector.com/content/tutorials/shading/reflection_vector.gif">
           </section>
 
           <section>
-            <h2>Showcase: Per pixel lighting</h2>
+            <h2>Showcase: Per Pixel Lighting</h2>
             <canvas data-sample="bump_mapped_wall"></canvas>
           </section>
         </section>
@@ -539,8 +546,7 @@ window.samples.webgl_spinning_cube = {
 
           <section>
             <h2>Vertex Shader</h2>
-            <p>Programs run on the Vertex processor to tranform a vertex from model space to screen space</p>
-            <pre class="code"><code class="cpp">
+            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
       uniform mat4 u_modelViewProjMatrix;
       uniform mat4 u_normalMatrix;
       uniform vec3 lightDir;
@@ -563,9 +569,9 @@ window.samples.webgl_spinning_cube = {
           </section>
 
           <section>
-            <h2>Fragment Shader</h2>
-            <p>Programs run on the Fragment processor to add texture and lighting to a pixel</p>
-            <pre class="code"><code class="cpp">
+            <h3>Fragment Shader</h3>
+            <p>Per Vertex Lighting. Not per pixel lighting.</p>
+            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
       precision mediump float;
 
       varying float v_Dot;
@@ -576,16 +582,14 @@ window.samples.webgl_spinning_cube = {
           gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
       }
             </code></pre>
+            <canvas data-sample="webgl_spinning_cube" style="display:inline"></canvas>
           </section>
 
           <section>
-            <h2>SIMD</h2>
-            <p>Single Instruction, Multiple Data</p>
-            <p>TODO</p>
-            <p>Modern graphics processing units (GPUs) are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</p>
-            <p>
-            This functionality is useful in graphics because almost every basic data type is a vector (either 2-, 3-, or 4-dimensional). Examples include vertices, colors, normal vectors, and texture coordinates. Many other applications can put this to good use, and because of their higher performance, vector instructions (SIMD) have long been available on CPUs.
-            </p>
+            <h2>Single Instruction, Multiple Data (SIMD)</h2>
+            <br/>
+            <br/>
+            <p>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</p>
           </section>
         </section>
 
@@ -637,6 +641,7 @@ function init(canvas) {
   animate();
 }
             </code></pre>
+            <p class="supersmall">16 lines of code</p>
           </section>
 
           <section>
@@ -645,6 +650,13 @@ function init(canvas) {
 function init(canvas) {
   var scene = new THREE.Scene();
             </code></pre>
+            <br/>
+            <p>Encapsulates everything with regard to this rendering!</p>
+            <ul>
+              <li>All global matrices</li>
+              <li>Models</li>
+              <li>Camera</li>
+            </ul>
           </section>
 
           <section>
@@ -653,6 +665,10 @@ function init(canvas) {
 var camera = new THREE.PerspectiveCamera(75, 320/240, 1, 1000);
 camera.position.z = 100;
             </code></pre>
+            <div style="width:120%">
+              <img style="height: 50%" class="float_left" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
+              <img style="height: 50%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
+            </div>
           </section>
 
           <section>
@@ -660,6 +676,7 @@ camera.position.z = 100;
             <pre class="medium"><code>
   var geometry = new THREE.CubeGeometry( 70, 70, 70 );
             </code></pre>
+            <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
 
           <section>
@@ -667,7 +684,12 @@ camera.position.z = 100;
             <pre class="medium"><code>
 var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             </code></pre>
-            <p>Actually an OpenGL concept. Encapsulates texture, lighting and other per pixel settings of a model</p>
+            <p>Actually an OpenGL concept. Encapsulates:</p>
+            <ul>
+              <li>Texture</li>
+              <li>Lighting</li>
+              <li>Fragment Shader</li>
+            </p>
           </section>
 
           <section>
@@ -676,21 +698,25 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
             </code></pre>
+            <br/>
+            <p>Associate geometry with a material to make a mesh.</p>
+            <p>Also creates a world matrix for the mesh, defaulting it to the identity</p>
           </section>
 
           <section>
             <h3>Renderer</h3>
             <pre class="medium"><code>
+  // var renderer = new THREE.WebGLRenderer({canvas: canvas});
   var renderer = new THREE.CanvasRenderer({canvas: canvas});
   renderer.setSize( 320, 240 );
             </code></pre>
-            <p>The moment you add lighting, the CanvasRenderer's performance goes to shit.</p>
-            <p>Makes sense because now you have to perform a SIMD instruction on CPU</p>
+            <br/>
+            <p>The moment you add lighting, the CanvasRenderer's performance tanks.</p>
           </section>
 
           <section>
             <h3>requestAnimationFrame?</h3>
-            <p>Welcome to the render (or game) loop</p>
+            <p>Welcome to the Render Loop</p>
             <pre class="medium"><code>
   function animate() {
     // note: three.js includes requestAnimationFrame shim
@@ -721,24 +747,19 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
           </section>
 
           <section>
-            <h2>Blender</h2>
+            <h2>Blender and ThreeJS</h2>
             <br/>
             <ul>
-              <li>Blender is a 3D Model content creation suite similar to Maya and 3D Studio Max</li>
-              <li>Can export to either Three js file format or Collada for rendering</li>
+              <li>Can export to the Three js file format</li>
+              <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh</a></li>
+              <li><p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p></li>
             </ul>
-          </section>
-
-          <section>
-            <h2>ThreeJS: File Format</h2>
-            <a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh</a>
-            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
           </section>
 
           <section>
             <h2>ThreeJS: Importing Mesh</h2>
             <br/>
-            <pre class="code"><code>
+            <pre class="medium"><code>
 // REMOVED
 // var geometry = new THREE.CubeGeometry( 70, 70, 70 );
 // var material = new THREE.MeshLambertMaterial({color: 0xdddddd});
@@ -748,6 +769,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
   mesh = new THREE.Mesh( geometry, geometry.materials[0] );
   scene.add( mesh );
+  ...
             </code></pre>
           </section>
 
@@ -757,7 +779,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section data-state="loaded_apache">
-            <h2>BOOM! with Textures</h2>
+            <h2>with Textures</h2>
             <a href="images/FinalApacheTexture.png">Apache Texture File</a>
             <canvas data-sample="load_apache"></canvas>
           </section>
