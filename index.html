@@ -812,19 +812,53 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
         <section>
           <section>
-            <h2>Vertex Shaders: Particles</h2>
+            <h2>ThreeJS: Particles</h2>
             <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
           </section>
 
           <section>
-            <h2>Vertex Textures</h2>
-            <p>Using the RGB for XYZ</p>
+            <h2>ThreeJS: Particles</h2>
             <canvas data-sample="particles"></canvas>
+          </section>
+
+          <section>
+            <h2>ThreeJS: Particles</h2>
+            <pre class="code medium"><code class="cpp">
+    geometry = new THREE.Geometry();
+    for ( i = 0; i < 20000; i ++ ) {
+      var vertex = new THREE.Vector3();
+      vertex.x = Math.random() * 2000 - 1000;
+      vertex.y = Math.random() * 2000 - 1000;
+      vertex.z = Math.random() * 2000 - 1000;
+
+      geometry.vertices.push( vertex );
+    }
+    ...
+            </code></pre>
+            <br/>
+            <pre class="code medium"><code class="cpp">
+    particles = new THREE.ParticleSystem( geometry, materials[i] );
+
+    scene.add( particles );
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>ThreeJS: Vertex Textures</h2>
+            <p>Using the RGB for your XYZ</p>
           </section>
 
           <section>
             <h2>Showcase: A Million Particles</h2>
             <a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Vertex Shaders: Vertex Textures</h2>
+            <p>Water displacement</p>
+            <a href="http://madebyevan.com/webgl-water/">WebGL Water</a>
           </section>
         </section>
 
@@ -840,6 +874,11 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <img class="float_left" style="width: 25%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <img style="width: 70%" src="http://www.upvector.com/content/tutorials/shading/reflection_vector.gif">
+          </section>
+
+          <section>
+            <h2>Normal Map</h2>
+            <img src="http://gl.ict.usc.edu/Research/digitalemily/webImages/Slide13.PNG">
           </section>
 
           <section>
