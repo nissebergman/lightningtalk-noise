@@ -351,7 +351,7 @@
 
           <section>
             <h2>The Graphics Card</h2>
-            <img src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
+            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
 
           <section>
@@ -844,21 +844,26 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>ThreeJS: Vertex Textures</h2>
-            <p>Using the RGB for your XYZ</p>
-          </section>
-
-          <section>
-            <h2>Showcase: A Million Particles</h2>
-            <a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a>
+            <h2>How do we render a million particles?</h2>
+            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
+            <p class="fragment">Use textures to hold your position</p>
           </section>
         </section>
 
         <section>
           <section>
-            <h2>Vertex Shaders: Vertex Textures</h2>
-            <p>Water displacement</p>
-            <a href="http://madebyevan.com/webgl-water/">WebGL Water</a>
+            <h3>ThreeJS: Vertex Textures</h3>
+            <p>Using the RGB for your XYZ</p>
+            <img class="float_left" src="http://www.alvaromartin.net/images/surfaceclipmaps/heightmap.jpg">
+            <canvas data-sample="wireframe_heightmap"></canvas>
+          </section>
+
+          <section>
+            <h3>Showcase: A Million Particles</h3>
+            <ul>
+              <li><a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a></li>
+              <li><a href="http://www.html5rocks.com/en/tutorials/webgl/million_letters/million_letters.html">A Million Letters</a></li>
+            </ul>
           </section>
         </section>
 
@@ -906,25 +911,17 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <canvas data-sample="bloom_post_process"></canvas>
           </section>
 
-          <section>
-            <h2>Showcase: Lighting</h2>
-            <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
-          </section>
+        </section>
+
+        <section>
+          <h2>Showcase: Big Boy Lighting</h2>
+          <p>Combining various techniques</p>
+          <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
         </section>
 
         <section>
           <h3>Game Time: Spot the feature!</h3>
           <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
-        </section>
-
-        <section>
-          <section>
-            <h2>Video Textures</h2>
-            <ul>
-              <li><a href="http://mrdoob.github.com/three.js/examples/canvas_materials_video.html">Video Textures</a></li>
-              <li><a href="http://www.ro.me/">Rome</a></li>
-            </ul>
-          </section>
         </section>
 
         <section>
@@ -938,6 +935,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <h1>A Mashup of Technologies</h1>
           <ul style="margin-top: 40px;">
             <li>This slide deck</li>
+              <li><a href="http://www.ro.me/">Rome Interactive Movie</a></li>
             <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL2EqTuhUjTUtE2PdmDQ0BEjTHt342ngkduY4LQX1v+/sxJBAoqq27z7fd3e+u9m7r78u7v5cL0hq8uzsYFYvg1kKjOM6mOVgGElSpksw82FlVsenQ6cozS4DuxssFd+RJ7sbLFlyv9aqkvw4UZnSU3K4cl/s1DnTayGnJKqPagN6lantlKSCc5BOurfGQ299FjaezCxLTZxoURhS6mQ+TI0ppmGYa67Ukq6FSaslTVQemlQD0L9luKxExptjLiSKhmdo3tlomTs7sNxhSLZK3zMXAVkpjZFrlQNZVmt0siZLFAe6VmqdgaMqQgcSVR6KsqygDDnmTGSfBZ9/mHw6jQ6Tk7G1LlYkIFshudpSISXo34KblMzncxKRI/LUpyMF0yBNSxZ3YJcg1ql5hauFMdm7LONn1w3DaFgOmo1ImYCEEcEbHDTo2OvXgMEavRuRnBnQgmW4gzKNXXaEFCY4cmAmhUXYkz2uKpkYoSSpIU0xuL+aEh2UsCV3lzeLBb0GXRaAFzZw4bQB+TgZ9UQf9oQ6Iif4iyLMWNwioIUqhXWBPiLXJIpqxwYu0g77rZV4xwc+4g7kR6JKlgLXSn5v9AEZRxESe1afn869K0zVF1aK5KrRBvioTR9ED5H7bJwaVhq9nhKjK2gJfgq0ZSOfkjHZE++jfRn2IMpLyArQHcbzZ3HzMIMXIC0ThiX6gBfeCHd9Qpu5cfySNso4D9rM3iFbEm8CD3qqx2erZc7d9YZ8AXaMXTC5YeVNo/JxeSjFOXQrHqGnk0Z9neGpuEqq3HaInSOUFQXau0hxNgTPbUC5yhcZWJS/tu+W93PZY4U3Xv3DhjfnTo6Ib/YZA4/rJIxqZRzGvchXVFOptmjqPYkoFsYk7oHu+qAnr7JH603g27ppuXYIrYk3C+tJipPVzvr/">Code Editor</a></li>
             <li><a href="http://cnn-ecosphere.com/">CNN EcoSphere</a></li>
             <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
@@ -961,6 +959,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         <section>
           <h2>Credits</h2>
           <ul>
+            <li><a href="https://github.com/mrdoob/three.js/">Three JS</a></li>
             <li><a href="https://www.e-education.psu.edu/geog486/l7_p9.html">Penn State Geography 486</a></li>
             <li><a href="http://robertokoci.com/world-view-projection-matrix-unveiled/">Roberto Koci</a></li>
           </ul>
