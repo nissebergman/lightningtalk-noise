@@ -1,6 +1,16 @@
-js/samples/bump_mapped_wall.js
-js/samples/lighted_sphere.js
+Texture:
 js/samples/spinning_textured_cube.js
+
+Fixed Function Lighting
+js/samples/lighted_sphere.js
+
+Vertex Textures:
+js/samples/wireframe_heightmap.js
+
+Normal Mapping:
+js/samples/plane.js
+js/samples/normal_mapped_plane.js
+
+PostProcessing:
 js/samples/blur_post_process.js
 js/samples/bloom_post_process.js
-js/samples/wireframe_heightmap.js

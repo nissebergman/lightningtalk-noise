@@ -1,6 +1,6 @@
 (function() {
 
-  window.samples.bump_mapped_wall = {
+  window.samples.normal_mapped_plane = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
