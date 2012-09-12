@@ -545,26 +545,61 @@ window.samples.webgl_spinning_cube = {
           </section>
 
           <section>
+            <h2>What we care about</h2>
+            <pre class="code"><code class="javascript">
+function drawPicture(scene, gl) {
+  // Clear the canvas
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+  // Set the viewport and projection matrix for the scene
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  scene.perspectiveMatrix = new J3DIMatrix4();
+  scene.perspectiveMatrix.perspective(30, canvas.width/canvas.height, 1, 10000);
+  scene.perspectiveMatrix.lookat(0, 0, 7, 0, 0, 0, 0, 1, 0);
+
+  // Make a model/view matrix.
+  scene.mvMatrix.makeIdentity();
+  scene.mvMatrix.rotate(20, 1,0,0);
+  scene.mvMatrix.rotate(scene.currentAngle, 0,1,0);
+
+  // Construct the normal matrix from the model-view matrix and pass it in
+  scene.normalMatrix.load(scene.mvMatrix);
+  scene.normalMatrix.invert();
+  scene.normalMatrix.transpose();
+  scene.normalMatrix.setUniform(gl, scene.u_normalMatrixLoc, false);
+
+  // Construct the model-view * projection matrix and pass it in
+  scene.mvpMatrix.load(scene.perspectiveMatrix);
+  scene.mvpMatrix.multiply(scene.mvMatrix);
+  scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrixLoc, false);
+
+  // Draw the cube
+  gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
+}
+            </code></pre>
+          </section>
+
+          <section>
             <h2>Vertex Shader</h2>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
-      uniform mat4 u_modelViewProjMatrix;
-      uniform mat4 u_normalMatrix;
-      uniform vec3 lightDir;
+    uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
+    uniform mat4 u_normalMatrix;
+    uniform vec3 lightDir;
 
-      attribute vec3 vNormal;
-      attribute vec4 vColor;
-      attribute vec4 vPosition;
+    attribute vec3 vNormal; // Received from Vertex
+    attribute vec4 vColor;
+    attribute vec4 vPosition;
 
-      varying float v_Dot;
-      varying vec4 v_Color;
+    varying float v_Dot;
+    varying vec4 v_Color;
 
-      void main()
-      {
-          gl_Position = u_modelViewProjMatrix * vPosition;
-          v_Color = vColor;
-          vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
-          v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
-      }
+    void main()
+    {
+        gl_Position = u_modelViewProjMatrix * vPosition;
+        v_Color = vColor;
+        vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
+        v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
+    }
             </code></pre>
           </section>
 
@@ -572,15 +607,15 @@ window.samples.webgl_spinning_cube = {
             <h3>Fragment Shader</h3>
             <p>Per Vertex Lighting. Not per pixel lighting.</p>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
-      precision mediump float;
+    precision mediump float;
 
-      varying float v_Dot;
-      varying vec4 v_Color;
+    varying float v_Dot; // Passed in from Vertex Shader
+    varying vec4 v_Color;
 
-      void main()
-      {
-          gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
-      }
+    void main()
+    {
+        gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
+    }
             </code></pre>
             <canvas data-sample="webgl_spinning_cube" style="display:inline"></canvas>
           </section>
