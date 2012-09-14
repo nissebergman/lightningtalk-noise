@@ -8,18 +8,19 @@
       var camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
       camera.position.z = 100;
 
-      var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-      var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+      var texture = THREE.ImageUtils.loadTexture('images/checker_large.gif', {}, function() {
+        animate();
+      });
 
+      var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+      var material = new THREE.MeshBasicMaterial( { map: texture } );
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
-      var renderer = new THREE.CanvasRenderer({canvas: canvas});
+      var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
 
       function animate() {
-
-        // note: three.js includes requestAnimationFrame shim
         requestAnimationFrame( animate );
 
         mesh.rotation.x += 0.01;
@@ -27,8 +28,6 @@
 
         renderer.render( scene, camera );
       }
-
-      animate();
     }
   };
 })();

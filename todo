@@ -1,6 +1,3 @@
-Texture:
-js/samples/spinning_textured_cube.js
-
 Fixed Function Lighting
 js/samples/lighted_sphere.js
 
