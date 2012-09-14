@@ -8,23 +8,18 @@
       var camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
       camera.position.z = 100;
 
-      var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-      var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+      var geometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+      var material = new THREE.MeshLambertMaterial( { wireframe: true, side: THREE.DoubleSide } );
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
       var renderer = new THREE.CanvasRenderer({canvas: canvas});
-      renderer.setSize( sample_defaults.width, sample_defaults.height );
+      renderer.setSize( sample_defaults.width * 1.4, sample_defaults.height * 1.4 );
 
       function animate() {
-
-        // note: three.js includes requestAnimationFrame shim
         requestAnimationFrame( animate );
-
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
-
+        mesh.rotation.y += 0.01;
         renderer.render( scene, camera );
       }
 
