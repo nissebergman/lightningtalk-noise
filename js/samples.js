@@ -15,7 +15,6 @@
 
   head.js(
     "js/samples/particles.js",
-    "js/samples/wireframe_heightmap.js",
     "js/samples/blur_post_process.js",
     "js/samples/bloom_post_process.js",
     "js/samples/webgl_spinning_wireframe_cube.js",

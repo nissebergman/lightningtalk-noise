@@ -8,6 +8,3 @@ js/samples/bloom_post_process.js
 
 Fixed Function Lighting
 js/samples/lighted_sphere.js
-
-Vertex Textures:
-js/samples/wireframe_heightmap.js
