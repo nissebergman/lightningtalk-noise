@@ -15,11 +15,11 @@
       scene.add( mesh );
 
       var renderer = new THREE.CanvasRenderer({canvas: canvas});
-      renderer.setSize( sample_defaults.width * 1.4, sample_defaults.height * 1.4 );
+      renderer.setSize( sample_defaults.width * 0.5, sample_defaults.height * 0.5 );
 
       function animate() {
         requestAnimationFrame( animate );
-        mesh.rotation.y += 0.01;
+        mesh.rotation.y += 0.002;
         renderer.render( scene, camera );
       }
 

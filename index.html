@@ -953,8 +953,8 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
           <section>
             <h2>Normal Map</h2>
-            <canvas data-sample="plane" class="float_left" style="display:inline"></canvas>
             <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
+            <canvas data-sample="plane" class="float_left" style="display:inline"></canvas>
           </section>
 
           <section>
@@ -1110,6 +1110,59 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       void main()
       {
           gl_FragColor = vec4(1, 1, 1, 1);
+      }
+    </script>
+
+    <script id="normal_map_vs" type="x-shader/x-vertex">
+      attribute vec3 tangent;
+
+      varying vec4 vPositionV;
+      varying vec3 vNormalV;
+      varying vec3 vTangentV;
+      varying vec2 vTexCoord;
+
+      void main(void) {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        vPositionV = modelViewMatrix * vec4(position, 1.0);
+        vNormalV = (modelViewMatrix * vec4(normal, 0.0)).xyz;
+        vTangentV = (modelViewMatrix * vec4(tangent, 0.0)).xyz;
+        vTexCoord = uv;
+      }
+    </script>
+
+    <script id="normal_map_fs" type="x-shader/x-fragment">
+      #ifdef GL_ES
+      precision highp float;
+      #endif
+
+      uniform sampler2D map;
+      uniform float uTime;
+
+      varying vec4 vPositionV;
+      varying vec3 vNormalV;
+      varying vec3 vTangentV;
+      varying vec2 vTexCoord;
+
+      void main(void) {
+        vec3 normalT = texture2D(map, vTexCoord).xyz;
+        normalT.y = 1.0 - normalT.y;
+        normalT = 2.0 * normalT - vec3(1.0, 1.0, 1.0);
+        normalT.z *= 10.0;
+
+        vec3 binormalV = cross(vNormalV, vTangentV);
+        vec3 normalV = normalT.x * vTangentV + normalT.y * binormalV + normalT.z * vNormalV;
+
+        normalV = normalize(normalV);
+        vec3 lightV = normalize(vec3(10.0 * cos(uTime), 10.0, 10.0 * sin(uTime)));
+
+        float d = dot(normalV, lightV);
+        float s = dot(reflect(-lightV, normalV), normalize(-vPositionV.xyz));
+        s = pow(s, 30.0);
+
+        vec3 diffuse = vec3(1, 1, 1);
+        vec3 color = diffuse * (0.1 + 0.5 * d + 0.4 * s);
+
+        gl_FragColor = vec4(color, 1.0);
       }
     </script>
 

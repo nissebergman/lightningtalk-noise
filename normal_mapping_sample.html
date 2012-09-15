@@ -45,7 +45,8 @@ http://www.damix.it/public/webgl/normal-mapping.html
       varying vec2 vTexCoord;
 
       void main(void) {
-        vec3 diffuse = texture2D(uColorSampler, vTexCoord).rgb;
+        // vec3 diffuse = texture2D(uColorSampler, vTexCoord).rgb;
+        vec3 diffuse = vec3(1, 1, 1);
         vec3 normalT = texture2D(uNormalSampler, vTexCoord).xyz;
         normalT.y = 1.0 - normalT.y;
         normalT = 2.0 * normalT - vec3(1.0, 1.0, 1.0);
