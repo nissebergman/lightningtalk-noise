@@ -26,6 +26,7 @@
       renderer.setSize( width, height );
 
       function animate() {
+        if(sample_defaults.paused) return;
 
         // note: three.js includes requestAnimationFrame shim
         requestAnimationFrame( animate );

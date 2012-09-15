@@ -8,6 +8,7 @@
   var height = sample_defaults.height * 2;
 
   function animate() {
+    if(sample_defaults.paused) return;
     requestAnimationFrame( animate );
     render();
   }

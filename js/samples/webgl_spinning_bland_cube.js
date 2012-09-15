@@ -133,6 +133,7 @@
 
       var requestId;
       function animate() {
+        if(sample_defaults.paused) return;
         drawPicture(scene, gl);
         requestId = window.requestAnimFrame(animate, canvas);
       }

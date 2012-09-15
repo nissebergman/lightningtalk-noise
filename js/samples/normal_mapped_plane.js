@@ -45,6 +45,7 @@
       renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
 
       function animate() {
+        if(sample_defaults.paused) return;
         requestAnimationFrame( animate );
         mesh.rotation.y += 0.002;
         renderer.render( scene, camera );

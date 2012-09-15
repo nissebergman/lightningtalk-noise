@@ -1,7 +1,8 @@
 (function() {
   window.sample_defaults = {
     width: 320,
-    height: 240
+    height: 240,
+    paused: false
   };
 
   window.samples = {};

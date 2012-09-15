@@ -5,7 +5,7 @@
   }
 
   function animate() {
-    if(shouldRender()) {
+    if(shouldRender() && !sample_defaults.paused) {
       requestAnimationFrame( animate );
       mesh.rotation.y += 0.01;
       renderer.render( scene, camera );
