@@ -381,7 +381,7 @@
             <h3> How do we get from </h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="webgl_spinning_cube" id="example" class="float_left" style="display:inline"></canvas>
+            <canvas data-sample="webgl_spinning_colored_cube" id="example" class="float_left" style="display:inline"></canvas>
             <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
@@ -561,21 +561,55 @@ function drawPicture(scene, gl) {
   scene.mvMatrix.rotate(20, 1,0,0);
   scene.mvMatrix.rotate(scene.currentAngle, 0,1,0);
 
-  // Construct the normal matrix from the model-view matrix and pass it in
-  scene.normalMatrix.load(scene.mvMatrix);
-  scene.normalMatrix.invert();
-  scene.normalMatrix.transpose();
-  scene.normalMatrix.setUniform(gl, scene.u_normalMatrixLoc, false);
-
   // Construct the model-view * projection matrix and pass it in
   scene.mvpMatrix.load(scene.perspectiveMatrix);
   scene.mvpMatrix.multiply(scene.mvMatrix);
+
+  // Pass it in to the Vertex Shader
   scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrixLoc, false);
 
   // Draw the cube
   gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
 }
             </code></pre>
+          </section>
+
+          <section>
+            <h2>Vertex Shader</h2>
+            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
+    uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
+
+    attribute vec4 vPosition; // Information from vertex
+
+    void main()
+    {
+        gl_Position = u_modelViewProjMatrix * vPosition;
+    }
+            </code></pre>
+            <img class="float_left" style="width: 30%"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <canvas data-sample="webgl_spinning_wireframe_cube" style="display:inline"></canvas>
+          </section>
+
+          <section>
+            <h3>Fragment Shader</h3>
+            <p>Per Vertex Lighting. Not per pixel lighting.</p>
+            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
+    void main()
+    {
+        gl_FragColor = vec4(1, 1, 1, 1); // RGBA
+    }
+            </code></pre>
+            <img class="float_left" style="width: 30%"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <canvas data-sample="webgl_spinning_bland_cube" style="display:inline"></canvas>
+          </section>
+
+          <section>
+            <h2>Single Instruction, Multiple Data (SIMD)</h2>
+            <br/>
+            <br/>
+            <p>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</p>
           </section>
 
           <section>
@@ -589,7 +623,7 @@ function drawPicture(scene, gl) {
     attribute vec4 vColor;
     attribute vec4 vPosition;
 
-    varying float v_Dot;
+    varying float v_Dot; // Variables passed to Fragment Shader
     varying vec4 v_Color;
 
     void main()
@@ -616,15 +650,9 @@ function drawPicture(scene, gl) {
         gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
     }
             </code></pre>
-            <canvas data-sample="webgl_spinning_cube" style="display:inline"></canvas>
+            <canvas data-sample="webgl_spinning_colored_cube" style="display:inline"></canvas>
           </section>
 
-          <section>
-            <h2>Single Instruction, Multiple Data (SIMD)</h2>
-            <br/>
-            <br/>
-            <p>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</p>
-          </section>
         </section>
 
         <section>
@@ -1036,7 +1064,8 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
     <script src="lib/js/webgl-utils.js"></script>
     <script src="lib/js/webgl-debug.js"></script>
 
-    <script id="vshader" type="x-shader/x-vertex">
+    <!-- Shaders -->
+    <script id="webgl_vshader" type="x-shader/x-vertex">
       uniform mat4 u_modelViewProjMatrix;
       uniform mat4 u_normalMatrix;
       uniform vec3 lightDir;
@@ -1057,7 +1086,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       }
     </script>
 
-    <script id="fshader" type="x-shader/x-fragment">
+    <script id="webgl_fshader" type="x-shader/x-fragment">
       precision mediump float;
 
       varying float v_Dot;
@@ -1066,6 +1095,18 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       void main()
       {
           gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
+      }
+    </script>
+
+    <script id="webgl_bland_fshader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      varying float v_Dot;
+      varying vec4 v_Color;
+
+      void main()
+      {
+          gl_FragColor = vec4(1, 1, 1, 1);
       }
     </script>
 

@@ -11,7 +11,7 @@
     scene.program = simpleSetup(
       gl,
       // The ids of the vertex and fragment shaders
-      "vshader", "fshader",
+      "webgl_vshader", "webgl_fshader",
       // The vertex attribute names used by the shaders.
       // The order they appear here corresponds to their index
       // used later.
@@ -112,7 +112,7 @@
       scene.currentAngle -= 360;
   }
 
-  window.samples.webgl_spinning_cube = {
+  window.samples.webgl_spinning_colored_cube = {
 
     initialize: function(canvas) {
       var scene = { canvas: canvas };
