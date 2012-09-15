@@ -1,7 +1,3 @@
-Normal Mapping:
-js/samples/plane.js
-js/samples/normal_mapped_plane.js
-
 PostProcessing:
 js/samples/blur_post_process.js
 js/samples/bloom_post_process.js

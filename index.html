@@ -848,31 +848,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
-          <h2>ThreeJS: Shaders</h2>
-          <p>Same as WebGL!</p>
-            <pre class="code medium"><code class="cpp">
-      uniform mat4 u_modelViewProjMatrix;
-      uniform mat4 u_normalMatrix;
-      uniform vec3 lightDir;
-
-      attribute vec3 vNormal;
-      attribute vec4 vColor;
-      attribute vec4 vPosition;
-
-      varying float v_Dot;
-      varying vec4 v_Color;
-
-      void main()
-      {
-          gl_Position = u_modelViewProjMatrix * vPosition;
-          v_Color = vColor;
-          vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
-          v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
-      }
-            </code></pre>
-        </section>
-
-        <section>
           <section>
             <h2>ThreeJS: Particles</h2>
             <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
@@ -955,6 +930,26 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <h2>Normal Map</h2>
             <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
             <canvas data-sample="plane" class="float_left" style="display:inline"></canvas>
+          </section>
+
+          <section>
+            <h2>ThreeJS: Custom Shaders</h2>
+              <pre class="code medium"><code class="cpp">
+      var vertexShader = $('#normal_map_vs').text();
+      var fragmentShader = $('#normal_map_fs').text();
+
+      var parameters = {
+        fragmentShader: fragmentShader,
+        vertexShader: vertexShader,
+        uniforms: uniforms,
+        attributes: attributes,
+        side: THREE.DoubleSide
+      };
+
+      var normal_material = new THREE.ShaderMaterial( parameters );
+      var mesh = new THREE.Mesh( geometry, normal_material );
+      scene.add( mesh );
+              </code></pre>
           </section>
 
           <section>
