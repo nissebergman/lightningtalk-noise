@@ -2,7 +2,13 @@
   window.sample_defaults = {
     width: 320,
     height: 240,
-    paused: false
+    paused: false,
+    current_normal_map: "normal_map.PNG",
+    normal_maps: [
+      "normal_map.PNG",
+      "normal_map_circle.jpg",
+      "normal_map_tile.jpg"
+    ]
   };
 
   window.samples = {};
@@ -28,6 +34,7 @@
     "js/samples/lighted_sphere.js",
     "js/samples/normal_mapped_plane.js",
     "js/samples/plane.js",
+    "js/samples/wireframe_plane.js",
     "js/samples/load_startrek_enterprise.js",
     "js/samples/load_apache.js",
     initializeOnLoad);

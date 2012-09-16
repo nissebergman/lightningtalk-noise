@@ -1,6 +1,6 @@
 (function() {
 
-  window.samples.plane = {
+  window.samples.wireframe_plane = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
@@ -9,7 +9,7 @@
       camera.position.z = 100;
 
       var geometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
-      var material = new THREE.MeshLambertMaterial( { wireframe: false, side: THREE.DoubleSide } );
+      var material = new THREE.MeshLambertMaterial( { wireframe: true, side: THREE.DoubleSide } );
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
