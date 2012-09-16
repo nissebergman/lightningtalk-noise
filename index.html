@@ -1053,8 +1053,11 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
     <script src="lib/js/jquery.min.js"></script>
     <script src="lib/js/underscore.min.js"></script>
     <script src="lib/js/swfobject.js"></script>
+    <script src="lib/js/dat.gui.js"></script>
     <script src="js/reveal.min.js"></script>
     <script src="js/stats_bootstrap.js"></script>
+    <script src="js/samples.js"></script>
+    <script src="js/dat.gui.bootstrap.js"></script>
 
     <!-- js files needed for WebGL specific samples (excluding three js) -->
     <script src="lib/js/J3DI.js"></script>
@@ -1180,7 +1183,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
           { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-          { src: 'js/samples.js', async: true },
           { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
         ]
       });

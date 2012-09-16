@@ -26,10 +26,9 @@
       renderer.setSize( width, height );
 
       function animate() {
+        requestAnimationFrame( animate );
         if(sample_defaults.paused) return;
 
-        // note: three.js includes requestAnimationFrame shim
-        requestAnimationFrame( animate );
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
