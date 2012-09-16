@@ -26,13 +26,11 @@
       renderer.setSize( width, height );
 
       function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame( animate, canvas );
         if(sample_defaults.paused) return;
-
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
-        // mesh.rotation.y = axisHelper.rotation.y += 0.02;
 
         renderer.render( scene, camera );
       }

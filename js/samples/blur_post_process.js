@@ -37,13 +37,12 @@
       composer.addPass( effectVerticalBlur );
 
       function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame( animate, canvas );
         if(sample_defaults.paused) return;
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
 
-        renderer.clear(0x00000000);
         composer.render(0.1);
       }
     }

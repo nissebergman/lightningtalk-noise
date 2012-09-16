@@ -9,16 +9,16 @@
       camera.position.z = 100;
 
       var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-      var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+      var material = new THREE.MeshBasicMaterial( { color: 0xdddddd } );
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
-      var renderer = new THREE.CanvasRenderer({canvas: canvas});
+      var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
 
       function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame( animate, canvas );
         if(sample_defaults.paused) return;
 
         mesh.rotation.x += 0.01;

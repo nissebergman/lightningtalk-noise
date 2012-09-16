@@ -684,12 +684,12 @@ function init(canvas) {
   camera.position.z = 100;
 
   var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-  var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+  var material = new THREE.MeshBasicMaterial( { color: 0xdddddd } );
 
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
 
-  var renderer = new THREE.CanvasRenderer({canvas: canvas});
+  var renderer = new THREE.WebGLRenderer({canvas: canvas});
   renderer.setSize( 320, 240 );
 
   function animate() {
@@ -768,12 +768,11 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
           <section>
             <h3>Renderer</h3>
             <pre class="medium"><code>
-  // var renderer = new THREE.WebGLRenderer({canvas: canvas});
-  var renderer = new THREE.CanvasRenderer({canvas: canvas});
+  var renderer = new THREE.WebGLRenderer({canvas: canvas});
   renderer.setSize( 320, 240 );
             </code></pre>
             <br/>
-            <p>The moment you add lighting, the CanvasRenderer's performance tanks.</p>
+            <p>The moment you add lighting, the WebGLRenderer's performance tanks.</p>
           </section>
 
           <section>

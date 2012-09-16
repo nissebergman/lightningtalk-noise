@@ -46,7 +46,7 @@
 
       geometry = new THREE.Geometry();
 
-      for ( i = 0; i < 20000; i ++ ) {
+      for ( i = 0; i < 10000; i ++ ) {
 
         var vertex = new THREE.Vector3();
         vertex.x = Math.random() * 2000 - 1000;

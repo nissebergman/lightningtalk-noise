@@ -22,7 +22,7 @@
       renderer.setSize( sample_defaults.width, sample_defaults.height );
 
       function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame( animate, canvas );
         if(sample_defaults.paused) return;
 
         mesh.rotation.x += 0.01;

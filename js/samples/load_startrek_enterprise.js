@@ -1,12 +1,8 @@
 (function() {
 
-  function shouldRender() {
-    return $("section[data-state=loaded_enterprise].present").length > 0 && mesh;
-  }
-
   function animate() {
     requestAnimationFrame( animate );
-    if(shouldRender() && !sample_defaults.paused) {
+    if(!sample_defaults.paused) {
       mesh.rotation.y += 0.01;
       renderer.render( scene, camera );
     }

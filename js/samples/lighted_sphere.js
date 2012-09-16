@@ -14,11 +14,11 @@
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
-      var renderer = new THREE.CanvasRenderer({canvas: canvas});
+      var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
 
       function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame( animate, canvas );
 
         if(sample_defaults.paused) return;
 

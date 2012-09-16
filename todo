@@ -4,6 +4,6 @@ js/samples/render_to_texture.js
 Fixed Function Lighting
 js/samples/lighted_sphere.js
 
-Convert all canvasRenderers to WebGL
-
 Focus more on the Three JS library
+
+Optimize slides for performance. My computer is dying!
