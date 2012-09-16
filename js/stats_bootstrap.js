@@ -4,8 +4,11 @@ head.js("lib/js/stats.js", function() {
 
   // Align top-left
   stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0px';
-  stats.domElement.style.top = '0px';
+  stats.domElement.style.zIndex = 100;
+
+  stats.domElement.children[ 0 ].children[ 0 ].style.color = "#aaa";
+  stats.domElement.children[ 0 ].style.background = "transparent";
+  stats.domElement.children[ 0 ].children[ 1 ].style.display = "none";
 
   document.body.appendChild( stats.domElement );
   window.stats = stats;
