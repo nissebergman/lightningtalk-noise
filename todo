@@ -1,6 +1,8 @@
 PostProcessing:
-js/samples/blur_post_process.js
-js/samples/bloom_post_process.js
+js/samples/render_to_texture.js
 
 Fixed Function Lighting
 js/samples/lighted_sphere.js
+
+
+Convert all canvasRenderers to WebGL

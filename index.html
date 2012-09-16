@@ -936,21 +936,21 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
           <section>
             <h2>ThreeJS: Custom Shaders</h2>
-              <pre class="code medium"><code class="cpp">
-      var vertexShader = $('#normal_map_vs').text();
-      var fragmentShader = $('#normal_map_fs').text();
+              <pre class="code medium"><code class="javascript">
+  var vertexShader = $('#normal_map_vs').text();
+  var fragmentShader = $('#normal_map_fs').text();
 
-      var parameters = {
-        fragmentShader: fragmentShader,
-        vertexShader: vertexShader,
-        uniforms: uniforms,
-        attributes: attributes,
-        side: THREE.DoubleSide
-      };
+  var parameters = {
+    fragmentShader: fragmentShader,
+    vertexShader: vertexShader,
+    uniforms: uniforms,
+    attributes: attributes,
+    side: THREE.DoubleSide
+  };
 
-      var normal_material = new THREE.ShaderMaterial( parameters );
-      var mesh = new THREE.Mesh( geometry, normal_material );
-      scene.add( mesh );
+  var normal_material = new THREE.ShaderMaterial( parameters );
+  var mesh = new THREE.Mesh( geometry, normal_material );
+  scene.add( mesh );
               </code></pre>
           </section>
 
@@ -963,22 +963,47 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         <section>
           <section>
             <h2>Post-Processing: Blur</h2>
-            <p>Multiple rendering passes...</p>
+            <canvas class="float_left" data-sample="spinning_textured_cube"></canvas>
             <canvas data-sample="blur_post_process"></canvas>
+          </section>
+
+          <section>
+            <h2>Render to Texture</h2>
+            <canvas data-sample="render_to_texture"></canvas>
+          </section>
+
+          <section>
+            <h2>Post-Processing: Blur</h2>
+            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
+          </section>
+
+          <section>
+            <p>Multiple passess...</p>
+            <pre class="code medium"><code class="javascript">
+  var composer = new THREE.EffectComposer( renderer );
+
+  var renderModel = new THREE.RenderPass(scene, camera);
+  var horizontalBlur = new THREE.ShaderPass(horizontalBlurShaders);
+  var verticalBlur = new THREE.ShaderPass(verticalBlurShaders);
+
+  effectVerticalBlur.renderToScreen = true;
+
+  composer.addPass( renderModel );
+  composer.addPass( horizontalBlur );
+  composer.addPass( verticalBlur );
+
+  ...
+  // renderer.render( scene, camera );
+  composer.render(0.1);
+            </code></pre>
           </section>
 
           <section>
             <h2>Showcase: Post-processing Filters</h2>
             <a href="http://mrdoob.github.com/three.js/examples/webgl_postprocessing.html">Post Processing</a>
+            <br/>
+            <a href="http://alteredqualia.com/three/examples/materials_shaders_fresnel.html">Fresnel Shader</a>
           </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Post-Processing: Bloom</h2>
-            <canvas data-sample="bloom_post_process"></canvas>
-          </section>
-
         </section>
 
         <section>
@@ -1051,21 +1076,31 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
     </div>
 
     <script src="lib/js/head.min.js"></script>
-    <script src="lib/js/three.js"></script>
     <script src="lib/js/jquery.min.js"></script>
     <script src="lib/js/underscore.min.js"></script>
     <script src="lib/js/swfobject.js"></script>
     <script src="lib/js/dat.gui.js"></script>
-    <script src="js/reveal.min.js"></script>
-    <script src="js/stats_bootstrap.js"></script>
-    <script src="js/samples.js"></script>
-    <script src="js/dat.gui.bootstrap.js"></script>
+
+    <script src="lib/js/three.js"></script>
+    <script src="lib/js/three/EffectComposer.js"></script>
+    <script src="lib/js/three/ShaderExtras.js"></script>
+    <script src="lib/js/three/RenderPass.js"></script>
+    <script src="lib/js/three/BloomPass.js"></script>
+    <script src="lib/js/three/ShaderPass.js"></script>
+    <script src="lib/js/three/MaskPass.js"></script>
 
     <!-- js files needed for WebGL specific samples (excluding three js) -->
     <script src="lib/js/J3DI.js"></script>
     <script src="lib/js/J3DIMath.js"></script>
     <script src="lib/js/webgl-utils.js"></script>
     <script src="lib/js/webgl-debug.js"></script>
+
+    <!-- App specific js -->
+    <script src="js/reveal.min.js"></script>
+    <script src="js/stats_bootstrap.js"></script>
+    <script src="js/samples.js"></script>
+    <script src="js/dat.gui.bootstrap.js"></script>
+
 
     <!-- Shaders -->
     <script id="webgl_vshader" type="x-shader/x-vertex">
