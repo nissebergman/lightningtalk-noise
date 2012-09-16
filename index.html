@@ -968,13 +968,37 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
+            <h2>Post-Processing: Blur</h2>
+            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
+          </section>
+
+          <section>
             <h2>Render to Texture</h2>
             <canvas data-sample="render_to_texture"></canvas>
           </section>
 
           <section>
-            <h2>Post-Processing: Blur</h2>
-            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
+            <p>One Pass: Vertical Blur</p>
+            <pre class="code medium"><code class="cpp">
+void main(void)
+{
+   vec4 sum = vec4(0.0);
+
+   // blur in y (vertical)
+   // take nine samples, with the distance blurSize between them
+   sum += texture2D(RTScene, vec2(uv.x - 4.0*blurSize, uv.y))*0.05;
+   sum += texture2D(RTScene, vec2(uv.x - 3.0*blurSize, uv.y))*0.09;
+   sum += texture2D(RTScene, vec2(uv.x - 2.0*blurSize, uv.y))*0.12;
+   sum += texture2D(RTScene, vec2(uv.x - blurSize, uv.y)) * 0.15;
+   sum += texture2D(RTScene, vec2(uv.x, uv.y)) * 0.16;
+   sum += texture2D(RTScene, vec2(uv.x + blurSize, uv.y)) * 0.15;
+   sum += texture2D(RTScene, vec2(uv.x + 2.0*blurSize, uv.y))*0.12;
+   sum += texture2D(RTScene, vec2(uv.x + 3.0*blurSize, uv.y))*0.09;
+   sum += texture2D(RTScene, vec2(uv.x + 4.0*blurSize, uv.y))*0.05;
+
+   gl_FragColor = sum;
+}
+            </code></pre>
           </section>
 
           <section>
