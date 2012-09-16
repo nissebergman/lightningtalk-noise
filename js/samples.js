@@ -3,9 +3,9 @@
     width: 320,
     height: 240,
     paused: false,
-    current_normal_map: "normal_map.PNG",
+    current_normal_map: "normal_map_tile.jpg",
     normal_maps: [
-      "normal_map.PNG",
+      "normal_map_face.PNG",
       "normal_map_circle.jpg",
       "normal_map_tile.jpg"
     ]
