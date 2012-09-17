@@ -45,13 +45,14 @@
     return mesh;
   }
 
-  function animate(world, mesh, force) {
-    function recursiveAnimate() { animate(world, mesh); }
+  function animate(instance, mesh, force) {
+    function recursiveAnimate() { animate(instance, mesh); }
 
     var request_id = requestAnimationFrame( recursiveAnimate );
     if(force || !sample_defaults.paused) mesh.rotation.y += 0.01;
 
-    world.renderer.render( world.scene, world.camera );
+    if(instance.active)
+      instance.renderer.render( instance.scene, instance.camera );
     return request_id;
   }
 
@@ -59,33 +60,34 @@
     worlds: worlds,
 
     resetNormalMaps: function() {
-      _.each(worlds, function(world) {
+      _.each(worlds, function(instance) {
 
-        cancelAnimationFrame(world.requestAnimationFrameId);
+        cancelAnimationFrame(instance.requestAnimationFrameId);
 
-        _.each(world.scene.children, function(child) { world.scene.remove(child); } );
+        _.each(instance.scene.children, function(child) { instance.scene.remove(child); } );
 
-        var mesh = addNormalMappedPlane(world.scene);
-        animate(world, mesh, true);
-        world.requestAnimationFrameId = animate(world, mesh, true);
+        var mesh = addNormalMappedPlane(instance.scene);
+        animate(instance, mesh, true);
+        instance.requestAnimationFrameId = animate(instance, mesh, true);
       });
     },
 
     initialize: function(canvas) {
-      var world = {};
-      worlds.push(world);
+      var instance = {active: false};
+      worlds.push(instance);
 
-      world.scene = new THREE.Scene();
+      instance.scene = new THREE.Scene();
 
-      world.camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
-      world.camera.position.z = 80;
+      instance.camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
+      instance.camera.position.z = 80;
 
-      world.renderer = new THREE.WebGLRenderer({canvas: canvas});
-      world.renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
+      instance.renderer = new THREE.WebGLRenderer({canvas: canvas});
+      instance.renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
 
-      var mesh = addNormalMappedPlane(world.scene);
+      var mesh = addNormalMappedPlane(instance.scene);
 
-      world.requestAnimationFrameId = animate(world, mesh);
+      instance.requestAnimationFrameId = animate(instance, mesh);
+      return instance;
     }
   };
 })();

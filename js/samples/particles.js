@@ -7,12 +7,6 @@
   var width = sample_defaults.width * 2;
   var height = sample_defaults.height * 2;
 
-  function animate() {
-    requestAnimationFrame( animate );
-    if(sample_defaults.paused) return;
-    render();
-  }
-
   function render() {
     var time = Date.now() * 0.00005;
 
@@ -80,7 +74,15 @@
       renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( width, height );
 
+      var instance = { active: false };
+      function animate() {
+        requestAnimationFrame( animate );
+        if(!instance.active || sample_defaults.paused) return;
+        render();
+      }
+
       animate();
+      return instance;
     }
   };
 })();

@@ -1,13 +1,5 @@
 (function() {
 
-  function animate() {
-    requestAnimationFrame( animate );
-    if(!sample_defaults.paused) {
-      mesh.rotation.y += 0.01;
-      renderer.render( scene, camera );
-    }
-  }
-
   function createDirectionalLight(options) {
     var directionalLight;
     directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
@@ -33,6 +25,15 @@
       renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
       renderer.setSize( sample_defaults.width * 3, sample_defaults.height * 3);
 
+      var instance = { active: false };
+      function animate() {
+        requestAnimationFrame( animate );
+        if(!sample_defaults.paused && instance.active) {
+          mesh.rotation.y += 0.01;
+          renderer.render( scene, camera );
+        }
+      }
+
       var loader = new THREE.JSONLoader();
       loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         mesh = new THREE.Mesh( geometry, geometry.materials[0] );
@@ -41,10 +42,8 @@
 
         animate();
       });
+
+      return instance;
     }
   };
-
-  Reveal.addEventListener("loaded_enterprise", function() {
-    animate();
-  });
 })();

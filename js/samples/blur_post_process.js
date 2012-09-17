@@ -36,15 +36,18 @@
       composer.addPass( effectHorizontalBlur );
       composer.addPass( effectVerticalBlur );
 
+      var instance = { active: false };
       function animate() {
         requestAnimationFrame( animate, canvas );
-        if(sample_defaults.paused) return;
+        if(!instance.active || sample_defaults.paused) return;
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
 
         composer.render(0.1);
       }
+
+      return instance;
     }
   };
 })();

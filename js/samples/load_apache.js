@@ -1,13 +1,5 @@
 (function() {
 
-  function animate() {
-    requestAnimationFrame( animate );
-    if(!sample_defaults.paused) {
-      mesh.rotation.y += 0.01;
-      renderer.render( scene, camera );
-    }
-  }
-
   function createDirectionalLight(options) {
     var directionalLight;
     directionalLight = new THREE.DirectionalLight(0xffffff, 1.1);
@@ -33,6 +25,16 @@
       renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
       renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2);
 
+      var instance = { active: false };
+
+      function animate() {
+        requestAnimationFrame( animate );
+        if(instance.active && !sample_defaults.paused) {
+          mesh.rotation.y += 0.01;
+          renderer.render( scene, camera );
+        }
+      }
+
       var loader = new THREE.JSONLoader();
       loader.load("js/meshes/LP_Apache.js", function(geometry) {
         mesh = new THREE.Mesh( geometry, geometry.materials[0] );
@@ -41,11 +43,9 @@
 
         animate();
       }, "images");
+
+      return instance;
     }
   };
-
-  Reveal.addEventListener("loaded_apache", function() {
-    animate();
-  });
 })();
 

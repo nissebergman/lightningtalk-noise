@@ -17,9 +17,11 @@
       var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
 
+      var instance = { active: false };
       function animate() {
         requestAnimationFrame( animate, canvas );
         if(sample_defaults.paused) return;
+        if(!instance.active || sample_defaults.paused) return;
 
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
@@ -28,6 +30,7 @@
       }
 
       animate();
+      return instance;
     }
   };
 })();

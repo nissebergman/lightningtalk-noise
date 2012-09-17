@@ -131,20 +131,20 @@
       scene.currentAngle = 0;
       scene.incAngle = 0.5;
 
-      var requestId;
+      var instance = { active: false };
       function animate() {
-        if(!sample_defaults.paused)
+        if(instance.active && !sample_defaults.paused)
           drawPicture(scene, gl);
-        requestId = window.requestAnimFrame(animate, canvas);
+        instance.requestId = window.requestAnimFrame(animate, canvas);
       }
 
       animate();
 
       function handleContextLost(e) {
         e.preventDefault();
-        if (requestId !== undefined) {
-          window.cancelAnimFrame(requestId);
-          requestId = undefined;
+        if (instance.requestId !== undefined) {
+          window.cancelAnimFrame(instance.requestId);
+          instance.requestId = undefined;
         }
       }
 
@@ -152,6 +152,8 @@
         init(scene);
         animate();
       }
+
+      return instance;
     }
   };
 })();
