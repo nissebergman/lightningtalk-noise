@@ -57,8 +57,6 @@
         size  = parameters[i][1];
         color = parameters[i][0];
 
-        //materials[i] = new THREE.ParticleBasicMaterial( { color: color, size: size } );
-
         materials[i] = new THREE.ParticleBasicMaterial( { size: size } );
         materials[i].color.setHSV( color[0], color[1], color[2] );
 

@@ -2,6 +2,7 @@ $(function() {
 
   var gui = new dat.GUI();
   gui.add(sample_defaults, "paused");
+  gui.add(sample_defaults, "wireframe");
 
   var controller = gui.add(
     sample_defaults,

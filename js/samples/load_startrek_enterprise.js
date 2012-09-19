@@ -30,6 +30,7 @@
         requestAnimationFrame( animate );
         if(!sample_defaults.paused && instance.active) {
           mesh.rotation.y += 0.01;
+          mesh.material.wireframe = sample_defaults.wireframe;
           renderer.render( scene, camera );
         }
       }

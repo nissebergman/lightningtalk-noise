@@ -50,6 +50,7 @@
 
     var request_id = requestAnimationFrame( recursiveAnimate );
     if(force || !sample_defaults.paused) mesh.rotation.y += 0.01;
+    mesh.material.wireframe = sample_defaults.wireframe;
 
     if(instance.active)
       instance.renderer.render( instance.scene, instance.camera );
