@@ -1,6 +1,3 @@
-PostProcessing:
-js/samples/render_to_texture.js
-
 Fixed Function Lighting
 js/samples/lighted_sphere.js
 

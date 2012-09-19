@@ -19,7 +19,7 @@
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas, autoClear: false});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
-      renderer.setClearColor( 0x00000000 );
+      renderer.setClearColor( 0, 0 );
 
       var composer = new THREE.EffectComposer( renderer );
 
@@ -44,6 +44,7 @@
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.02;
 
+        renderer.clear();
         composer.render(0.1);
       }
 

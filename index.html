@@ -973,6 +973,17 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>Render to Texture</h2>
             <canvas data-sample="render_to_texture"></canvas>
+            <pre class="code medium"><code class="javascript">
+  var renderTarget = new THREE.WebGLRenderTarget(
+    sample_defaults.width,
+    sample_defaults.height,
+    renderTargetParameters);
+    ...
+
+  renderer.render( worldScene, camera, renderTarget );
+  planeMaterial.uniforms[ "tDiffuse" ].texture = renderTarget;
+  renderer.render( planeScene, camera );
+            </code></pre>
           </section>
 
           <section>
