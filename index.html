@@ -283,16 +283,19 @@
           <section>
             <h2>The Dot Product</h2>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png">
+            <img class="white_bg" src="http://cdn.wolfire.com/blog/linear/dotsimple.jpg">
           </section>
 
           <section>
             <h2>Lighting</h2>
-            <img style="width: 70%" src="images/reflection_vector.gif">
+            <img class="white_bg" style="width: 170%" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
           </section>
 
-          <section>
-            <h2>Per Pixel Lighting</h2>
-            <canvas data-sample="normal_mapped_plane"></canvas>
+          <section style="100%">
+            <h2>Lighting Demystified (somewhat)</h2>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
           </section>
         </section>
 
@@ -514,6 +517,17 @@ window.samples.webgl_spinning_cube = {
 
           <section>
             <h2>What we care about</h2>
+            <ol>
+              <li>Set up on CPU</li>
+              <li>Vertex Processing</li>
+              <li>Rasterization (done for us)</li>
+              <li>Fragment Processing</li>
+            </ol>
+            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
+          </section>
+
+          <section>
+            <h2>What we care about: CPU</h2>
             <pre class="code"><code class="javascript">
 function drawPicture(scene, gl) {
   // Clear the canvas
@@ -544,7 +558,7 @@ function drawPicture(scene, gl) {
           </section>
 
           <section>
-            <h2>Vertex Shader</h2>
+            <h2>Vertex Processing: Vertex Shader</h2>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
     uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
 
@@ -561,8 +575,7 @@ function drawPicture(scene, gl) {
           </section>
 
           <section>
-            <h3>Fragment Shader</h3>
-            <p>Per Vertex Lighting. Not per pixel lighting.</p>
+            <h3>Fragment Processing: Fragment Shader</h3>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
     void main()
     {
@@ -575,10 +588,13 @@ function drawPicture(scene, gl) {
           </section>
 
           <section>
-            <h2>Single Instruction, Multiple Data (SIMD)</h2>
+            <h2>GLSL</h2>
             <br/>
             <br/>
-            <p>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</p>
+            <ul>
+              <li>OpenGL Shading Language (GLSL): A high-level shading language based on the syntax of the C programming language.</li>
+              <li>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</li>
+            </ul>
           </section>
 
           <section>
@@ -588,11 +604,11 @@ function drawPicture(scene, gl) {
     uniform mat4 u_normalMatrix;
     uniform vec3 lightDir;
 
-    attribute vec3 vNormal; // Received from Vertex
+    attribute vec3 vNormal; // Received from Vertex Buffer
     attribute vec4 vColor;
     attribute vec4 vPosition;
 
-    varying float v_Dot; // Variables passed to Fragment Shader
+    varying float v_Dot; // Variables output to Fragment Shader
     varying vec4 v_Color;
 
     void main()
@@ -609,9 +625,7 @@ function drawPicture(scene, gl) {
             <h3>Fragment Shader</h3>
             <p>Per Vertex Lighting. Not per pixel lighting.</p>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
-    precision mediump float;
-
-    varying float v_Dot; // Passed in from Vertex Shader
+    varying float v_Dot; // Passed in from Vertex Shader via Rasterizer
     varying vec4 v_Color;
 
     void main()
