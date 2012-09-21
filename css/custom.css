@@ -49,7 +49,7 @@ pre.math {
 }
 
 .loaded_enterprise .state-background {
-  background: rgba( 0, 0, 0, 0.6 );
+  /* background: rgba( 0, 0, 0, 0.6 ); */
 }
 
 .loaded_apache .state-background {
@@ -57,7 +57,7 @@ pre.math {
 }
 
 .boom .state-background {
-  background: rgba( 0, 0, 0, 0.6 );
+  /* background: rgba( 0, 0, 0, 0.6 ); */
 }
 
 .white_bg {
