@@ -15,7 +15,7 @@
       scene.add( mesh );
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas});
-      renderer.setSize( sample_defaults.width, sample_defaults.height );
+      renderer.setSize( sample_defaults.width * 0.5, sample_defaults.height * 0.5);
 
       var instance = { active: false };
       function animate() {
