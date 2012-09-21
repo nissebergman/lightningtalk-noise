@@ -77,20 +77,9 @@
           </section>
 
           <section>
-            <h2>with Perspective Projection</h2>
-            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
-          </section>
-
-          <section>
             <h2>What is a vertex?</h2>
             <p>A vertex is a special kind of point that describes the corners or intersections of geometric shapes</p>
             <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
-          </section>
-
-          <section>
-            <h2>Model Space</h2>
-            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Coord_system_CA_0.svg/620px-Coord_system_CA_0.svg.png">
-            <!-- <img src="images/apache_model_space.png"> -->
           </section>
 
           <section>
@@ -154,9 +143,10 @@
           </section>
 
           <section>
-            <h3>Linear Transformations</h3>
+            <h3>Transformations</h3>
             <br/>
             <img class="float_left" src="images/SRT_transformations.png">
+            <img src="http://people.gnome.org/~mathieu/libart/art-affine-matrix.png">
             <ul style="width:100px;">
               <li>
                 identity:<br/>
@@ -180,12 +170,6 @@
           </section>
 
           <section>
-            <h3>Affine Transformtions</h3>
-            <p>Adding translations</p>
-            <img src="http://people.gnome.org/~mathieu/libart/art-affine-matrix.png">
-          </section>
-
-          <section>
             <h2>Projection Matrix</h2>
             <pre style="width: 50%" class="math float_left">
         [1, 0] [x]   [x]
@@ -193,13 +177,6 @@
             </pre>
             <p>* We lost a dimension!</p>
             <img src="http://www.arcsynthesis.org/gltut/Positioning/Persp2DProjection.svg">
-          </section>
-
-          <section>
-            <h3>3D Transformations</h3>
-            <p>Just add a dimension!</p>
-            <img class="white_bg float_left" src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
-            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
           </section>
 
           <section>
@@ -214,6 +191,13 @@
             <p>Putting it all together</p>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
             <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
+          </section>
+
+          <section>
+            <h3>3D Transformations</h3>
+            <p>Just add a dimension!</p>
+            <img class="white_bg float_left" src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
+            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
           </section>
 
           <section>
@@ -255,11 +239,6 @@
           </section>
 
           <section>
-            <h2>Texture: UV Mapping</h2>
-            <img src="http://www.bcu.ac.uk/_media/img/nti/gamer_camp/blog_postings/PsxStyleSingleTextureMesh.jpg">
-          </section>
-
-          <section>
             <h2>Lighting</h2>
             <p>Getting the strength of the color...</p>
             <br/>
@@ -267,13 +246,14 @@
           </section>
 
           <section>
-            <h2>Lighting: Ambient</h2>
-            <canvas data-sample="spinning_textured_cube"></canvas>
+            <h2>Lighting: Ambient, Diffuse, Specular</h2>
+            <canvas data-sample="lighted_sphere"></canvas>
           </section>
 
           <section>
-            <h2>Lighting: Lambert</h2>
-            <canvas data-sample="lighted_sphere"></canvas>
+            <h2>Materials</h2>
+            <canvas data-sample="spinning_cube"></canvas>
+            <p>Combine texture and lighting</p>
           </section>
 
           <section>
@@ -297,8 +277,6 @@
 
           <section>
             <h2>Lighting</h2>
-            <img class="float_left" style="width: 30%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <img src="images/shader_vectors.gif">
           </section>
 
@@ -309,8 +287,6 @@
 
           <section>
             <h2>Lighting</h2>
-            <img class="float_left" style="width: 25%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
             <img style="width: 70%" src="images/reflection_vector.gif">
           </section>
 
@@ -375,14 +351,7 @@
           <section>
             <h1>What is WebGL?</h1>
             <p>OpenGL ES2.0 port built into the &lt;canvas&gt; DOM element</p>
-          </section>
-
-          <section>
-            <h3> How do we get from </h3>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="webgl_spinning_colored_cube" id="example" class="float_left" style="display:inline"></canvas>
-            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
+            <canvas data-sample="webgl_spinning_colored_cube" style="display:inline"></canvas>
           </section>
 
           <section>
@@ -661,17 +630,9 @@ function drawPicture(scene, gl) {
             <blockquote class="medium" style="margin-top: 80px; width: 100%">
               The aim of the project is to create a lightweight 3D library with a very low level of complexity — in other words, for dummies.
               <br/>
-              <br/>
               The library provides &lt;canvas&gt;, &lt;svg&gt; and WebGL renderers.
             </blockquote>
-          </section>
-
-          <section>
-            <h3> How do we get from </h3>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_cube" class="float_left" style="display:inline"></canvas>
-            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
+            <canvas data-sample="spinning_cube"></canvas>
           </section>
 
           <section>
@@ -800,17 +761,15 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
         <section>
           <section>
             <h2>ThreeJS: Loading Meshes</h2>
-            <br/>
-            <ul>
-              <li>Leverage CAD design tools to create models</li>
-              <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
-            </ul>
+            <canvas data-sample="load_startrek_enterprise"></canvas>
           </section>
 
           <section>
             <h2>Blender and ThreeJS</h2>
             <br/>
             <ul>
+              <li>Leverage CAD design tools to create models</li>
+              <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
               <li>Can export to the Three js file format</li>
               <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh</a></li>
               <li><p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p></li>
@@ -834,11 +793,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             </code></pre>
           </section>
 
-          <section data-state="loaded_enterprise">
-            <h2>BOOM!</h2>
-            <canvas data-sample="load_startrek_enterprise"></canvas>
-          </section>
-
           <section data-state="loaded_apache">
             <h2>with Textures</h2>
             <a href="images/FinalApacheTexture.png">Apache Texture File</a>
@@ -849,12 +803,12 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         <section>
           <section>
             <h2>ThreeJS: Particles</h2>
-            <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
+            <canvas data-sample="particles"></canvas>
           </section>
 
           <section>
             <h2>ThreeJS: Particles</h2>
-            <canvas data-sample="particles"></canvas>
+            <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
           </section>
 
           <section>
@@ -910,7 +864,9 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>Fragment Shaders: Normal Mapping</h2>
             <p>Using the RGB for your <b><u>normal's</u></b> XYZ</p>
-            <img src="http://img.photobucket.com/albums/v348/spartan_mortis/chiefnoshader.jpg">
+            <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
+            <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
+            <img src="images/normal_map_tile.jpg" class="float_left normal_map" style="width:200px">
           </section>
 
           <section>
@@ -933,9 +889,13 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
+            <img src="http://img.photobucket.com/albums/v348/spartan_mortis/chiefnoshader.jpg">
+          </section>
+
+          <section>
             <h2>ThreeJS: Custom Shaders</h2>
               <pre class="code medium"><code class="javascript">
-  var vertexShader = $('#normal_map_vs').text();
+  var vertexShader = $('#normal_map_vs').text(); // Where's this shader?
   var fragmentShader = $('#normal_map_fs').text();
 
   var parameters = {
