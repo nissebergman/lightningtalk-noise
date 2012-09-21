@@ -31,9 +31,10 @@
         requestAnimationFrame( animate );
         if(instance.active && !sample_defaults.paused) {
           mesh.rotation.y += 0.01;
-          mesh.material.wireframe = sample_defaults.wireframe;
-          renderer.render( scene, camera );
         }
+
+        mesh.material.wireframe = sample_defaults.wireframe;
+        renderer.render( scene, camera );
       }
 
       var loader = new THREE.JSONLoader();
