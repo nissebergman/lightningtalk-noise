@@ -247,7 +247,9 @@
 
           <section>
             <h2>Lighting: Ambient, Diffuse, Specular</h2>
-            <canvas data-sample="lighted_sphere"></canvas>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
+            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
           </section>
 
           <section>
@@ -291,11 +293,9 @@
             <img class="white_bg" style="width: 170%" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
           </section>
 
-          <section style="100%">
+          <section>
             <h2>Lighting Demystified (somewhat)</h2>
-            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
-            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
-            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
+            <canvas data-sample="lighted_sphere"></canvas>
           </section>
         </section>
 
@@ -893,6 +893,11 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>Normal Map</h2>
             <img src="images/normal_map_tile.jpg">
+          </section>
+
+          <section>
+            <h3>Old school: Per Vertex Lighting</h3>
+            <canvas data-sample="per_vertex_lighting"></canvas>
           </section>
 
           <section>

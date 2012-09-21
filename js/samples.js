@@ -23,14 +23,14 @@
       $(this).data("instance", instance);
 
       // Hack to force samples to render at least once before pause.
-      instance.active = true;
+      if(instance) instance.active = true;
     });
 
     // Hack to force samples to render at least once before pause.
     setInterval(function() {
       $("[data-sample]").each(function() {
         var instance = $(this).data("instance");
-        if(!$(this).closest("section").hasClass("present"))
+        if(!$(this).closest("section").hasClass("present") && instance)
           instance.active = false;
       });
     }, 1000);
@@ -64,6 +64,7 @@
     "js/samples/spinning_cube.js",
     "js/samples/spinning_textured_cube.js",
     "js/samples/lighted_sphere.js",
+    "js/samples/per_vertex_lighting.js",
     "js/samples/normal_mapped_plane.js",
     "js/samples/plane.js",
     "js/samples/wireframe_plane.js",

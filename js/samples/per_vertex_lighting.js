@@ -1,9 +1,9 @@
 (function() {
 
   var width, height;
-  width = height = 300;
+  width = height = 600;
 
-  window.samples.lighted_sphere = {
+  window.samples.per_vertex_lighting = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
@@ -11,7 +11,7 @@
       var camera = new THREE.PerspectiveCamera( 75, width / height, 1, 1000 );
       camera.position.z = 100;
 
-      var geometry = new THREE.SphereGeometry( 50, 30, 30 );
+      var geometry = new THREE.SphereGeometry( 60, 4, 4 );
       var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
 
       var mesh = new THREE.Mesh( geometry, material );
