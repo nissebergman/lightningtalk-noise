@@ -12,7 +12,11 @@
       camera.position.z = 100;
 
       var geometry = new THREE.SphereGeometry( 50, 30, 30 );
-      var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+      var material = new THREE.MeshPhongMaterial( {
+        ambient: 0xffffffff,
+        color: 0xffffffff,
+        specular: 0xffffffff
+      } );
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
@@ -20,6 +24,9 @@
       var spotLight = new THREE.SpotLight ( 0xffffffff );
       spotLight.position.set( 0, 100, 0 );
       scene.add( spotLight );
+
+      var ambientLight = new THREE.AmbientLight( 0x22222222 );
+      scene.add(ambientLight);
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas});
       renderer.setSize( width, height);
