@@ -100,8 +100,8 @@
           </section>
 
           <section>
-            <h2>Rasterization: Shapes -> Pixels</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <h2>End in 2D</h2>
+            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
           </section>
 
           <section>
@@ -172,16 +172,16 @@
           </section>
 
           <section>
+            <h3>3D Transformations</h3>
+            <p>Just add a dimension!</p>
+            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
+          </section>
+
+          <section>
             <h2>Composite Transformation</h2>
             <p>Putting it all together</p>
             <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
             <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
-          </section>
-
-          <section>
-            <h3>3D Transformations</h3>
-            <p>Just add a dimension!</p>
-            <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
           </section>
 
           <section>
@@ -207,13 +207,8 @@
           </section>
 
           <section>
-            <h2>
-              Coloring the pixels:<br/>
-              Texture and Lighting
-            </h2>
-            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
+            <h2>Rasterization: Shapes -> Pixels</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
           </section>
 
           <section>
@@ -241,6 +236,16 @@
             <canvas class="float_left" data-sample="lighted_sphere"></canvas>
             <canvas data-sample="lighted_textured_sphere"></canvas>
             <p>Combining all lighting and textures for the final color</p>
+          </section>
+
+          <section>
+            <h2>
+              Coloring the pixels:<br/>
+              Texture and Lighting
+            </h2>
+            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
+            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
           </section>
 
           <section>
@@ -513,11 +518,8 @@ window.samples.webgl_spinning_cube = {
 
     scene.program = simpleSetup(
       gl,
-
       "webgl_vshader", "webgl_bland_fshader", // The ids of the vertex and fragment shaders
-
       [ "vPosition"], // The vertex attribute names used by the shaders.
-
       [ 0, 0, 0, 0 ], 10000); // The clear color and depth values
 
     scene.box = makeBox(gl);
