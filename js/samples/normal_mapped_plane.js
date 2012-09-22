@@ -68,7 +68,6 @@
         _.each(instance.scene.children, function(child) { instance.scene.remove(child); } );
 
         var mesh = addNormalMappedPlane(instance.scene);
-        animate(instance, mesh, true);
         instance.requestAnimationFrameId = animate(instance, mesh, true);
       });
     },
