@@ -115,12 +115,7 @@
 
         <section>
           <section>
-            <h1>Welcome to Linear Algebra</h1>
-            <img class="fragment" src="http://cronwtf.github.com/images/wtf.jpg">
-          </section>
-
-          <section>
-            <h2>Transporters will definitely use Linear Algebra</h2>
+            <h2>Welcome to Linear Algebra</h2>
             <img src="http://storiesbywilliams.files.wordpress.com/2012/05/transport.jpg">
           </section>
 
@@ -131,11 +126,11 @@
             <br/>
             <ol>
               <li><img class="white_bg" src="images/matrix_multiplication_x_axis_start.png"></li>
-              <li class="fragment">
+              <li>
                 <img class="white_bg" src="images/matrix_multiplication_x_axis_x.png">
                 ( 1 * x ) + ( 0 * y ) = x
               </li>
-              <li class="fragment">
+              <li>
                 <img class="white_bg" src="images/matrix_multiplication_x_axis_y.png">
                 ( 0 * x ) + ( -1 * y ) = -y
               </li>
@@ -146,44 +141,34 @@
             <h3>Transformations</h3>
             <br/>
             <img class="float_left" src="images/SRT_transformations.png">
-            <img src="http://people.gnome.org/~mathieu/libart/art-affine-matrix.png">
             <ul style="width:100px;">
               <li>
                 identity:<br/>
                 <img class="white_bg" style="width: 200px" src="images/identity_matrix.png">
               </li>
 
-              <li class="fragment">
+              <li>
                 scaling:<br/>
                 <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/2/6/a/26a088adf02ba09dc958acba0e81a3c3.png">
                 <br/>
               </li>
 
-              <li class="fragment">
+              <li>
                 rotation:<br/>
                 <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
                 <br/>
               </li>
-
-              <li class="fragment small">translation isn't a linear transformation!</li>
             </ul>
           </section>
 
           <section>
             <h2>Projection Matrix</h2>
-            <pre style="width: 50%" class="math float_left">
-        [1, 0] [x]   [x]
-        [0, 0] [y] = [0]
+            <pre style="width: 30%" class="math float_left">
+  [1, 0] [x]   [x]
+  [0, 0] [y] = [0]
             </pre>
             <p>* We lost a dimension!</p>
             <img src="http://www.arcsynthesis.org/gltut/Positioning/Persp2DProjection.svg">
-          </section>
-
-          <section>
-            <h2>Rendering Demystified</h2>
-            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
-            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
-            <img style="height: 40%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
 
           <section>
@@ -196,12 +181,11 @@
           <section>
             <h3>3D Transformations</h3>
             <p>Just add a dimension!</p>
-            <img class="white_bg float_left" src="http://www.riemers.net/images/ExtraReading/matrices1.jpg">
             <img src="http://www.codeguru.com/images/article/10123/3dproj01.gif">
           </section>
 
           <section>
-            <h2>Rendering Demystified</h2>
+            <h2>Transformations + Projection</h2>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-sample="spinning_wireframe_cube" style="display:inline"></canvas>
@@ -261,7 +245,9 @@
 
           <section>
             <h2>But how do we ...</h2>
-            <h2>figure out the amount of color?</h2>
+            <br/>
+            <br/>
+            <h3>figure out the amount of color?</h3>
             <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
           </section>
         </section>
@@ -284,13 +270,13 @@
 
           <section>
             <h2>The Dot Product</h2>
-            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png">
+            <!-- <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png"> -->
             <img class="white_bg" src="http://cdn.wolfire.com/blog/linear/dotsimple.jpg">
           </section>
 
           <section>
             <h2>Lighting</h2>
-            <img class="white_bg" style="width: 170%" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
+            <img class="white_bg" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
           </section>
 
           <section>
@@ -341,12 +327,6 @@
           <section>
             <h3>How it is: Programmable Graphics Pipeline</h3>
             <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279">
-          </section>
-
-          <section>
-            <h3>How it is: Programmable Graphics Pipeline</h3>
-            <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
-            <p>Best of both worlds (almost)</p>
           </section>
         </section>
 
@@ -529,6 +509,28 @@ window.samples.webgl_spinning_cube = {
           <section>
             <h2>What we care about: CPU</h2>
             <pre class="code"><code class="javascript">
+    var gl = WebGLUtils.setupWebGL(scene.canvas);
+
+    scene.program = simpleSetup(
+      gl,
+
+      "webgl_vshader", "webgl_bland_fshader", // The ids of the vertex and fragment shaders
+
+      [ "vPosition"], // The vertex attribute names used by the shaders.
+
+      [ 0, 0, 0, 0 ], 10000); // The clear color and depth values
+
+    scene.box = makeBox(gl);
+
+    // Set up the vertex attributes for vertices
+    gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.vertexObject);
+    ...
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>What we care about: CPU</h2>
+            <pre class="code"><code class="javascript">
 function drawPicture(scene, gl) {
   // Clear the canvas
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -549,7 +551,7 @@ function drawPicture(scene, gl) {
   scene.mvpMatrix.multiply(scene.mvMatrix);
 
   // Pass it in to the Vertex Shader
-  scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrixLoc, false);
+  scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrix, false);
 
   // Draw the cube
   gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
@@ -593,6 +595,8 @@ function drawPicture(scene, gl) {
             <br/>
             <ul>
               <li>OpenGL Shading Language (GLSL): A high-level shading language based on the syntax of the C programming language.</li>
+              <br/>
+              <br/>
               <li>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</li>
             </ul>
           </section>
@@ -623,7 +627,7 @@ function drawPicture(scene, gl) {
 
           <section>
             <h3>Fragment Shader</h3>
-            <p>Per Vertex Lighting. Not per pixel lighting.</p>
+            <br/>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
     varying float v_Dot; // Passed in from Vertex Shader via Rasterizer
     varying vec4 v_Color;
@@ -702,10 +706,7 @@ function init(canvas) {
 var camera = new THREE.PerspectiveCamera(75, 320/240, 1, 1000);
 camera.position.z = 100;
             </code></pre>
-            <div style="width:120%">
-              <img style="height: 50%" class="float_left" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
-              <img style="height: 50%" src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
-            </div>
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
 
           <section>
@@ -719,9 +720,9 @@ camera.position.z = 100;
           <section>
             <h3>Materials</h3>
             <pre class="medium"><code>
-var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
+var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
             </code></pre>
-            <p>Actually an OpenGL concept. Encapsulates:</p>
+            <p>Encapsulates:</p>
             <ul>
               <li>Texture</li>
               <li>Lighting</li>
@@ -747,7 +748,6 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
   renderer.setSize( 320, 240 );
             </code></pre>
             <br/>
-            <p>The moment you add lighting, the WebGLRenderer's performance tanks.</p>
           </section>
 
           <section>
@@ -755,20 +755,28 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             <p>Welcome to the Render Loop</p>
             <pre class="medium"><code>
   function animate() {
-    // note: three.js includes requestAnimationFrame shim
     requestAnimationFrame( animate );
-
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.02;
     renderer.render( scene, camera );
   }
   animate();
             </code></pre>
+            <canvas data-sample="spinning_cube"></canvas>
           </section>
 
-          <section data-state="boom">
-            <h1>BOOM!</h1>
-            <canvas data-sample="spinning_cube"></canvas>
+          <section>
+            <h3>Materials: Texture</h3>
+            <pre class="medium"><code>
+var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
+                                           {}, function() {
+  animate();
+});
+
+// var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
+var material = new THREE.MeshBasicMaterial({ map: texture });
+            </code></pre>
+            <canvas data-sample="spinning_textured_cube"></canvas>
           </section>
         </section>
 
@@ -785,7 +793,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
               <li>Leverage CAD design tools to create models</li>
               <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
               <li>Can export to the Three js file format</li>
-              <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh</a></li>
+              <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh JSON</a></li>
               <li><p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p></li>
             </ul>
           </section>
@@ -796,7 +804,7 @@ var material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
             <pre class="medium"><code>
 // REMOVED
 // var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-// var material = new THREE.MeshLambertMaterial({color: 0xdddddd});
+// var material = new THREE.MeshBasicMaterial({color: 0xdddddd});
 
 var loader = new THREE.JSONLoader();
 loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
@@ -855,15 +863,9 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>How do we animate a million particles?</h2>
-            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
-          </section>
-
-          <section>
-            <h3>ThreeJS: Vertex Textures</h3>
-            <p>Using the RGB for your XYZ</p>
-            <img class="float_left" src="http://upload.wikimedia.org/wikipedia/commons/5/57/Heightmap.png">
-            <img class="float_left" src="http://upload.wikimedia.org/wikipedia/commons/2/2f/Heightmap_rendered.png">
+            <h3>How do we animate a million particles?</h3>
+            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
+            <p>Vertex Textures!</p>
           </section>
 
           <section>
@@ -882,12 +884,18 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
             <img src="images/normal_map_tile.jpg" class="float_left normal_map" style="width:200px">
           </section>
+          <section>
+            <h3>Old school: Per Vertex Lighting</h3>
+            <canvas data-sample="per_vertex_lighting"></canvas>
+          </section>
 
           <section>
-            <h2>Normal Mapping: Per Pixel Lighting</h2>
+            <h2>New school: Per Pixel Lighting</h2>
+            <br/>
             <img class="float_left" style="width: 25%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <img style="width: 70%" src="images/reflection_vector.gif">
+            <!-- <img style="width: 70%" src="images/reflection_vector.gif"> -->
+            <img class="white_bg" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
           </section>
 
           <section>
@@ -896,8 +904,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h3>Old school: Per Vertex Lighting</h3>
-            <canvas data-sample="per_vertex_lighting"></canvas>
+            <h3>Texture Space</h3>
           </section>
 
           <section>
@@ -914,9 +921,11 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>ThreeJS: Custom Shaders</h2>
               <pre class="code medium"><code class="javascript">
-  var vertexShader = $('#normal_map_vs').text(); // Where's this shader?
+  // Grab shader code
+  var vertexShader = $('#normal_map_vs').text();
   var fragmentShader = $('#normal_map_fs').text();
 
+  // Configure material parameters
   var parameters = {
     fragmentShader: fragmentShader,
     vertexShader: vertexShader,
@@ -925,7 +934,10 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
     side: THREE.DoubleSide
   };
 
+  // Create custom shader material
   var normal_material = new THREE.ShaderMaterial( parameters );
+
+  // Add mesh
   var mesh = new THREE.Mesh( geometry, normal_material );
   scene.add( mesh );
               </code></pre>
@@ -940,12 +952,14 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         <section>
           <section>
             <h2>Post-Processing: Blur</h2>
+            <br/>
+            <br/>
             <canvas class="float_left" data-sample="spinning_textured_cube"></canvas>
             <canvas data-sample="blur_post_process"></canvas>
           </section>
 
           <section>
-            <h2>Post-Processing: Blur</h2>
+            <h2>2 Pass Blurring</h2>
             <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
           </section>
 
@@ -966,31 +980,8 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <p>One Pass: Vertical Blur</p>
-            <pre class="code medium"><code class="cpp">
-void main(void)
-{
-   vec4 sum = vec4(0.0);
-
-   // blur in y (vertical)
-   // take nine samples, with the distance blurSize between them
-   sum += texture2D(RTScene, vec2(uv.x - 4.0*blurSize, uv.y))*0.05;
-   sum += texture2D(RTScene, vec2(uv.x - 3.0*blurSize, uv.y))*0.09;
-   sum += texture2D(RTScene, vec2(uv.x - 2.0*blurSize, uv.y))*0.12;
-   sum += texture2D(RTScene, vec2(uv.x - blurSize, uv.y)) * 0.15;
-   sum += texture2D(RTScene, vec2(uv.x, uv.y)) * 0.16;
-   sum += texture2D(RTScene, vec2(uv.x + blurSize, uv.y)) * 0.15;
-   sum += texture2D(RTScene, vec2(uv.x + 2.0*blurSize, uv.y))*0.12;
-   sum += texture2D(RTScene, vec2(uv.x + 3.0*blurSize, uv.y))*0.09;
-   sum += texture2D(RTScene, vec2(uv.x + 4.0*blurSize, uv.y))*0.05;
-
-   gl_FragColor = sum;
-}
-            </code></pre>
-          </section>
-
-          <section>
             <p>Multiple passess...</p>
+            <br/>
             <pre class="code medium"><code class="javascript">
   var composer = new THREE.EffectComposer( renderer );
 
