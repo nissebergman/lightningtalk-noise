@@ -1,36 +1,35 @@
 (function() {
 
-  var container;
-  var camera, scene, renderer, particles, geometry, materials = [], parameters, i, h, color;
-  var mouseX = 0, mouseY = 0;
+  function ParticleSample() {
+    var container;
+    var camera, scene, renderer, particles, geometry, materials = [], parameters, i, h, color;
+    var mouseX = 0, mouseY = 0;
 
-  var width = sample_defaults.width * 2;
-  var height = sample_defaults.height * 2;
+    var width = sample_defaults.width * 2;
+    var height = sample_defaults.height * 2;
 
-  function render() {
-    var time = Date.now() * 0.00005;
+    function render() {
+      var time = Date.now() * 0.00005;
 
-    for ( i = 0; i < scene.children.length; i ++ ) {
-      var object = scene.children[ i ];
+      for ( i = 0; i < scene.children.length; i ++ ) {
+        var object = scene.children[ i ];
 
-      if ( object instanceof THREE.ParticleSystem ) {
-        object.rotation.y = time * ( i < 4 ? i + 1 : - ( i + 1 ) );
+        if ( object instanceof THREE.ParticleSystem ) {
+          object.rotation.y = time * ( i < 4 ? i + 1 : - ( i + 1 ) );
+        }
       }
+
+      for ( i = 0; i < materials.length; i ++ ) {
+        color = parameters[i][0];
+
+        h = ( 360 * ( color[0] + time ) % 360 ) / 360;
+        materials[i].color.setHSV( h, color[1], color[2] );
+      }
+
+      renderer.render( scene, camera );
     }
 
-    for ( i = 0; i < materials.length; i ++ ) {
-      color = parameters[i][0];
-
-      h = ( 360 * ( color[0] + time ) % 360 ) / 360;
-      materials[i].color.setHSV( h, color[1], color[2] );
-    }
-
-    renderer.render( scene, camera );
-  }
-
-  window.samples.particles = {
-
-    initialize: function(canvas) {
+    this.initialize = function(canvas) {
 
       camera = new THREE.PerspectiveCamera( 75, width / height, 1, 3000 );
       camera.position.z = 1000;
@@ -81,6 +80,13 @@
 
       animate();
       return instance;
+    }
+  }
+
+  window.samples.particles = {
+    initialize: function(canvas) {
+      var particleSample = new ParticleSample();
+      return particleSample.initialize(canvas);
     }
   };
 })();
