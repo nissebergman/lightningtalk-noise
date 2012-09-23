@@ -69,7 +69,7 @@
 
         <section>
           <section>
-            <h3> How do we get from </h3>
+            <h3>How do we get from<br/>vertices to shape</h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
@@ -106,6 +106,13 @@
           </section>
 
           <section>
+            <img class="float_left" style="display:inline" src="images/Vertices.png">
+            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
+            <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
+            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
+          </section>
+
+          <section>
             <h2>But how do we ...</h2>
             <br/>
             <br/>
@@ -127,11 +134,11 @@
             <br/>
             <ol>
               <li><img class="white_bg" src="images/matrix_multiplication_x_axis_start.png"></li>
-              <li>
+              <li class="fragment">
                 <img class="white_bg" src="images/matrix_multiplication_x_axis_x.png">
                 ( 1 * x ) + ( 0 * y ) = x
               </li>
-              <li>
+              <li class="fragment">
                 <img class="white_bg" src="images/matrix_multiplication_x_axis_y.png">
                 ( 0 * x ) + ( -1 * y ) = -y
               </li>
@@ -163,7 +170,7 @@
           </section>
 
           <section>
-            <h2>Projection Matrix</h2>
+            <h2>Projection</h2>
             <pre style="width: 30%" class="math float_left">
   [1, 0] [x]   [x]
   [0, 0] [y] = [0]
@@ -199,7 +206,7 @@
 
         <section>
           <section>
-            <h2>How do we get from</h2>
+            <h2>How do we get from<br/>shape to pixels</h2>
             <br/>
             <br/>
             <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
@@ -506,9 +513,9 @@ window.samples.webgl_spinning_cube = {
             <h2>What we care about</h2>
             <ol>
               <li>Set up on CPU</li>
-              <li>Vertex Processing</li>
-              <li>Rasterization (done for us)</li>
-              <li>Fragment Processing</li>
+              <li>Vertex Processing <b>(vertices to shapes)</b></li>
+              <li>Rasterization <b>(shapes to pixels, done for us)</b></li>
+              <li>Fragment Processing <b>(pixels to colored pixels)</b></li>
             </ol>
             <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
@@ -575,8 +582,8 @@ function drawPicture(scene, gl) {
         gl_Position = u_modelViewProjMatrix * vPosition;
     }
             </code></pre>
-            <img class="float_left" style="width: 30%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <img class="float_left" style="width: 20%"
+            src="images/Vertices.png">
             <canvas data-sample="webgl_spinning_wireframe_cube" style="display:inline"></canvas>
           </section>
 
@@ -676,7 +683,6 @@ function init(canvas) {
   renderer.setSize( 320, 240 );
 
   function animate() {
-    // note: three.js includes requestAnimationFrame shim
     requestAnimationFrame( animate );
 
     mesh.rotation.x += 0.01;
@@ -698,9 +704,9 @@ function init(canvas) {
             <br/>
             <p>Encapsulates everything with regard to this rendering!</p>
             <ul>
-              <li>All global matrices</li>
-              <li>Models</li>
+              <li>Model View Projection Matrices</li>
               <li>Camera</li>
+              <li>Models</li>
             </ul>
           </section>
 
@@ -741,8 +747,12 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
   scene.add( mesh );
             </code></pre>
             <br/>
-            <p>Associate geometry with a material to make a mesh.</p>
-            <p>Also creates a world matrix for the mesh, defaulting it to the identity</p>
+            <ul>
+              <li>Associate geometry with a material to make a mesh.</li>
+              <br/>
+              <li>geometry: Vertices -&gt; Shapes</li>
+              <li>material: Pixels -&gt; Colored Pixels</li>
+            </ul>
           </section>
 
           <section>
@@ -787,6 +797,7 @@ var material = new THREE.MeshBasicMaterial({ map: texture });
         <section>
           <section>
             <h2>ThreeJS: Loading Meshes</h2>
+            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
             <canvas data-sample="load_startrek_enterprise"></canvas>
           </section>
 
@@ -794,11 +805,10 @@ var material = new THREE.MeshBasicMaterial({ map: texture });
             <h2>Blender and ThreeJS</h2>
             <br/>
             <ul>
-              <li>Leverage CAD design tools to create models</li>
               <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
+              <li>Blender: Content creation tool for 3D models</li>
               <li>Can export to the Three js file format</li>
               <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh JSON</a></li>
-              <li><p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p></li>
             </ul>
           </section>
 
@@ -821,6 +831,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
           <section data-state="loaded_apache">
             <h2>with Textures</h2>
+            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
             <a href="images/FinalApacheTexture.png">Apache Texture File</a>
             <canvas data-sample="load_apache"></canvas>
           </section>
@@ -860,7 +871,8 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>Rendering a Million: Batch your draw calls</h2>
+            <canvas data-sample="particles"></canvas>
+            <h2>Only 20k, how about a million?</h2>
             <ul>
               <li><a href="http://www.html5rocks.com/en/tutorials/webgl/million_letters/million_letters.html">A Million Letters</a></li>
             </ul>
@@ -905,11 +917,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>Normal Map</h2>
             <img src="images/normal_map_tile.jpg">
-          </section>
-
-          <section>
-            <h3>Texture Space</h3>
-            <img src="http://www.bcu.ac.uk/_media/img/nti/gamer_camp/blog_postings/UvMapping.jpg">
           </section>
 
           <section>
@@ -964,11 +971,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>2 Pass Blurring</h2>
-            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
-          </section>
-
-          <section>
             <h2>Render to Texture</h2>
             <canvas data-sample="render_to_texture"></canvas>
             <pre class="code medium"><code class="javascript">
@@ -982,6 +984,11 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
   planeMaterial.uniforms[ "tDiffuse" ].texture = renderTarget;
   renderer.render( planeScene, camera );
             </code></pre>
+          </section>
+
+          <section>
+            <h2>2 Pass Blurring</h2>
+            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
           </section>
 
           <section>
@@ -1009,8 +1016,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <section>
             <h2>Showcase: Post-processing Filters</h2>
             <a href="http://mrdoob.github.com/three.js/examples/webgl_postprocessing.html">Post Processing</a>
-            <br/>
-            <a href="http://alteredqualia.com/three/examples/materials_shaders_fresnel.html">Fresnel Shader</a>
           </section>
         </section>
 
@@ -1033,13 +1038,12 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
-          <h1>A Mashup of Technologies</h1>
+          <h2>A Mashup of Technologies</h2>
           <ul style="margin-top: 40px;">
-            <li>This slide deck</li>
-              <li><a href="http://www.ro.me/">Rome Interactive Movie</a></li>
+            <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
+            <li><a href="http://www.ro.me/">Rome Interactive Movie</a></li>
             <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL2EqTuhUjTUtE2PdmDQ0BEjTHt342ngkduY4LQX1v+/sxJBAoqq27z7fd3e+u9m7r78u7v5cL0hq8uzsYFYvg1kKjOM6mOVgGElSpksw82FlVsenQ6cozS4DuxssFd+RJ7sbLFlyv9aqkvw4UZnSU3K4cl/s1DnTayGnJKqPagN6lantlKSCc5BOurfGQ299FjaezCxLTZxoURhS6mQ+TI0ppmGYa67Ukq6FSaslTVQemlQD0L9luKxExptjLiSKhmdo3tlomTs7sNxhSLZK3zMXAVkpjZFrlQNZVmt0siZLFAe6VmqdgaMqQgcSVR6KsqygDDnmTGSfBZ9/mHw6jQ6Tk7G1LlYkIFshudpSISXo34KblMzncxKRI/LUpyMF0yBNSxZ3YJcg1ql5hauFMdm7LONn1w3DaFgOmo1ImYCEEcEbHDTo2OvXgMEavRuRnBnQgmW4gzKNXXaEFCY4cmAmhUXYkz2uKpkYoSSpIU0xuL+aEh2UsCV3lzeLBb0GXRaAFzZw4bQB+TgZ9UQf9oQ6Iif4iyLMWNwioIUqhXWBPiLXJIpqxwYu0g77rZV4xwc+4g7kR6JKlgLXSn5v9AEZRxESe1afn869K0zVF1aK5KrRBvioTR9ED5H7bJwaVhq9nhKjK2gJfgq0ZSOfkjHZE++jfRn2IMpLyArQHcbzZ3HzMIMXIC0ThiX6gBfeCHd9Qpu5cfySNso4D9rM3iFbEm8CD3qqx2erZc7d9YZ8AXaMXTC5YeVNo/JxeSjFOXQrHqGnk0Z9neGpuEqq3HaInSOUFQXau0hxNgTPbUC5yhcZWJS/tu+W93PZY4U3Xv3DhjfnTo6Ib/YZA4/rJIxqZRzGvchXVFOptmjqPYkoFsYk7oHu+qAnr7JH603g27ppuXYIrYk3C+tJipPVzvr/">Code Editor</a></li>
             <li><a href="http://cnn-ecosphere.com/">CNN EcoSphere</a></li>
-            <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
             <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
           </ul>
         </section>
