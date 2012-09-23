@@ -32,7 +32,7 @@
         requestAnimationFrame( animate, canvas );
         mesh.material.wireframe = sample_defaults.wireframe;
 
-        if(!instance.active || sample_defaults.paused) {
+        if(instance.active && !sample_defaults.paused) {
           // Rotate lighting around the X axis.
           var angle = 0.01;
           var matrix = new THREE.Matrix4().makeRotationX( angle );
