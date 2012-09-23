@@ -39,7 +39,7 @@
       <div class="slides">
         <section>
           <h1>WebGL with Three JS</h1>
-          <h3>Real time rendering in javascript</h3>
+          <h3>Real time rendering with javascript</h3>
           <canvas data-sample="spinning_wireframe_torus"></canvas>
         </section>
 
@@ -69,7 +69,7 @@
 
         <section>
           <section>
-            <h3>How do we get from<br/>vertices to shape</h3>
+            <h3>How do we get from<br/>vertices to a shape</h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
@@ -78,13 +78,12 @@
 
           <section>
             <h2>What is a vertex?</h2>
-            <p>A vertex is a special kind of point that describes the corners or intersections of geometric shapes</p>
+            <p>A vertex is a point that describes the corners or intersections of geometric shapes</p>
             <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
 
           <section>
-            <h2>World Space</h2>
-            <p>Where all objects are positioned. All objects placed in the actual representation of the world.</p>
+            <h2>Model Space and World Space</h2>
             <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
             <!-- <img class="float_left" src="http://www.simulshop.com/product/nemethdesigns/ec135/tn_fsx2008-49-47.jpg" style="height: 70%"> -->
           </section>
@@ -106,18 +105,19 @@
           </section>
 
           <section>
+           <h2>Vertices to a shape</h2>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
-            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
           </section>
 
           <section>
             <h2>But how do we ...</h2>
             <br/>
+            <h3>transform between spaces?</h3>
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
             <br/>
-            <h2>transform between spaces?</h2>
-            <blockquote>Model -&gt; World -&gt; Screen Space</blockquote>
+            <blockquote style="width:100%">Model -&gt; World -&gt; View -&gt; Projection Space</blockquote>
           </section>
         </section>
 
@@ -147,6 +147,11 @@
 
           <section>
             <h3>Transformations</h3>
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
+          </section>
+
+          <section>
+            <h3>Transformations</h3>
             <br/>
             <img class="float_left" src="images/SRT_transformations.png">
             <ul style="width:100px;">
@@ -171,19 +176,20 @@
 
           <section>
             <h2>Projection</h2>
-            <pre style="width: 30%" class="math float_left">
-  [1, 0] [x]   [x]
-  [0, 0] [y] = [0]
-            </pre>
-            <p>* We lost a dimension!</p>
-            <img class="white_bg" src="http://www.arcsynthesis.org/gltut/Positioning/Persp2DProjection.svg">
+            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
 
           <section>
-            <h3>3D Transformations</h3>
-            <p>Just add a dimension!</p>
+            <h2>Projection</h2>
+            <br/>
+            <pre style="width: 30%" class="math float_left">
+  2D Example:
+
+  [1, 0] [x]   [x]
+  [0, 0] [y] = [0]
+            </pre>
+            <p>* We lose a dimension!</p>
             <img src="images/3dproj01.gif">
-            <!-- <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png"> -->
           </section>
 
           <section>
@@ -198,7 +204,7 @@
             <img class="float_left" style="display:inline" src="images/Vertices.png">
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
             <canvas data-sample="spinning_wireframe_cube" style="display:inline"></canvas>
-            <p class="medium">----------------------------------
+            <p class="medium" style="font-size:24px;">----------------------------------
             <br/>
             Model * World_View_Projection_Matrix</p>
           </section>
@@ -206,12 +212,12 @@
 
         <section>
           <section>
-            <h2>How do we get from<br/>shape to pixels</h2>
+            <h3>How do we get from<br/>a shape to colored pixels</h3>
             <br/>
             <br/>
             <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
             <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
+            <canvas data-sample="lighted_spinning_textured_cube" class="float_left"></canvas>
             <div class="float_left" style="line-height: 8; padding: 20px">?</div>
           </section>
 
@@ -252,9 +258,11 @@
               Coloring the pixels:<br/>
               Texture and Lighting
             </h2>
-            <img class="float_left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <br/>
             <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <canvas data-sample="spinning_textured_cube" class="float_left"></canvas>
+            <img class="float_left" style="width: 20%"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+            <canvas data-sample="lighted_spinning_textured_cube" class="float_left"></canvas>
           </section>
 
           <section>
@@ -513,22 +521,28 @@ window.samples.webgl_spinning_cube = {
             <h2>What we care about</h2>
             <ol>
               <li>Set up on CPU</li>
-              <li>Vertex Processing <b>(vertices to shapes)</b></li>
-              <li>Rasterization <b>(shapes to pixels, done for us)</b></li>
-              <li>Fragment Processing <b>(pixels to colored pixels)</b></li>
+              <li>Vertex Processing <b>(vertices -&gt; shapes)</b></li>
+              <li>Rasterization <b>(shapes -&gt; pixels, done for us)</b></li>
+              <li>Fragment Processing <b>(pixels -&gt; colored pixels)</b></li>
             </ol>
             <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
 
           <section>
-            <h2>What we care about: CPU</h2>
-            <pre class="code"><code class="javascript">
+            <h2>CPU: Javascript</h2>
+            <pre class="code medium"><code class="javascript">
+    var scene = {};
     var gl = WebGLUtils.setupWebGL(scene.canvas);
 
     scene.program = simpleSetup(
       gl,
-      "webgl_vshader", "webgl_bland_fshader", // The ids of the vertex and fragment shaders
-      [ "vPosition"], // The vertex attribute names used by the shaders.
+
+      "webgl_vshader", // id of the vertex shader
+
+      "webgl_bland_fshader", // id of fragment shader
+
+      [ "vPosition"], // Vertex attribute used by the shader
+
       [ 0, 0, 0, 0 ], 10000); // The clear color and depth values
 
     scene.box = makeBox(gl);
@@ -540,13 +554,13 @@ window.samples.webgl_spinning_cube = {
           </section>
 
           <section>
-            <h2>What we care about: CPU</h2>
+            <h2>CPU: Javascript</h2>
             <pre class="code"><code class="javascript">
 function drawPicture(scene, gl) {
   // Clear the canvas
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-  // Set the viewport and projection matrix for the scene
+  // Camera work: Set the viewport and projection matrix for the scene
   gl.viewport(0, 0, canvas.width, canvas.height);
   scene.perspectiveMatrix = new J3DIMatrix4();
   scene.perspectiveMatrix.perspective(30, canvas.width/canvas.height, 1, 10000);
@@ -606,9 +620,6 @@ function drawPicture(scene, gl) {
             <br/>
             <ul>
               <li>OpenGL Shading Language (GLSL): A high-level shading language based on the syntax of the C programming language.</li>
-              <br/>
-              <br/>
-              <li>GPUs are often wide SIMD implementations, capable of branches, loads, and stores on 128 or 256 bits at a time.</li>
             </ul>
           </section>
 
@@ -630,6 +641,7 @@ function drawPicture(scene, gl) {
     {
         gl_Position = u_modelViewProjMatrix * vPosition;
         v_Color = vColor;
+
         vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
         v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
     }
@@ -661,7 +673,7 @@ function drawPicture(scene, gl) {
               <br/>
               The library provides &lt;canvas&gt;, &lt;svg&gt; and WebGL renderers.
             </blockquote>
-            <canvas data-sample="spinning_cube"></canvas>
+            <canvas data-sample="lighted_spinning_textured_cube"></canvas>
           </section>
 
           <section>
@@ -765,7 +777,7 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
           </section>
 
           <section>
-            <h3>requestAnimationFrame?</h3>
+            <h3>request Animation Frame?</h3>
             <p>Welcome to the Render Loop</p>
             <pre class="medium"><code>
   function animate() {
@@ -780,7 +792,7 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
           </section>
 
           <section>
-            <h3>Materials: Texture</h3>
+            <h3>Materials: Basic Texture</h3>
             <pre class="medium"><code>
 var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
                                            {}, function() {
@@ -791,6 +803,20 @@ var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
 var material = new THREE.MeshBasicMaterial({ map: texture });
             </code></pre>
             <canvas data-sample="spinning_textured_cube"></canvas>
+          </section>
+
+          <section>
+            <h2>Materials: Phong</h2>
+            <p>Live Coding: Add Spot Light</p>
+            <pre class="medium"><code>
+  var material = new THREE.MeshPhongMaterial( { map: texture } );
+
+  ...
+  var spotLight = new THREE.SpotLight ( 0xffffffff );
+  spotLight.position.set( 0, 0, 100);
+  scene.add( spotLight );
+            </code></pre>
+            <canvas data-sample="livecode_spinning_textured_cube"></canvas>
           </section>
         </section>
 
@@ -927,10 +953,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <img src="http://img.photobucket.com/albums/v348/spartan_mortis/chiefnoshader.jpg">
-          </section>
-
-          <section>
             <h2>ThreeJS: Custom Shaders</h2>
               <pre class="code medium"><code class="javascript">
   // Grab shader code
@@ -939,11 +961,13 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
   // Configure material parameters
   var parameters = {
+    // Shaders
     fragmentShader: fragmentShader,
     vertexShader: vertexShader,
+
+    // Shader Data
     uniforms: uniforms,
-    attributes: attributes,
-    side: THREE.DoubleSide
+    attributes: attributes
   };
 
   // Create custom shader material
@@ -997,18 +1021,19 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <pre class="code medium"><code class="javascript">
   var composer = new THREE.EffectComposer( renderer );
 
+  // 3 Passes...
   var renderModel = new THREE.RenderPass(scene, camera);
   var horizontalBlur = new THREE.ShaderPass(horizontalBlurShaders);
   var verticalBlur = new THREE.ShaderPass(verticalBlurShaders);
 
-  effectVerticalBlur.renderToScreen = true;
+  verticalBlur.renderToScreen = true;
 
   composer.addPass( renderModel );
   composer.addPass( horizontalBlur );
   composer.addPass( verticalBlur );
 
   ...
-  // renderer.render( scene, camera );
+  // renderer.render( scene, camera ); REMOVED
   composer.render(0.1);
             </code></pre>
           </section>
@@ -1023,11 +1048,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           <h2>Showcase: Big Boy Lighting</h2>
           <p>Combining various techniques</p>
           <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
-        </section>
-
-        <section>
-          <h3>Game Time: Spot the feature!</h3>
-          <img src="http://4.bp.blogspot.com/-2YJsDFkdVqM/Tx_J4bw8HnI/AAAAAAAAATk/Y1RN1finStI/s1600/Call-of-Duty-Modern-Warfare-3-Gameplay-Reveal-Trailer_3.jpg">
         </section>
 
         <section>

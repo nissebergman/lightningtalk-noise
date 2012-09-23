@@ -63,6 +63,8 @@
     "js/samples/spinning_wireframe_cube.js",
     "js/samples/spinning_cube.js",
     "js/samples/spinning_textured_cube.js",
+    "js/samples/lighted_spinning_textured_cube.js",
+    "js/samples/livecode_spinning_textured_cube.js",
     "js/samples/lighted_ambient_sphere.js",
     "js/samples/lighted_diffuse_sphere.js",
     "js/samples/lighted_specular_sphere.js",

@@ -22,7 +22,7 @@
       axisHelper.scale.x = axisHelper.scale.y = axisHelper.scale.z = 0.5;
       scene.add( axisHelper );
 
-      var renderer = new THREE.WebGLRenderer({canvas: canvas});
+      var renderer = new THREE.WebGLRenderer({"canvas": canvas});
       renderer.setSize( width, height );
 
       var instance = { active: false };
