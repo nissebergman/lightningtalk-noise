@@ -26,8 +26,7 @@
         requestAnimationFrame( animate, canvas );
         if(!instance.active || sample_defaults.paused) return;
 
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
+        mesh.rotation.y += 0.015;
 
         renderer.render( scene, camera );
       }
