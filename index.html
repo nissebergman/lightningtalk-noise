@@ -299,6 +299,12 @@
           <section>
             <h2>Lighting</h2>
             <img class="white_bg" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
+            <br/>
+            <br/>
+            <ul>
+              <li>N * L = dot product</li>
+              <li>color.rgb * dot product = amount of color</li>
+            </ul>
           </section>
 
           <section>
@@ -547,7 +553,7 @@ window.samples.webgl_spinning_cube = {
 
     scene.box = makeBox(gl);
 
-    // Set up the vertex attributes for vertices
+    // Set up the vertex buffer
     gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.vertexObject);
     ...
             </code></pre>
@@ -631,7 +637,6 @@ function drawPicture(scene, gl) {
     uniform vec3 lightDir;
 
     attribute vec3 vNormal; // Received from Vertex Buffer
-    attribute vec4 vColor;
     attribute vec4 vPosition;
 
     varying float v_Dot; // Variables output to Fragment Shader
@@ -640,7 +645,7 @@ function drawPicture(scene, gl) {
     void main()
     {
         gl_Position = u_modelViewProjMatrix * vPosition;
-        v_Color = vColor;
+        v_Color = vec4(1, 1, 1, 1); // White
 
         vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
         v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
@@ -673,7 +678,7 @@ function drawPicture(scene, gl) {
               <br/>
               The library provides &lt;canvas&gt;, &lt;svg&gt; and WebGL renderers.
             </blockquote>
-            <canvas data-sample="lighted_spinning_textured_cube"></canvas>
+            <canvas data-sample="lighted_spinning_cube"></canvas>
           </section>
 
           <section>
@@ -792,20 +797,6 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
           </section>
 
           <section>
-            <h3>Materials: Basic Texture</h3>
-            <pre class="medium"><code>
-var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
-                                           {}, function() {
-  animate();
-});
-
-// var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
-var material = new THREE.MeshBasicMaterial({ map: texture });
-            </code></pre>
-            <canvas data-sample="spinning_textured_cube"></canvas>
-          </section>
-
-          <section>
             <h2>Materials: Phong</h2>
             <p>Live Coding: Add Spot Light</p>
             <pre class="medium"><code>
@@ -817,6 +808,20 @@ var material = new THREE.MeshBasicMaterial({ map: texture });
   scene.add( spotLight );
             </code></pre>
             <canvas data-sample="livecode_spinning_textured_cube"></canvas>
+          </section>
+
+          <section>
+            <h3>Materials: Basic Texture</h3>
+            <pre class="medium"><code>
+var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
+                                           {}, function() {
+  animate();
+});
+
+// var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
+var material = new THREE.MeshBasicMaterial({ map: texture });
+            </code></pre>
+            <canvas data-sample="spinning_textured_cube"></canvas>
           </section>
         </section>
 
@@ -1151,7 +1156,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       void main()
       {
           gl_Position = u_modelViewProjMatrix * vPosition;
-          v_Color = vColor;
+          v_Color = vec4(1 , 1, 1, 1);
           vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
           v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
       }
