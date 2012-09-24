@@ -53,6 +53,8 @@
   }
 
   head.js(
+    "js/samples/todo_lighted_spinning_textured_cube.js",
+    "js/samples/todo_lighted_spinning_cube.js",
     "js/samples/particles.js",
     "js/samples/render_to_texture.js",
     "js/samples/blur_post_process.js",
@@ -65,7 +67,6 @@
     "js/samples/spinning_textured_cube.js",
     "js/samples/lighted_spinning_cube.js",
     "js/samples/lighted_spinning_textured_cube.js",
-    "js/samples/livecode_spinning_textured_cube.js",
     "js/samples/lighted_ambient_sphere.js",
     "js/samples/lighted_diffuse_sphere.js",
     "js/samples/lighted_specular_sphere.js",

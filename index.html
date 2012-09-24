@@ -684,26 +684,25 @@ function drawPicture(scene, gl) {
           <section>
             <h3>Intro to ThreeJS: Spinning Cube</h3>
             <pre class="code"><code>
-function init(canvas) {
   var scene = new THREE.Scene();
 
-  var camera = new THREE.PerspectiveCamera( 75, 320/240, 1, 1000 );
-  camera.position.z = 100;
+  var camera = new THREE.PerspectiveCamera( 30, width / height, 1, 1000 );
+  camera.position.set(0, 3, 7);
+  camera.lookAt( new THREE.Vector3(0,0,0));
 
-  var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+  var scale = 2.5;
+  var geometry = new THREE.CubeGeometry( scale, scale, scale );
   var material = new THREE.MeshBasicMaterial( { color: 0xdddddd } );
 
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
 
-  var renderer = new THREE.WebGLRenderer({canvas: canvas});
-  renderer.setSize( 320, 240 );
+  var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
+  renderer.setSize( width, height );
 
   function animate() {
-    requestAnimationFrame( animate );
-
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+    requestAnimationFrame( animate, canvas );
+    mesh.rotation.y += 0.008;
     renderer.render( scene, camera );
   }
   animate();
@@ -730,8 +729,9 @@ function init(canvas) {
           <section>
             <h3>Camera</h3>
             <pre class="medium"><code>
-var camera = new THREE.PerspectiveCamera(75, 320/240, 1, 1000);
-camera.position.z = 100;
+var camera = new THREE.PerspectiveCamera(30, width/height, 1,1000);
+camera.position.set(0, 3, 7);
+camera.lookAt( new THREE.Vector3(0,0,0));
             </code></pre>
             <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
           </section>
@@ -739,7 +739,8 @@ camera.position.z = 100;
           <section>
             <h3>Geometry</h3>
             <pre class="medium"><code>
-  var geometry = new THREE.CubeGeometry( 70, 70, 70 );
+var scale = 2.5;
+var geometry = new THREE.CubeGeometry( scale, scale, scale );
             </code></pre>
             <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
@@ -760,8 +761,8 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
           <section>
             <h3>Mesh</h3>
             <pre class="medium"><code>
-  var mesh = new THREE.Mesh( geometry, material );
-  scene.add( mesh );
+var mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
             </code></pre>
             <br/>
             <ul>
@@ -775,8 +776,8 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
           <section>
             <h3>Renderer</h3>
             <pre class="medium"><code>
-  var renderer = new THREE.WebGLRenderer({canvas: canvas});
-  renderer.setSize( 320, 240 );
+var renderer = new THREE.WebGLRenderer({canvas: canvas});
+renderer.setSize( width, height );
             </code></pre>
             <br/>
           </section>
@@ -787,8 +788,7 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
             <pre class="medium"><code>
   function animate() {
     requestAnimationFrame( animate );
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+    mesh.rotation.y += 0.008;
     renderer.render( scene, camera );
   }
   animate();
@@ -798,30 +798,31 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
 
           <section>
             <h2>Materials: Phong</h2>
-            <p>Live Coding: Add Spot Light</p>
+            <p>TODO: Add Light</p>
             <pre class="medium"><code>
-  var material = new THREE.MeshPhongMaterial( { map: texture } );
+  var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
 
   ...
-  var spotLight = new THREE.SpotLight ( 0xffffffff );
-  spotLight.position.set( 0, 0, 100);
-  scene.add( spotLight );
+  var directionalLight = new THREE.DirectionalLight ( 0xffffffff );
+  directionalLight.position.set( 0, 0, 100);
+  scene.add( directionalLight );
             </code></pre>
-            <canvas data-sample="livecode_spinning_textured_cube"></canvas>
+            <canvas data-sample="todo_lighted_spinning_cube"></canvas>
           </section>
 
           <section>
-            <h3>Materials: Basic Texture</h3>
+            <h3>Materials: Texture</h3>
+            <p>TODO: Add Texture</p>
             <pre class="medium"><code>
 var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
                                            {}, function() {
   animate();
 });
 
-// var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
-var material = new THREE.MeshBasicMaterial({ map: texture });
+//var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
+var material = new THREE.MeshPhongMaterial({ map: texture });
             </code></pre>
-            <canvas data-sample="spinning_textured_cube"></canvas>
+            <canvas data-sample="todo_lighted_spinning_textured_cube"></canvas>
           </section>
         </section>
 

@@ -1,6 +1,6 @@
 (function() {
 
-  window.samples.lighted_spinning_textured_cube = {
+  window.samples.todo_lighted_spinning_cube = {
 
     initialize: function(canvas) {
       var scene = new THREE.Scene();
@@ -9,20 +9,12 @@
       camera.position.set(0, 3, 7);
       camera.lookAt( new THREE.Vector3(0,0,0));
 
-      var texture = THREE.ImageUtils.loadTexture('images/checker_large.gif', {}, function() {
-        animate();
-      });
-
       var scale = 2.5;
       var geometry = new THREE.CubeGeometry( scale, scale, scale );
-      var material = new THREE.MeshPhongMaterial( { map: texture, antialias: true } );
+      var material = new THREE.MeshBasicMaterial( { color: 0xdddddd, antialias:true } );
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
-
-      var directionalLight = new THREE.DirectionalLight ( 0xffffffff );
-      directionalLight.position.set( 0, 3, 7);
-      scene.add( directionalLight );
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
@@ -39,7 +31,6 @@
 
       animate();
       return instance;
-
     }
   };
 })();
