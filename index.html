@@ -176,11 +176,6 @@
 
           <section>
             <h2>Projection</h2>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
-          </section>
-
-          <section>
-            <h2>Projection</h2>
             <br/>
             <pre style="width: 30%" class="math float_left">
   2D Example:
@@ -236,11 +231,7 @@
             <h2>Lighting</h2>
             <p>Getting the strength of the color...</p>
             <br/>
-            <img src="http://lh5.ggpht.com/_QLwms0mVa4w/Sfn4HH_HGxI/AAAAAAAAAS4/ZpGr11BjJVk/component.jpg">
-          </section>
-
-          <section>
-            <h2>Ambient, Diffuse, Specular</h2>
+            <h3>Ambient, Diffuse, Specular</h3>
             <canvas class="float_left" data-sample="lighted_ambient_sphere"></canvas>
             <canvas class="float_left" data-sample="lighted_diffuse_sphere"></canvas>
             <canvas class="float_left" data-sample="lighted_specular_sphere"></canvas>
@@ -276,7 +267,8 @@
 
         <section>
           <section>
-            <h1>Welcome BACK to Linear Algebra</h1>
+            <h2>Welcome BACK to Linear Algebra</h2>
+            <br/>
             <img src="http://cronwtf.github.com/images/wtf.jpg">
           </section>
 
@@ -526,10 +518,10 @@ window.samples.webgl_spinning_cube = {
           <section>
             <h2>What we care about</h2>
             <ol>
-              <li>Set up on CPU</li>
-              <li>Vertex Processing <b>(vertices -&gt; shapes)</b></li>
+              <li>Setup on CPU</li>
+              <li>Vertex Processor <b>(vertices -&gt; shapes)</b></li>
               <li>Rasterization <b>(shapes -&gt; pixels, done for us)</b></li>
-              <li>Fragment Processing <b>(pixels -&gt; colored pixels)</b></li>
+              <li>Fragment Processor <b>(pixels -&gt; colored pixels)</b></li>
             </ol>
             <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
           </section>
@@ -537,7 +529,6 @@ window.samples.webgl_spinning_cube = {
           <section>
             <h2>CPU: Javascript</h2>
             <pre class="code medium"><code class="javascript">
-    var scene = {};
     var gl = WebGLUtils.setupWebGL(scene.canvas);
 
     scene.program = simpleSetup(
@@ -645,6 +636,7 @@ function drawPicture(scene, gl) {
     void main()
     {
         gl_Position = u_modelViewProjMatrix * vPosition;
+
         v_Color = vec4(1, 1, 1, 1); // White
 
         vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
@@ -714,7 +706,6 @@ function drawPicture(scene, gl) {
           <section>
             <h3>Scene</h3>
             <pre class="medium"><code>
-function init(canvas) {
   var scene = new THREE.Scene();
             </code></pre>
             <br/>
@@ -753,8 +744,8 @@ var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
             <p>Encapsulates:</p>
             <ul>
               <li>Texture</li>
-              <li>Lighting</li>
-              <li>Fragment Shader</li>
+              <li>Attributes</li>
+              <li>Shaders</li>
             </p>
           </section>
 
@@ -766,7 +757,6 @@ scene.add( mesh );
             </code></pre>
             <br/>
             <ul>
-              <li>Associate geometry with a material to make a mesh.</li>
               <br/>
               <li>geometry: Vertices -&gt; Shapes</li>
               <li>material: Pixels -&gt; Colored Pixels</li>
@@ -780,6 +770,7 @@ var renderer = new THREE.WebGLRenderer({canvas: canvas});
 renderer.setSize( width, height );
             </code></pre>
             <br/>
+            <canvas data-sample="wireframe_plane"></canvas>
           </section>
 
           <section>
@@ -788,6 +779,7 @@ renderer.setSize( width, height );
             <pre class="medium"><code>
   function animate() {
     requestAnimationFrame( animate );
+
     mesh.rotation.y += 0.008;
     renderer.render( scene, camera );
   }
@@ -804,7 +796,7 @@ renderer.setSize( width, height );
 
   ...
   var directionalLight = new THREE.DirectionalLight ( 0xffffffff );
-  directionalLight.position.set( 0, 0, 100);
+  directionalLight.position.set(0, 3, 7);
   scene.add( directionalLight );
             </code></pre>
             <canvas data-sample="todo_lighted_spinning_cube"></canvas>
@@ -814,10 +806,13 @@ renderer.setSize( width, height );
             <h3>Materials: Texture</h3>
             <p>TODO: Add Texture</p>
             <pre class="medium"><code>
-var texture = THREE.ImageUtils.loadTexture('checker_large.gif',
-                                           {}, function() {
-  animate();
-});
+var texture = THREE.ImageUtils.loadTexture(
+      'images/checker_large.gif',
+      {},
+      function() {
+        animate();
+      }
+);
 
 //var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
 var material = new THREE.MeshPhongMaterial({ map: texture });
@@ -876,7 +871,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>ThreeJS: Particles</h2>
+            <h2>Primitives</h2>
             <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
           </section>
 
@@ -884,6 +879,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <h2>ThreeJS: Particles</h2>
             <pre class="code medium"><code class="cpp">
     geometry = new THREE.Geometry();
+
     for ( i = 0; i < 20000; i ++ ) {
       var vertex = new THREE.Vector3();
       vertex.x = Math.random() * 2000 - 1000;
@@ -892,7 +888,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
       geometry.vertices.push( vertex );
     }
-    ...
             </code></pre>
             <br/>
             <pre class="code medium"><code class="cpp">
@@ -1083,6 +1078,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <li>Terrain Rendering</li>
             <li>Dynamic Level of Detail</li>
             <li>Culling</li>
+            <li>Geometry Shaders</li>
             <li>and more ...</li>
           </ul>
         </section>

@@ -44,8 +44,6 @@
 
       var currentSlide = event.currentSlide;
       $(currentSlide).find("[data-sample]").each(function() {
-        console.log("Slide changed to a " + $(this).data("sample") + " sample.");
-
         var instance = $(this).data("instance");
         if(instance) instance.active = true;
       });

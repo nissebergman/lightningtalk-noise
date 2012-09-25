@@ -1,20 +1,19 @@
 (function() {
 
-  function createDirectionalLight(options) {
-    var directionalLight;
-    directionalLight = new THREE.DirectionalLight(0xffffff, 1.1);
-    directionalLight.position.set(options.position.x, options.position.y, options.position.z);
-    return directionalLight;
-  }
+  function Apache() {
+    var scene = null;
+    var camera = null;
+    var renderer = null;
+    var mesh = null;
 
-  var scene = null;
-  var camera = null;
-  var renderer = null;
-  var mesh = null;
+    function createDirectionalLight(options) {
+      var directionalLight;
+      directionalLight = new THREE.DirectionalLight(0xffffff, 1.1);
+      directionalLight.position.set(options.position.x, options.position.y, options.position.z);
+      return directionalLight;
+    }
 
-  window.samples.load_apache = {
-
-    initialize: function(canvas) {
+    this.initialize = function(canvas) {
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
@@ -47,6 +46,13 @@
       }, "images");
 
       return instance;
+    };
+  }
+
+  window.samples.load_apache = {
+    initialize: function(canvas) {
+      var apache = new Apache();
+      return apache.initialize(canvas);
     }
   };
 })();

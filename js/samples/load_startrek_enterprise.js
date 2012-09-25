@@ -1,20 +1,19 @@
 (function() {
 
-  function createDirectionalLight(options) {
-    var directionalLight;
-    directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
-    directionalLight.position.set(options.position.x, options.position.y, options.position.z);
-    return directionalLight;
-  }
+  function StartrekEnterprise() {
+    var scene = null;
+    var camera = null;
+    var renderer = null;
+    var mesh = null;
 
-  var scene = null;
-  var camera = null;
-  var renderer = null;
-  var mesh = null;
+    function createDirectionalLight(options) {
+      var directionalLight;
+      directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+      directionalLight.position.set(options.position.x, options.position.y, options.position.z);
+      return directionalLight;
+    }
 
-  window.samples.load_startrek_enterprise = {
-
-    initialize: function(canvas) {
+    this.initialize = function(canvas) {
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
@@ -46,6 +45,13 @@
       });
 
       return instance;
+    };
+  }
+
+  window.samples.load_startrek_enterprise = {
+    initialize: function(canvas) {
+      var startrek = new StartrekEnterprise();
+      return startrek.initialize(canvas);
     }
   };
 })();
