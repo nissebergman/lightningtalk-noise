@@ -120,7 +120,7 @@
           </section>
 
           <section>
-            <h3>2D Vector, meet Matrix!</h3>
+            <h3>2D Vertex, meet Matrix!</h3>
             <p>Now multiply...</p>
             <img class="float_left" src="http://tutorial.math.lamar.edu/Classes/LinAlg/LinearTransformations_files/image002.gif">
             <br/>
@@ -245,7 +245,7 @@
             <h2>But how do we ...</h2>
             <br/>
             <br/>
-            <h3>figure out the amount of color?</h3>
+            <h3>figure out the amount of light?</h3>
             <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
           </section>
         </section>
@@ -733,6 +733,8 @@ scene.add( mesh );
               <br/>
               <li>geometry: Vertices -&gt; Shapes</li>
               <li>material: Pixels -&gt; Colored Pixels</li>
+              <br/>
+              <li>World Matrix</li>
             </ul>
           </section>
 
@@ -912,6 +914,33 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
             <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
             <img src="images/normal_map_tile.jpg" class="float_left normal_map" style="width:200px">
+          </section>
+
+          <section>
+            <h2>ThreeJS: Custom Shaders</h2>
+              <pre class="code medium"><code class="javascript">
+  // Grab shader code
+  var vertexShader = $('#normal_map_vs').text();
+  var fragmentShader = $('#normal_map_fs').text();
+
+  // Configure material parameters
+  var parameters = {
+    // Shaders
+    fragmentShader: fragmentShader,
+    vertexShader: vertexShader,
+
+    // Shader Data
+    uniforms: uniforms,
+    attributes: attributes
+  };
+
+  // Create custom shader material
+  var normal_material = new THREE.ShaderMaterial( parameters );
+
+  // Add mesh
+  var mesh = new THREE.Mesh( geometry, normal_material );
+  scene.add( mesh );
+              </code></pre>
           </section>
 
           <section>
