@@ -61,13 +61,6 @@
         </section>
 
         <section>
-          <h2>Realtime vs Prerendered</h2>
-          <img class="float_left" src="http://origin.arstechnica.com/reviews/games/super-smash-bros-review.media/1.jpg">
-          <div class="float_left" style="line-height: 8; padding: 20px">vs</div>
-          <img class="float_left" style="width: 320px; " src="http://static.guim.co.uk/sys-images/Film/Pix/pictures/2009/11/13/1258137150094/Avatar-001.jpg">
-        </section>
-
-        <section>
           <section>
             <h3>How do we get from<br/>vertices to a shape</h3>
             <img class="float_left" style="display:inline" src="images/Vertices.png">
@@ -78,7 +71,6 @@
 
           <section>
             <h2>What is a vertex?</h2>
-            <p>A vertex is a point that describes the corners or intersections of geometric shapes</p>
             <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
           </section>
 
@@ -147,11 +139,6 @@
 
           <section>
             <h3>Transformations</h3>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
-          </section>
-
-          <section>
-            <h3>Transformations</h3>
             <br/>
             <img class="float_left" src="images/SRT_transformations.png">
             <ul style="width:100px;">
@@ -177,12 +164,10 @@
           <section>
             <h2>Projection</h2>
             <br/>
-            <pre style="width: 30%" class="math float_left">
-  2D Example:
-
-  [1, 0] [x]   [x]
-  [0, 0] [y] = [0]
-            </pre>
+            <pre style="width: 40%" class="math float_left">
+  [1, 0, 0] [x]   [x]
+  [0, 1, 0] [y] = [y]
+  [0, 0, 0] [z]   [0] </pre>
             <p>* We lose a dimension!</p>
             <img src="images/3dproj01.gif">
           </section>
@@ -319,18 +304,18 @@
 
           <section>
             <h3>How it was: Fixed Function Pipeline</h3>
+            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
+            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
+            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
+          </section>
+
+          <section>
+            <h3>How it was: Fixed Function Pipeline</h3>
             <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
             <ul>
               <li>Introduction of GPU hardware support</li>
               <li>Sacrificed flexibility for speed</li>
             </ul>
-          </section>
-
-          <section>
-            <h3>How it was: Fixed Function Pipeline</h3>
-            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
-            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
-            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
           </section>
 
           <section>
@@ -520,7 +505,6 @@ window.samples.webgl_spinning_cube = {
             <ol>
               <li>Setup on CPU</li>
               <li>Vertex Processor <b>(vertices -&gt; shapes)</b></li>
-              <li>Rasterization <b>(shapes -&gt; pixels, done for us)</b></li>
               <li>Fragment Processor <b>(pixels -&gt; colored pixels)</b></li>
             </ol>
             <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
@@ -552,37 +536,26 @@ window.samples.webgl_spinning_cube = {
 
           <section>
             <h2>CPU: Javascript</h2>
-            <pre class="code"><code class="javascript">
+            <pre class="code medium" style="font-size:19px;"><code class="javascript">
 function drawPicture(scene, gl) {
   // Clear the canvas
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-  // Camera work: Set the viewport and projection matrix for the scene
-  gl.viewport(0, 0, canvas.width, canvas.height);
-  scene.perspectiveMatrix = new J3DIMatrix4();
-  scene.perspectiveMatrix.perspective(30, canvas.width/canvas.height, 1, 10000);
-  scene.perspectiveMatrix.lookat(0, 0, 7, 0, 0, 0, 0, 1, 0);
-
-  // Make a model/view matrix.
-  scene.mvMatrix.makeIdentity();
-  scene.mvMatrix.rotate(20, 1,0,0);
-  scene.mvMatrix.rotate(scene.currentAngle, 0,1,0);
-
-  // Construct the model-view * projection matrix and pass it in
+  // Construct the model-view * projection matrix
   scene.mvpMatrix.load(scene.perspectiveMatrix);
   scene.mvpMatrix.multiply(scene.mvMatrix);
 
-  // Pass it in to the Vertex Shader
+  // Pass the moel-view-proj matrix in to the Shaders
   scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrix, false);
 
   // Draw the cube
-  gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
+  gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE,0);
 }
             </code></pre>
           </section>
 
           <section>
-            <h2>Vertex Processing: Vertex Shader</h2>
+            <h2>Vertex Processor: Vertex Shader</h2>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
     uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
 
@@ -599,7 +572,7 @@ function drawPicture(scene, gl) {
           </section>
 
           <section>
-            <h3>Fragment Processing: Fragment Shader</h3>
+            <h3>Fragment Processor: Fragment Shader</h3>
             <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
     void main()
     {
@@ -709,9 +682,9 @@ function drawPicture(scene, gl) {
   var scene = new THREE.Scene();
             </code></pre>
             <br/>
-            <p>Encapsulates everything with regard to this rendering!</p>
+            <p>Encapsulates everything with regard to this rendering</p>
             <ul>
-              <li>Model View Projection Matrices</li>
+              <li>Matrices</li>
               <li>Camera</li>
               <li>Models</li>
             </ul>
@@ -901,27 +874,15 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
             <canvas data-sample="particles"></canvas>
             <h2>Only 20k, how about a million?</h2>
             <ul>
-              <li><a href="http://www.html5rocks.com/en/tutorials/webgl/million_letters/million_letters.html">A Million Letters</a></li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>How do we animate a million particles?</h3>
-            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
-            <p>Vertex Textures!</p>
-          </section>
-
-          <section>
-            <h3>Showcase: A Million Particles</h3>
-            <ul>
               <li><a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a></li>
+              <li><a href="http://www.html5rocks.com/en/tutorials/webgl/million_letters/million_letters.html">A Million Letters</a></li>
             </ul>
           </section>
         </section>
 
         <section>
           <section>
-            <h2>Fragment Shaders: Normal Mapping</h2>
+            <h2>ThreeJS: Normal Mapping</h2>
             <p>Using the RGB for your <b><u>normal's</u></b> XYZ</p>
             <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
             <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
@@ -954,33 +915,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
           </section>
 
           <section>
-            <h2>ThreeJS: Custom Shaders</h2>
-              <pre class="code medium"><code class="javascript">
-  // Grab shader code
-  var vertexShader = $('#normal_map_vs').text();
-  var fragmentShader = $('#normal_map_fs').text();
-
-  // Configure material parameters
-  var parameters = {
-    // Shaders
-    fragmentShader: fragmentShader,
-    vertexShader: vertexShader,
-
-    // Shader Data
-    uniforms: uniforms,
-    attributes: attributes
-  };
-
-  // Create custom shader material
-  var normal_material = new THREE.ShaderMaterial( parameters );
-
-  // Add mesh
-  var mesh = new THREE.Mesh( geometry, normal_material );
-  scene.add( mesh );
-              </code></pre>
-          </section>
-
-          <section>
             <h2>Showcase: Skin Material</h2>
             <a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a>
           </section>
@@ -988,7 +922,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
         <section>
           <section>
-            <h2>Post-Processing: Blur</h2>
+            <h2>ThreeJS: Post-Processing</h2>
             <br/>
             <br/>
             <canvas class="float_left" data-sample="spinning_textured_cube"></canvas>
@@ -1046,12 +980,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
-          <h2>Showcase: Big Boy Lighting</h2>
-          <p>Combining various techniques</p>
-          <a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Deferred Irradiance Volumes</a>
-        </section>
-
-        <section>
           <h3>John Carmack on WebGL</h3>
           <br/>
           <div class="ytapiplayer" id="ytplayer"
@@ -1059,8 +987,10 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
-          <h2>A Mashup of Technologies</h2>
+          <h2>Showcase</h2>
           <ul style="margin-top: 40px;">
+            <li><a href="http://mrdoob.com/lab/javascript/webgl/voxels_liquid/index.html">Voxel Liquid</a></li>
+            <li><a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Big Boy Lighting: Deferred Irradiance Volumes</a></li>
             <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
             <li><a href="http://www.ro.me/">Rome Interactive Movie</a></li>
             <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL2EqTuhUjTUtE2PdmDQ0BEjTHt342ngkduY4LQX1v+/sxJBAoqq27z7fd3e+u9m7r78u7v5cL0hq8uzsYFYvg1kKjOM6mOVgGElSpksw82FlVsenQ6cozS4DuxssFd+RJ7sbLFlyv9aqkvw4UZnSU3K4cl/s1DnTayGnJKqPagN6lantlKSCc5BOurfGQ299FjaezCxLTZxoURhS6mQ+TI0ppmGYa67Ukq6FSaslTVQemlQD0L9luKxExptjLiSKhmdo3tlomTs7sNxhSLZK3zMXAVkpjZFrlQNZVmt0siZLFAe6VmqdgaMqQgcSVR6KsqygDDnmTGSfBZ9/mHw6jQ6Tk7G1LlYkIFshudpSISXo34KblMzncxKRI/LUpyMF0yBNSxZ3YJcg1ql5hauFMdm7LONn1w3DaFgOmo1ImYCEEcEbHDTo2OvXgMEavRuRnBnQgmW4gzKNXXaEFCY4cmAmhUXYkz2uKpkYoSSpIU0xuL+aEh2UsCV3lzeLBb0GXRaAFzZw4bQB+TgZ9UQf9oQ6Iif4iyLMWNwioIUqhXWBPiLXJIpqxwYu0g77rZV4xwc+4g7kR6JKlgLXSn5v9AEZRxESe1afn869K0zVF1aK5KrRBvioTR9ED5H7bJwaVhq9nhKjK2gJfgq0ZSOfkjHZE++jfRn2IMpLyArQHcbzZ3HzMIMXIC0ThiX6gBfeCHd9Qpu5cfySNso4D9rM3iFbEm8CD3qqx2erZc7d9YZ8AXaMXTC5YeVNo/JxeSjFOXQrHqGnk0Z9neGpuEqq3HaInSOUFQXau0hxNgTPbUC5yhcZWJS/tu+W93PZY4U3Xv3DhjfnTo6Ib/YZA4/rJIxqZRzGvchXVFOptmjqPYkoFsYk7oHu+qAnr7JH603g27ppuXYIrYk3C+tJipPVzvr/">Code Editor</a></li>
