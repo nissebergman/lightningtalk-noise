@@ -54,6 +54,7 @@
     "js/samples/todo_lighted_spinning_textured_cube.js",
     "js/samples/todo_lighted_spinning_cube.js",
     "js/samples/particles.js",
+    "js/samples/shadow_map.js",
     "js/samples/render_to_texture.js",
     "js/samples/blur_post_process.js",
     "js/samples/webgl_spinning_wireframe_cube.js",
