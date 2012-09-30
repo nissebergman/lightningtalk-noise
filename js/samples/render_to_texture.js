@@ -38,6 +38,7 @@
       // Create plane to render spinning cube as texture.
       var planeGeometry = new THREE.PlaneGeometry( 1, 1 );
       var planeMaterial = new THREE.ShaderMaterial( THREE.ShaderExtras["screen"] );
+      planeMaterial.side = THREE.DoubleSide;
       var planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
       planeMesh.position.z = -100;
       planeMesh.scale.set( sample_defaults.width, sample_defaults.height, 1 );
@@ -56,14 +57,15 @@
         requestAnimationFrame( animate, canvas );
         if(!instance.active || sample_defaults.paused) return;
 
-        cubeMesh.rotation.y += 0.01;
-        planeMesh.rotation.x += 0.01;
-        wireframePlaneMesh.rotation.x += 0.01;
+        var speedIncrement = 0.005;
+        cubeMesh.rotation.y += speedIncrement;
+        planeMesh.rotation.y += speedIncrement;
+        wireframePlaneMesh.rotation.y += speedIncrement;
 
         renderer.clear();
         renderer.render( worldScene, camera, renderTarget );
 
-        planeMaterial.uniforms[ "tDiffuse" ].texture = renderTarget;
+        planeMaterial.uniforms[ "tDiffuse" ].value = renderTarget;
         renderer.render( planeScene, camera );
       }
 
