@@ -51,9 +51,12 @@
   }
 
   head.js(
+    "js/samples/height_map_image.js",
     "js/samples/todo_lighted_spinning_textured_cube.js",
     "js/samples/todo_lighted_spinning_cube.js",
     "js/samples/particles.js",
+    "js/samples/particle_height_map.js",
+    "js/samples/particle_height_map_vertex_texture.js",
     "js/samples/shadow_map.js",
     "js/samples/render_to_texture.js",
     "js/samples/blur_post_process.js",

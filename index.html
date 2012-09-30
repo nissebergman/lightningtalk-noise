@@ -1024,6 +1024,20 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         </section>
 
         <section>
+          <section>
+          <h3>Vertex Textures</h3>
+          <canvas data-sample="height_map_image"></canvas>
+          <canvas data-sample="particle_height_map_vertex_texture"></canvas>
+          </section>
+
+          <section>
+          <h3>Height Map in Vertex Buffer</h3>
+          <canvas data-sample="height_map_image"></canvas>
+          <canvas data-sample="particle_height_map"></canvas>
+          </section>
+        </section>
+
+        <section>
           <h3>John Carmack on WebGL</h3>
           <br/>
           <div class="ytapiplayer" id="ytplayer"
@@ -1083,33 +1097,6 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       <!-- Presentation progress bar -->
       <div class="progress"><span></span></div>
     </div>
-
-    <script src="lib/js/head.min.js"></script>
-    <script src="lib/js/jquery.min.js"></script>
-    <script src="lib/js/jquery.hotkeys.js"></script>
-    <script src="lib/js/underscore.min.js"></script>
-    <script src="lib/js/swfobject.js"></script>
-    <script src="lib/js/dat.gui.js"></script>
-
-    <script src="lib/js/three.js"></script>
-    <script src="lib/js/three/EffectComposer.js"></script>
-    <script src="lib/js/three/ShaderExtras.js"></script>
-    <script src="lib/js/three/RenderPass.js"></script>
-    <script src="lib/js/three/BloomPass.js"></script>
-    <script src="lib/js/three/ShaderPass.js"></script>
-    <script src="lib/js/three/MaskPass.js"></script>
-
-    <!-- js files needed for WebGL specific samples (excluding three js) -->
-    <script src="lib/js/J3DI.js"></script>
-    <script src="lib/js/J3DIMath.js"></script>
-    <script src="lib/js/webgl-utils.js"></script>
-    <script src="lib/js/webgl-debug.js"></script>
-
-    <!-- App specific js -->
-    <script src="js/reveal.min.js"></script>
-    <script src="js/stats_bootstrap.js"></script>
-    <script src="js/samples.js"></script>
-    <script src="js/dat.gui.bootstrap.js"></script>
 
     <!-- Shaders -->
     <script id="webgl_vshader" type="x-shader/x-vertex">
@@ -1209,6 +1196,34 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         gl_FragColor = vec4(color, 1.0);
       }
     </script>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/jquery.hotkeys.js"></script>
+    <script src="lib/js/underscore.min.js"></script>
+    <script src="lib/js/swfobject.js"></script>
+    <script src="lib/js/dat.gui.js"></script>
+    <script src="lib/js/EventEmitter.js"></script>
+
+    <script src="lib/js/three.js"></script>
+    <script src="lib/js/three/EffectComposer.js"></script>
+    <script src="lib/js/three/ShaderExtras.js"></script>
+    <script src="lib/js/three/RenderPass.js"></script>
+    <script src="lib/js/three/BloomPass.js"></script>
+    <script src="lib/js/three/ShaderPass.js"></script>
+    <script src="lib/js/three/MaskPass.js"></script>
+
+    <!-- js files needed for WebGL specific samples (excluding three js) -->
+    <script src="lib/js/J3DI.js"></script>
+    <script src="lib/js/J3DIMath.js"></script>
+    <script src="lib/js/webgl-utils.js"></script>
+    <script src="lib/js/webgl-debug.js"></script>
+
+    <!-- App specific js -->
+    <script src="js/reveal.min.js"></script>
+    <script src="js/stats_bootstrap.js"></script>
+    <script src="js/samples.js"></script>
+    <script src="js/dat.gui.bootstrap.js"></script>
 
     <script>
 
