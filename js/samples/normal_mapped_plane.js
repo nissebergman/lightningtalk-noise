@@ -1,93 +1,111 @@
 (function() {
 
-  var worlds = [];
+  var instances = [];
 
-  function preloadImages(images) {
-    _.each(images, function(image) {
-      var img = new Image();
-      img.src = 'images/' + image;
-    });
-  }
+  function NormalMappedPlane() {
+    var scene,
+        camera,
+        renderer,
+        mesh,
+        uniforms,
+        requestAnimationFrameId,
+        clock = new THREE.Clock();
 
-  preloadImages(sample_defaults.normal_maps);
-
-  function addNormalMappedPlane(scene) {
-    var geometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
-    geometry.computeTangents();
-
-    var texture = new THREE.ImageUtils.loadTexture('images/' + sample_defaults.current_normal_map, {});
-
-    var uniforms = {
-      "map" : { type: "t", value: 0, texture: texture },
-      "uTime" : { type: "f", value: 1.0 }
+    var options = {
+      active: false
     };
 
-    var exaggeratedTangents = _.map(geometry.faces[0].vertexTangents, function(v) { v.x = 3; return v; })
-    var attributes = {
-      "tangent" : { type: "v3", value: exaggeratedTangents }
-    };
+    function preloadImages(images) {
+      _.each(images, function(image) {
+        var img = new Image();
+        img.src = 'images/' + image;
+      });
+    }
 
-    var vertexShader = $('#normal_map_vs').text();
-    var fragmentShader = $('#normal_map_fs').text();
+    preloadImages(sample_defaults.normal_maps);
 
-    var parameters = {
-      fragmentShader: fragmentShader,
-      vertexShader: vertexShader,
-      uniforms: uniforms,
-      attributes: attributes,
-      side: THREE.DoubleSide
-    };
+    function addNormalMappedPlane(scene) {
+      var geometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+      geometry.computeTangents();
 
-    var normal_material = new THREE.ShaderMaterial( parameters );
+      var texture = new THREE.ImageUtils.loadTexture('images/' + sample_defaults.current_normal_map, {}, function() {
+        animate();
+      });
 
-    var mesh = new THREE.Mesh( geometry, normal_material );
-    scene.add( mesh );
-    return mesh;
-  }
+      uniforms = {
+        "map" : { type: "t", value: texture },
+        "uTime" : { type: "f", value: 1.0 }
+      };
 
-  function animate(instance, mesh, force) {
-    function recursiveAnimate() { animate(instance, mesh); }
+      var exaggeratedTangents = _.map(geometry.faces[0].vertexTangents, function(v) { v.x = 3; return v; })
+      var attributes = {
+        "tangent" : { type: "v3", value: exaggeratedTangents }
+      };
 
-    var request_id = requestAnimationFrame( recursiveAnimate );
-    if(force || !sample_defaults.paused) mesh.rotation.y += 0.01;
-    mesh.material.wireframe = sample_defaults.wireframe;
+      var vertexShader = $('#normal_map_vs').text();
+      var fragmentShader = $('#normal_map_fs').text();
 
-    if(instance.active)
-      instance.renderer.render( instance.scene, instance.camera );
-    return request_id;
+      var parameters = {
+        fragmentShader: fragmentShader,
+        vertexShader: vertexShader,
+        uniforms: uniforms,
+        attributes: attributes
+      };
+
+      var normal_material = new THREE.ShaderMaterial( parameters );
+
+      mesh = new THREE.Mesh( geometry, normal_material );
+      scene.add( mesh );
+      return mesh;
+    }
+
+    function animate() {
+      mesh.material.wireframe = sample_defaults.wireframe;
+      var delta = clock.getDelta();
+
+      if(options.active && !sample_defaults.paused) {
+        uniforms.uTime.value += delta * 0.5;
+        renderer.render( scene, camera );
+      }
+
+      requestAnimationFrameId = requestAnimationFrame( animate );
+    }
+
+    this.resetNormalMap = function() {
+      cancelAnimationFrame(requestAnimationFrameId);
+
+      _.each(scene.children, function(child) { scene.remove(child); } );
+
+      addNormalMappedPlane(scene);
+    }
+
+    this.initialize = function(canvas) {
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
+      camera.lookAt(new THREE.Vector3(0,0,0));
+      camera.position.z = 80;
+
+      renderer = new THREE.WebGLRenderer({canvas: canvas});
+      renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
+
+      var mesh = addNormalMappedPlane(scene);
+
+      return options;
+    }
   }
 
   window.samples.normal_mapped_plane = {
-    worlds: worlds,
-
     resetNormalMaps: function() {
-      _.each(worlds, function(instance) {
-
-        cancelAnimationFrame(instance.requestAnimationFrameId);
-
-        _.each(instance.scene.children, function(child) { instance.scene.remove(child); } );
-
-        var mesh = addNormalMappedPlane(instance.scene);
-        instance.requestAnimationFrameId = animate(instance, mesh, true);
+      _.each(instances, function(world) {
+        world.resetNormalMap()
       });
     },
 
     initialize: function(canvas) {
-      var instance = {active: false};
-      worlds.push(instance);
-
-      instance.scene = new THREE.Scene();
-
-      instance.camera = new THREE.PerspectiveCamera( 75, sample_defaults.width / sample_defaults.height, 1, 1000 );
-      instance.camera.position.z = 80;
-
-      instance.renderer = new THREE.WebGLRenderer({canvas: canvas});
-      instance.renderer.setSize( sample_defaults.width * 2, sample_defaults.height * 2 );
-
-      var mesh = addNormalMappedPlane(instance.scene);
-
-      instance.requestAnimationFrameId = animate(instance, mesh);
-      return instance;
+      var instance = new NormalMappedPlane();
+      instances.push(instance);
+      return instance.initialize(canvas);
     }
   };
 })();

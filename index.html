@@ -1197,7 +1197,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
         vec3 normalV = normalT.x * vTangentV + normalT.y * binormalV + normalT.z * vNormalV;
 
         normalV = normalize(normalV);
-        vec3 lightV = normalize(vec3(10.0 * cos(uTime), 10.0, 10.0 * sin(uTime)));
+        vec3 lightV = normalize(vec3(10.0 * cos(uTime), 0.0, 10.0 * sin(uTime)));
 
         float d = dot(normalV, lightV);
         float s = dot(reflect(-lightV, normalV), normalize(-vPositionV.xyz));
