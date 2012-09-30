@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en.png">
 
   <head>
     <meta charset="utf-8">
@@ -1197,56 +1197,59 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
       }
     </script>
 
+
     <script src="lib/js/head.min.js"></script>
-    <script src="lib/js/jquery.min.js"></script>
-    <script src="lib/js/jquery.hotkeys.js"></script>
-    <script src="lib/js/underscore.min.js"></script>
-    <script src="lib/js/swfobject.js"></script>
-    <script src="lib/js/dat.gui.js"></script>
-    <script src="lib/js/EventEmitter.js"></script>
-
-    <script src="lib/js/three.js"></script>
-    <script src="lib/js/three/EffectComposer.js"></script>
-    <script src="lib/js/three/ShaderExtras.js"></script>
-    <script src="lib/js/three/RenderPass.js"></script>
-    <script src="lib/js/three/BloomPass.js"></script>
-    <script src="lib/js/three/ShaderPass.js"></script>
-    <script src="lib/js/three/MaskPass.js"></script>
-
-    <!-- js files needed for WebGL specific samples (excluding three js) -->
-    <script src="lib/js/J3DI.js"></script>
-    <script src="lib/js/J3DIMath.js"></script>
-    <script src="lib/js/webgl-utils.js"></script>
-    <script src="lib/js/webgl-debug.js"></script>
-
-    <!-- App specific js -->
-    <script src="js/reveal.min.js"></script>
-    <script src="js/stats_bootstrap.js"></script>
-    <script src="js/samples.js"></script>
-    <script src="js/dat.gui.bootstrap.js"></script>
-
     <script>
+      head.js(
+        "lib/js/jquery.min.js",
+        "lib/js/jquery.hotkeys.js",
+        "lib/js/underscore.min.js",
+        "lib/js/swfobject.js",
+        "lib/js/dat.gui.js",
+        "lib/js/EventEmitter.js",
 
-      // Full list of configuration options available here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
+        "lib/js/three.js",
+        "lib/js/three/EffectComposer.js",
+        "lib/js/three/ShaderExtras.js",
+        "lib/js/three/RenderPass.js",
+        "lib/js/three/BloomPass.js",
+        "lib/js/three/ShaderPass.js",
+        "lib/js/three/MaskPass.js",
 
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+        // js files needed for WebGL specific samples (excluding three js)
+        "lib/js/J3DI.js",
+        "lib/js/J3DIMath.js",
+        "lib/js/webgl-utils.js",
+        "lib/js/webgl-debug.js",
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [
-          { src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-          { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-          { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
-        ]
-      });
+        // App specific js
+        "js/reveal.min.js",
+        "js/stats_bootstrap.js",
+        "js/samples.js",
+        "js/dat.gui.bootstrap.js",
+
+        function() {
+          // Full list of configuration options available here:
+          // https://github.com/hakimel/reveal.js#configuration
+          Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+              { src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+              { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+              { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+              { src: 'js/youtube.js', async: true, condition: function() { return $("#ytplayer").length > 0 } },
+            ]
+          });
+        });
 
     </script>
   </body>
