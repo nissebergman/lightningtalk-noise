@@ -1,5 +1,10 @@
 (function() {
+  var eventEmitter = new EventEmitter();
+
   window.sample_defaults = {
+    addListener: function(event, listener) {
+      eventEmitter.addListener(event, listener);
+    },
     width: 320,
     height: 240,
     paused: false,
@@ -48,6 +53,8 @@
         if(instance) instance.active = true;
       });
     });
+
+    eventEmitter.emitEvent("initialized");
   }
 
   head.js(

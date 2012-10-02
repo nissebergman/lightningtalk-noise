@@ -10,9 +10,11 @@
     };
 
     this.imageData = null;
+    this.canvas = null;
 
     this.initialize = function(canvas) {
-      context = canvas.getContext('2d');
+      that.canvas = canvas;
+      var context = canvas.getContext('2d');
 
       image.onload = function() {
         canvas.width = image.width;

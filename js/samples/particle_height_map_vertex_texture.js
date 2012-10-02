@@ -27,48 +27,53 @@
 
       var instance = { active: false };
 
-      var heightMapImageSample = $("canvas[data-sample=height_map_image]").data("instance");
-      heightMapImageSample.addListener("onload", function() {
+      sample_defaults.addListener("initialized", function() {
+        var heightMapImageSample = $("canvas[data-sample=height_map_image]").data("instance");
+        heightMapImageSample.addListener("onload", function() {
 
-        geometry = new THREE.Geometry();
+          geometry = new THREE.Geometry();
 
-        for ( i = 0; i < 128; i ++ ) {
-          for ( j = 0; j < 128; j ++ ) {
+          for ( i = 0; i < 128; i ++ ) {
+            for ( j = 0; j < 128; j ++ ) {
 
-            var vertex = new THREE.Vector3();
-            vertex.x = i;
-            vertex.z = j;
+              var vertex = new THREE.Vector3();
+              vertex.x = i;
+              vertex.z = j;
 
-            var dataPosition = i * 128 * 4 + j * 4;
-            vertex.y = heightMapImageSample.imageData.data[dataPosition] / 255.0 * 64;
+              var dataPosition = i * 128 * 4 + j * 4;
+              vertex.y = heightMapImageSample.imageData.data[dataPosition] / 255.0 * 64;
 
-            geometry.vertices.push( vertex );
+              geometry.vertices.push( vertex );
+            }
           }
-        }
 
-        var color = [0.4, 1.0, 0];
-        var size = 2;
+          var texture = new THREE.Texture( heightMapImageSample.canvas );
+          texture.needsUpdate = true;
 
-        material = new THREE.ParticleBasicMaterial( { size: size } );
-        material.color.setHSV( color[0], color[1], color[2] );
+          var color = [0.4, 1.0, 0];
+          var size = 2;
 
-        particles = new THREE.ParticleSystem( geometry, material );
+          material = new THREE.ParticleBasicMaterial( { size: size, map: texture } );
+          // material.color.setHSV( color[0], color[1], color[2] );
 
-        scene.add( particles );
+          particles = new THREE.ParticleSystem( geometry, material );
 
-        var axisHelper = new THREE.AxisHelper();
-        scene.add( axisHelper );
+          scene.add( particles );
 
-        renderer = new THREE.WebGLRenderer({canvas: canvas});
-        renderer.setSize( width, height );
+          var axisHelper = new THREE.AxisHelper();
+          scene.add( axisHelper );
 
-        function animate() {
-          requestAnimationFrame( animate );
-          if(!instance.active || sample_defaults.paused) return;
-          renderer.render( scene, camera );
-        }
+          renderer = new THREE.WebGLRenderer({canvas: canvas});
+          renderer.setSize( width, height );
 
-        animate();
+          function animate() {
+            requestAnimationFrame( animate );
+            if(!instance.active || sample_defaults.paused) return;
+            renderer.render( scene, camera );
+          }
+
+          animate();
+        });
       });
 
       return instance;
