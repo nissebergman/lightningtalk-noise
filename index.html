@@ -1204,11 +1204,18 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
 
         "lib/js/three.js",
         "lib/js/three/EffectComposer.js",
-        "lib/js/three/ShaderExtras.js",
         "lib/js/three/RenderPass.js",
         "lib/js/three/BloomPass.js",
         "lib/js/three/ShaderPass.js",
         "lib/js/three/MaskPass.js",
+
+        // three shaders
+        "lib/js/three/shaders/CopyShader.js",
+        "lib/js/three/shaders/BasicShader.js",
+        "lib/js/three/shaders/DotScreenShader.js",
+        "lib/js/three/shaders/UnpackDepthRGBAShader.js",
+        "lib/js/three/shaders/HorizontalBlurShader.js",
+        "lib/js/three/shaders/VerticalBlurShader.js",
 
         // js files needed for WebGL specific samples (excluding three js)
         "lib/js/J3DI.js",

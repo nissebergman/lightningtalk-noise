@@ -16,8 +16,7 @@
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
-      var axisHelper = new THREE.AxisHelper();
-      axisHelper.scale.x = axisHelper.scale.y = axisHelper.scale.z = 0.015;
+      var axisHelper = new THREE.AxisHelper(50);
       scene.add( axisHelper );
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});

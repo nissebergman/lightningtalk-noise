@@ -60,7 +60,7 @@
 
           scene.add( particles );
 
-          var axisHelper = new THREE.AxisHelper();
+          var axisHelper = new THREE.AxisHelper(50);
           scene.add( axisHelper );
 
           renderer = new THREE.WebGLRenderer({canvas: canvas});

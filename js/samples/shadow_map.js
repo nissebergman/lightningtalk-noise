@@ -59,7 +59,7 @@
       var camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2);
       camera.position.z = 10;
 
-      var shader = THREE.ShaderExtras[ "unpackDepthRGBA" ];
+      var shader = THREE.UnpackDepthRGBAShader;
       var uniforms = new THREE.UniformsUtils.clone( shader.uniforms );
 
       var hudMaterial = new THREE.ShaderMaterial( { vertexShader: shader.vertexShader, fragmentShader: shader.fragmentShader, uniforms: uniforms } );

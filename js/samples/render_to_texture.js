@@ -37,7 +37,7 @@
 
       // Create plane to render spinning cube as texture.
       var planeGeometry = new THREE.PlaneGeometry( 1, 1 );
-      var planeMaterial = new THREE.ShaderMaterial( THREE.ShaderExtras["screen"] );
+      var planeMaterial = new THREE.ShaderMaterial( THREE.DotScreenShader );
       planeMaterial.side = THREE.DoubleSide;
       var planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
       planeMesh.position.z = -100;

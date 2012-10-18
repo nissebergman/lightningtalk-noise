@@ -24,10 +24,10 @@
       var composer = new THREE.EffectComposer( renderer );
 
       var renderModel = new THREE.RenderPass( scene, camera );
-      var effectHorizontalBlur = new THREE.ShaderPass( THREE.ShaderExtras[ "horizontalBlur" ] );
+      var effectHorizontalBlur = new THREE.ShaderPass( THREE.HorizontalBlurShader );
       effectHorizontalBlur.uniforms.h.value = 2 / sample_defaults.width;
 
-      var effectVerticalBlur = new THREE.ShaderPass( THREE.ShaderExtras[ "verticalBlur" ] );
+      var effectVerticalBlur = new THREE.ShaderPass( THREE.VerticalBlurShader );
       effectVerticalBlur.uniforms.v.value = 2 / sample_defaults.height;
 
       effectVerticalBlur.renderToScreen = true;
