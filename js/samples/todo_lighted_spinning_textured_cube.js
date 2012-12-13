@@ -10,9 +10,20 @@
       camera.position.y = 3;
       camera.lookAt( new THREE.Vector3(0,0,0));
 
+      // ASSIGNMENT
+      var texture = THREE.ImageUtils.loadTexture(
+            'images/checker_large.gif',
+            {},
+            function() {
+              animate();
+            }
+      );
+
+      var material = new THREE.MeshPhongMaterial({ map: texture, antialias:true });
+      // ASSIGNMENT
+
       var scale = 2.5;
       var geometry = new THREE.CubeGeometry( scale, scale, scale );
-      var material = new THREE.MeshPhongMaterial({ color: 0xdddddd, antialias:true });
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
 
@@ -33,7 +44,7 @@
         renderer.render( scene, camera );
       }
 
-      animate();
+      // animate(); // ASSIGNMENT
       return instance;
     }
   };

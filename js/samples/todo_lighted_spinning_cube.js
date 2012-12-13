@@ -11,10 +11,17 @@
 
       var scale = 2.5;
       var geometry = new THREE.CubeGeometry( scale, scale, scale );
-      var material = new THREE.MeshBasicMaterial( { color: 0xdddddd, antialias:true } );
+      var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
 
       var mesh = new THREE.Mesh( geometry, material );
       scene.add( mesh );
+
+      // ASSIGNMENT
+
+      var directionalLight = new THREE.DirectionalLight ( 0xffffffff );
+      directionalLight.position.set(0, 3, 7);
+      scene.add( directionalLight );
+      // ASSIGNMENT
 
       var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
       renderer.setSize( sample_defaults.width, sample_defaults.height );
