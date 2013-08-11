@@ -36,8 +36,8 @@
       }
 
       var loader = new THREE.JSONLoader();
-      loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
-        mesh = new THREE.Mesh( geometry, geometry.materials[0] );
+      loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
+        mesh = new THREE.Mesh( geometry, materials[0] );
         mesh.scale = new THREE.Vector3(20, 20, 20);
         scene.add( mesh );
 

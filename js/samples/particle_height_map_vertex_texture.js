@@ -54,7 +54,7 @@
           var size = 2;
 
           material = new THREE.ParticleBasicMaterial( { size: size, map: texture } );
-          // material.color.setHSV( color[0], color[1], color[2] );
+          // material.color.setHSL( color[0], color[1], color[2] );
 
           particles = new THREE.ParticleSystem( geometry, material );
 

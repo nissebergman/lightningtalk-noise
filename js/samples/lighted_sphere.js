@@ -41,7 +41,7 @@
         var angle = 0.01;
         var matrix = new THREE.Matrix4().makeRotationX( angle );
 
-        spotLight.position = matrix.multiplyVector3( spotLight.position );
+        spotLight.position = spotLight.position.applyMatrix4(matrix);
         renderer.render( scene, camera );
       }
 

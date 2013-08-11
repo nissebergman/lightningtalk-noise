@@ -823,9 +823,9 @@ var material = new THREE.MeshPhongMaterial({ map: texture });
 // var material = new THREE.MeshBasicMaterial({color: 0xdddddd});
 
 var loader = new THREE.JSONLoader();
-loader.load("js/meshes/Startrek_Enterprise.js", function(geometry) {
+loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
 
-  mesh = new THREE.Mesh( geometry, geometry.materials[0] );
+  mesh = new THREE.Mesh( geometry, materials[0] );
   scene.add( mesh );
   ...
             </code></pre>
