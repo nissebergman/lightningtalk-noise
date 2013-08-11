@@ -18,40 +18,33 @@
   };
 
   window.samples = {};
+  function createSample($el) {
+    var index = $el.data("sample");
+    var instance = window.samples[index].initialize($el[0]);
+    $el.data("instance", instance);
+    return instance;
+  };
 
-  function initializeOnLoad() {
-
-    // Initialize samples and assign them to dom data.
-    $("[data-sample]").each(function() {
-      var index = $(this).data("sample");
-      var instance = window.samples[index].initialize(this);
-      $(this).data("instance", instance);
-
-      // Hack to force samples to render at least once before pause.
+  function runCurrentSample(currentSlide) {
+    $(currentSlide).find("[data-sample]").each(function() {
+      var instance = createSample($(this));
       if(instance) instance.active = true;
     });
+  };
 
-    // Hack to force samples to render at least once before pause.
-    setInterval(function() {
-      $("[data-sample]").each(function() {
-        var instance = $(this).data("instance");
-        if(!$(this).closest("section").hasClass("present") && instance)
-          instance.active = false;
-      });
-    }, 1000);
+  function initializeOnLoad() {
+    runCurrentSample($("section.present"));
 
     // Activate appropriate sample on slide change.
     Reveal.addEventListener('slidechanged', function(event) {
+      // Clear all slides
       $("[data-sample]").each(function() {
         var instance = $(this).data("instance");
         if(instance) instance.active = false;
       });
 
       var currentSlide = event.currentSlide;
-      $(currentSlide).find("[data-sample]").each(function() {
-        var instance = $(this).data("instance");
-        if(instance) instance.active = true;
-      });
+      runCurrentSample(currentSlide);
     });
 
     eventEmitter.emitEvent("initialized");
