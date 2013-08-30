@@ -17,11 +17,16 @@
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/gh-fork-ribbon.css">
 
     <script>
       // If the query includes 'print-pdf' we'll use the PDF print sheet
       document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
     </script>
+
+    <!--[if IE]>
+    <link rel="stylesheet" href="css/gh-fork-ribbon.ie.css">
+    <![endif]-->
 
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
@@ -29,6 +34,11 @@
   </head>
 
   <body>
+    <div class="github-fork-ribbon-wrapper left-bottom">
+      <div class="github-fork-ribbon">
+          <a href="https://github.com/dimroc/reveal.js-threejs">Fork me on GitHub</a>
+      </div>
+    </div>
 
     <div class="reveal">
 

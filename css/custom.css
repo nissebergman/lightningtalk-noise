@@ -63,3 +63,7 @@ pre.math {
 .white_bg {
   background: white !important;
 }
+
+.github-fork-ribbon {
+  line-height: 9px;
+}
