@@ -74,1019 +74,223 @@
         </section>
 
         <section>
-          <h2>How do we create random?</h2>
-          <ul>
-            <li>
-              C++
-            </li>
-            <li>
-              Java
-            </li>
-            <li>
-              Python
-            </li>
-            <li>
-              C#
-            </li>
-          </ul>
+          <section>
+          <aside class="notes">
+            As computers are finite state machines, their outcomes should be deterministic and in theory, 
+            they should never be able to generate truly random numbers. 
+          </aside>
+          <h2>What is random in a finite state machine?</h2>
+          <h3>True Random Numbers (TRN)</h3>
+          <p class="fragment">Method based on a physical process. As such, must take place <b>outside</b> of the computer</p>
+          <p class="fragment">Examples include radioactive decay, the photoelectric effect, cosmic background radiation, atmospheric noise, and more.</p>
+          <p class="fragment">These are said to be <b>"true"</b> random numbers</p>
         </section>
         <section>
-          <section>
-            <h2>What is noise?</h2>
-            <blockquote class="small">Noise is a sound, especially one that is loud or unpleasant or that causes disturbance.</blockquote>
-          </section>
+          <h2>What is random in a finite state machine?</h2>
+          <h3>Pseudorandom Numbers (PRN)</h3>
+          <p class="fragment">An alternative to "true" random numbers</p>
+          <p class="fragment">Involves computational algoritms producing apparently random results</p>
+          <p class="fragment">Only apparently random as the end result are completely determined by an initial value
+          called a <b>seed</b> or <b>key</b>.</p>
+          <p class="fragment">If this value and the algoritm is known, the seemingly random result can be reproduced</p>
+          </p>
         </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>How do we create random in code?</h2>
+            
+
+            <pre><code data-trim data-noescape>
+              <img src="images/cpp_logo.png" width="100vw"></br>
+              std::rand()
+              std::srand()
+            </code></pre>
+        </section>
+        <section>
+          <h2>How do we create random in code?</h2>
+            
+
+          <pre><code data-trim data-noescape>
+          <img src="images/java_logo.png" width="100vw"></br>
+          java.util.Random()
+          Math.random()
+          ThreadLocalRandom()
+          </code></pre>
+      </section>
+      <section>
+        <h2>How do we create random in code?</h2>
+          
+
+        <pre><code data-trim data-noescape>
+        <img src="images/python_logo.jpg" width="100vw"></br>
+        java.util.Random()
+        Math.random()
+        ThreadLocalRandom()
+        </code></pre>
+    </section>
+      </section>
+      <section>
+        <h2>Applications of random?</h2>
+        <ul>
+          <li>
+            Cryptography
+          </li>
+          <li>
+            Cryptocurrency wallets
+          </li>
+          <li>
+            Simulations
+          </li>
+          <li>
+            Machine learning
+          </li>
+          <li>
+            TCP/IP sequence numbers
+          </li>
+          <li>
+            <b>Computer graphics</b>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <section>
+          <h2>Procedural Generation</h2>
+          Procedural generation is a method of creating data algorithmically as opposed to manually. 
+          In computer graphics, it is commonly used to create textures and 3D models.
+          <aside class="notes">In computer graphics, it is commonly used to create textures and 
+            3D models. In video games, it is used to automatically create large amounts of content in a game. 
+            Depending on the implementation, advantages of procedural generation can 
+            include smaller file sizes, larger amounts of content, and 
+            randomness for less predictable gameplay.</aside>
+
+        </section>
+      <section>
+        <h2>Procedural Generation</h2>
+        <img src="images/goodbad.jpg" width="700vw"></br>
+      </section>
+      
+      <section>
+        <h2>Procedural Generation</h2>
+        <aside class="notes">Will not only make games more fun and less repetetive, will also hugely influence filesize</aside>
+        <h3>Let's look at some popular games from 2004</h3>
+        <p class="fragment">Doom 3 - 7.56 GB</p>
+        <p class="fragment">Far Cry - 4 GB</p>
+        <p class="fragment">Unreal Tournament 2004 - 5 GB</p>
+        <p class="fragment">Half-Life 2 - 6 GB</p>
+        <p class="fragment">.kkrieger - 96 KB</p>
+      </section>
+      <section>
+        <h2>..kkrieger</h2>
+        <aside class="notes">
+          So how did .theprodukkt make a whole FPS in a file size smaller than a JPEG?
+          The team relied heavily on procedural generation of textures and assets via a bespoke tool called .werkkzeug3. This tool takes very simple patterns, Windows libraries, and even fonts and applies routines that add effects like blur, noise and distortion to create surprisingly detailed textures. These textures are rendered in real time when the game starts up rather than stored as pre-rendered assets, keeping the overall file size low.
+          Similar methods are used to create the 3D meshes for those textures. Routines that take simple shapes (primitives) like cubes and cylinders and shape them into models run when the game loads.
+          Because everything from the textures to the models to the MIDI music is procedurally generated instead of stored, .kkrieger inflates to take up about 300 megabytes of memory when it runs, and it took a fairly impressive rig (by 2004 standards) to play, despite its tiny file size. The game also got more out of its diminutive disk space by passing off coding duties to Microsoft’s DirectX multimedia software for things like lighting.
+        </aside>
+        <img src="images/kkrieger.jpg" width="900vw"></br>
+      </section>
+      </section>
+
+      <section>
+        <h2>GLSL</h2>
+        <br/>
+        <br/>
+        <ul>
+          <li>OpenGL Shading Language (GLSL): A high-level shading language based on the syntax of the C programming language.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Vertex Processor: Vertex Shader</h2>
+        <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
+uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
+
+attribute vec4 vPosition; // Information from vertex
+
+void main()
+{
+    gl_Position = u_modelViewProjMatrix * vPosition;
+}
+        </code></pre>
+        <img class="float_left" style="width: 20%"
+        src="images/Vertices.png">
+        <canvas data-sample="webgl_spinning_wireframe_cube" style="display:inline"></canvas>
+      </section>
+
+      <section>
+        <h3>Fragment Processor: Fragment Shader</h3>
+        <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
+void main()
+{
+    gl_FragColor = vec4(1, 1, 1, 1); // RGBA
+}
+        </code></pre>
+        <img class="float_left" style="width: 30%"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
+        //<canvas data-sample="webgl_spinning_bland_cube" style="display:inline"></canvas>
+      </section>
+
+    </section>
 
         <section>
           <section>
-          <h2>How do we create noise?</h2>
-          <ul>
-            <li>
-              Perlin noise
-            </li>
-            <li>
-              Simplex noise
-            </li>
-            <li>
-              Python
-            </li>
-            <li>
-              C#
-            </li>
-          </ul>
+            <h1>Gradient Noise</h1>
+            <aside class="notes">
+              Noise is a type of procedural generation. It is a random signal with a specific statistical distribution. 
+              It is used to create textures, landscapes, and other complex structures. 
+              Noise is used in computer graphics to create realistic textures, and in video games to create realistic landscapes.
+
+              Gradient noise is a type of noise commonly used as a procedural texture primitive in computer graphics. It is conceptually different from, and often confused with, value noise.
+              </aside>
+              <img src="images/rndvsnoise.png" width="700vw"></br>
+            </section>
+            <section>
+              <h1>Gradient Noise</h1>
+              <h2>Perlin Noise</h2>
+              <aside class="notes">
+                Perlin noise is a type of gradient noise developed by Ken Perlin in 1983.
+                result of his frustration with the "machine-like" look of computer-generated imagery (CGI) at the time.
+                He formally described his findings in a SIGGRAPH paper in 1985 called "An Image Synthesizer". He developed it after working on Disney's computer animated sci-fi motion picture Tron (1982) for the animation company Mathematical Applications Group (MAGI). 
+                In 1997, Perlin was awarded an Academy Award for Technical Achievement for creating the algorithm, the citation for which read
+                </aside>
+                <img src="images/perlin1.png" width="200vw">
+                <img src="images/perlin2.png" width="200vw">
+                <img src="images/perlin3.png" width="200vw">
+
+              </section>
+              <section>
+                <h1>Gradient Noise</h1>
+                <h2>Simplex Noise</h2>
+                <aside class="notes">
+                  Perlin noise is a type of gradient noise developed by Ken Perlin in 1983.
+                  result of his frustration with the "machine-like" look of computer-generated imagery (CGI) at the time.
+                  He formally described his findings in a SIGGRAPH paper in 1985 called "An Image Synthesizer". He developed it after working on Disney's computer animated sci-fi motion picture Tron (1982) for the animation company Mathematical Applications Group (MAGI). 
+                  In 1997, Perlin was awarded an Academy Award for Technical Achievement for creating the algorithm, the citation for which read
+                  </aside>
+                  <img src="images/simplex1.png" width="200vw">
+                  <img src="images/simplex2.jpg" width="340vw">
+                  <img src="images/simplex3.webp" width="250vw">
+                </section>
+                <section>
+                  <h1>Gradient Noise</h1>
+                  <h2>Simplex Noise</h2>
+                  <aside class="notes">
+                    Quite complicated to understand, but the main difference is that it is faster and has less visible artifacts.
+                    </aside>
+                    <img src="images/simplex.png" width="800vw">
+                  </section>
         </section>
+
+        <section>
         <section>
           <h2>How do we create noise?</h2>
           <p>Algoritms</p>
           <canvas data-sample="perlin_noise"></canvas>
         </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Welcome to Linear Algebra</h2>
-            <img src="http://storiesbywilliams.files.wordpress.com/2012/05/transport.jpg">
-          </section>
-
-          <section>
-            <h3>2D Vertex, meet Matrix!</h3>
-            <p>Now multiply...</p>
-            <img class="float_left" src="http://tutorial.math.lamar.edu/Classes/LinAlg/LinearTransformations_files/image002.gif">
-            <br/>
-            <ol>
-              <li><img class="white_bg" src="images/matrix_multiplication_x_axis_start.png"></li>
-              <li class="fragment">
-                <img class="white_bg" src="images/matrix_multiplication_x_axis_x.png">
-                ( 1 * x ) + ( 0 * y ) = x
-              </li>
-              <li class="fragment">
-                <img class="white_bg" src="images/matrix_multiplication_x_axis_y.png">
-                ( 0 * x ) + ( -1 * y ) = -y
-              </li>
-            </ol>
-          </section>
-
-          <section>
-            <h3>Transformations</h3>
-            <br/>
-            <img class="float_left" src="images/SRT_transformations.png">
-            <ul style="width:100px;">
-              <li>
-                identity:<br/>
-                <img class="white_bg" style="width: 200px" src="images/identity_matrix.png">
-              </li>
-
-              <li>
-                scaling:<br/>
-                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/2/6/a/26a088adf02ba09dc958acba0e81a3c3.png">
-                <br/>
-              </li>
-
-              <li>
-                rotation:<br/>
-                <img class="white_bg" style="width: 200px" src="http://upload.wikimedia.org/math/4/b/d/4bd8fd7253c5bbd65c2e9f8fb7220b19.png">
-                <br/>
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Projection</h2>
-            <br/>
-            <pre style="width: 40%" class="math float_left">
-  [1, 0, 0] [x]   [x]
-  [0, 1, 0] [y] = [y]
-  [0, 0, 0] [z]   [0] </pre>
-            <p>* We lose a dimension!</p>
-            <img src="images/3dproj01.gif">
-          </section>
-
-          <section>
-            <h2>Composite Transformation</h2>
-            <p>Putting it all together</p>
-            <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png">
-            <blockquote>World_View_Projection_Matrix =<br/> World * View * Projection</blockquote>
-          </section>
-
-          <section>
-            <h2>Transformations + Projection</h2>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_wireframe_cube" style="display:inline"></canvas>
-            <p class="medium" style="font-size:24px;">----------------------------------
-            <br/>
-            Model * World_View_Projection_Matrix</p>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h3>How do we get from<br/>a shape to colored pixels</h3>
-            <br/>
-            <br/>
-            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="lighted_spinning_textured_cube" class="float_left"></canvas>
-            <div class="float_left" style="line-height: 8; padding: 20px">?</div>
-          </section>
-
-          <section>
-            <h2>Rasterization: Shapes -> Pixels</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-          </section>
-
-          <section>
-            <h2>Texture: UV Mapping</h2>
-            <p>Getting the value of the color...<p>
-            <img src="http://www.bcu.ac.uk/_media/img/nti/gamer_camp/blog_postings/UvMapping.jpg">
-          </section>
-
-          <section>
-            <h2>Lighting</h2>
-            <p>Getting the strength of the color...</p>
-            <br/>
-            <h3>Ambient, Diffuse, Specular</h3>
-            <canvas class="float_left" data-sample="lighted_ambient_sphere"></canvas>
-            <canvas class="float_left" data-sample="lighted_diffuse_sphere"></canvas>
-            <canvas class="float_left" data-sample="lighted_specular_sphere"></canvas>
-          </section>
-
-          <section>
-            <h2>Materials</h2>
-            <canvas class="float_left" data-sample="lighted_sphere"></canvas>
-            <canvas data-sample="lighted_textured_sphere"></canvas>
-            <p>Combining all lighting and textures for the final color</p>
-          </section>
-
-          <section>
-            <h2>
-              Coloring the pixels:<br/>
-              Texture and Lighting
-            </h2>
-            <br/>
-            <canvas data-sample="spinning_wireframe_cube" class="float_left"></canvas>
-            <img class="float_left" style="width: 20%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <canvas data-sample="lighted_spinning_textured_cube" class="float_left"></canvas>
-          </section>
-
-          <section>
-            <h2>But how do we ...</h2>
-            <br/>
-            <br/>
-            <h3>figure out the amount of light?</h3>
-            <blockquote>Putting the rgba in a pixel's RGBA</blockquote>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Welcome BACK to Linear Algebra</h2>
-            <br/>
-            <img src="http://cronwtf.github.com/images/wtf.jpg">
-          </section>
-
-          <section>
-            <h2>The Normal</h2>
-            <img class="white_bg" src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcSQyYxnsLVkIT5QpVBGJ00IDOcIrLPMPUXIyabQYuXZQxOuIGKN">
-          </section>
-
-          <section>
-            <h2>Lighting</h2>
-            <img src="images/shader_vectors.gif">
-          </section>
-
-          <section>
-            <h2>The Dot Product</h2>
-            <!-- <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Dot_Product.svg/300px-Dot_Product.svg.png"> -->
-            <img class="white_bg" src="http://cdn.wolfire.com/blog/linear/dotsimple.jpg">
-          </section>
-
-          <section>
-            <h2>Lighting</h2>
-            <img class="white_bg" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
-            <br/>
-            <br/>
-            <ul>
-              <li>N * L = dot product</li>
-              <li>color.rgb * dot product = amount of color</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Lighting Demystified (somewhat)</h2>
-            <canvas data-sample="lighted_sphere"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>Graphic Pipelines: How it started</h2>
-            <h3>Software Rendering</h3>
-            <img style="width: 480px;" src="http://1.bp.blogspot.com/-tQMjfiveb88/T5HvOfXc63I/AAAAAAAAB38/P_Nmtyw7-v8/s1600/prince-of-persia.gif">
-            <ul>
-              <li>Entirely done on CPU</li>
-              <li>Unaided by graphics hardware</li>
-              <li>Ultimate flexibility</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>How it was: Fixed Function Pipeline</h3>
-            <img src="http://cdn.steampowered.com/v/gfx/apps/2310/0000002448.600x338.jpg?t=1343157013">
-            <img src="http://www.techspot.com/reviews/hardware/voodoo3-3000/box_p.jpg">
-            <small style="font-size: 10px; display: block;">I couldn't find an image of a voodoo 1 card</small>
-          </section>
-
-          <section>
-            <h3>How it was: Fixed Function Pipeline</h3>
-            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
-            <ul>
-              <li>Introduction of GPU hardware support</li>
-              <li>Sacrificed flexibility for speed</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>The Graphics Card</h2>
-            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
-          </section>
-
-          <section>
-            <h3>How it is: Programmable Graphics Pipeline</h3>
-            <!-- <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279"> -->
-            <img src="http://www.many-core.group.cam.ac.uk/platforms/pipeline_big.png">
-          </section>
-
-          <section>
-            <h3>How it is: Programmable Graphics Pipeline</h3>
-            <img src="http://chrisingradschool.files.wordpress.com/2010/03/screen-shot-2010-03-09-at-2-13-26-pm.png?w=600&h=279">
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>What is WebGL?</h1>
-            <p>OpenGL ES2.0 port built into the &lt;canvas&gt; DOM element</p>
-            <canvas data-sample="webgl_spinning_colored_cube" style="display:inline"></canvas>
-          </section>
-
-          <section>
-          <h3>wtf</h3>
-            <pre class="supersmall float_left" style="width:50%"><code>
-function init(scene) {
-  // Initialize
-  var gl = WebGLUtils.setupWebGL(scene.canvas);
-  if (!gl) {
-    return;
-  }
-
-  scene.program = simpleSetup(
-    gl,
-    // The ids of the vertex and fragment shaders
-    "vshader", "fshader",
-    // The vertex attribute names used by the shaders.
-    // The order they appear here corresponds to their index
-    // used later.
-    [ "vNormal", "vColor", "vPosition"],
-    // The clear color and depth values
-    [ 0, 0, 0, 0 ], 10000);
-
-  // Set up a uniform variable for the shaders
-  gl.uniform3f(gl.getUniformLocation(scene.program, "lightDir"), 0, 0, 1);
-
-  // Create a box. On return 'gl' contains a 'box' property with
-  // the BufferObjects containing the arrays for vertices,
-  // normals, texture coords, and indices.
-  scene.box = makeBox(gl);
-
-  // Set up the array of colors for the cube's faces
-  var colors = new Uint8Array(
-    [  0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,   0, 0, 1, 1,     // v0-v1-v2-v3 front
-      1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,   1, 0, 0, 1,     // v0-v3-v4-v5 right
-      0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,   0, 1, 0, 1,     // v0-v5-v6-v1 top
-      1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,   1, 1, 0, 1,     // v1-v6-v7-v2 left
-      1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,   1, 0, 1, 1,     // v7-v4-v3-v2 bottom
-      0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1,   0, 1, 1, 1 ]    // v4-v7-v6-v5 back
-  );
-
-  // Set up the vertex buffer for the colors
-  scene.box.colorObject = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.colorObject);
-  gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
-
-  // Create some matrices to use later and save their locations in the shaders
-  scene.mvMatrix = new J3DIMatrix4();
-  scene.u_normalMatrixLoc = gl.getUniformLocation(scene.program, "u_normalMatrix");
-  scene.normalMatrix = new J3DIMatrix4();
-  scene.u_modelViewProjMatrixLoc =
-    gl.getUniformLocation(scene.program, "u_modelViewProjMatrix");
-  scene.mvpMatrix = new J3DIMatrix4();
-
-  // Enable all of the vertex attribute arrays.
-  gl.enableVertexAttribArray(0);
-  gl.enableVertexAttribArray(1);
-  gl.enableVertexAttribArray(2);
-
-  // Set up all the vertex attributes for vertices, normals and colors
-  gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.vertexObject);
-  gl.vertexAttribPointer(2, 3, gl.FLOAT, false, 0, 0);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.normalObject);
-  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.colorObject);
-  gl.vertexAttribPointer(1, 4, gl.UNSIGNED_BYTE, false, 0, 0);
-
-  // Bind the index array
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, scene.box.indexObject);
-
-  return gl;
-}
-            </code></pre>
-            <pre class="supersmall float_left" style="width:50%"><code>
-function reshape(scene, gl) {
-  var canvas = scene.canvas;
-
-  // Set the viewport and projection matrix for the scene
-  gl.viewport(0, 0, canvas.width, canvas.height);
-  scene.perspectiveMatrix = new J3DIMatrix4();
-  scene.perspectiveMatrix.perspective(30, canvas.width/canvas.height, 1, 10000);
-  scene.perspectiveMatrix.lookat(0, 0, 7, 0, 0, 0, 0, 1, 0);
-}
-
-function drawPicture(scene, gl) {
-  // Make sure the canvas is sized correctly.
-  reshape(scene, gl);
-
-  // Clear the canvas
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-  // Make a model/view matrix.
-  scene.mvMatrix.makeIdentity();
-  scene.mvMatrix.rotate(20, 1,0,0);
-  scene.mvMatrix.rotate(scene.currentAngle, 0,1,0);
-
-  // Construct the normal matrix from the model-view matrix and pass it in
-  scene.normalMatrix.load(scene.mvMatrix);
-  scene.normalMatrix.invert();
-  scene.normalMatrix.transpose();
-  scene.normalMatrix.setUniform(gl, scene.u_normalMatrixLoc, false);
-
-  // Construct the model-view * projection matrix and pass it in
-  scene.mvpMatrix.load(scene.perspectiveMatrix);
-  scene.mvpMatrix.multiply(scene.mvMatrix);
-  scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrixLoc, false);
-
-  // Draw the cube
-  gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE, 0);
-
-  scene.currentAngle += scene.incAngle;
-  if (scene.currentAngle > 360)
-    scene.currentAngle -= 360;
-}
-
-window.samples.webgl_spinning_cube = {
-
-  initialize: function(canvas) {
-    var scene = { canvas: canvas };
-
-    canvas.addEventListener('webglcontextlost', handleContextLost, false);
-    canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
-
-    canvas.width = sample_defaults.width;
-    canvas.height = sample_defaults.height;
-
-    var gl = init(scene);
-    if (!gl) {
-      return;
-    }
-
-    scene.currentAngle = 0;
-    scene.incAngle = 0.5;
-
-    var requestId;
-    function animate() {
-      drawPicture(scene, gl);
-      requestId = window.requestAnimFrame(animate, canvas);
-    }
-
-    animate();
-
-    function handleContextLost(e) {
-      e.preventDefault();
-      if (requestId !== undefined) {
-        window.cancelAnimFrame(requestId);
-        requestId = undefined;
-      }
-    }
-
-    function handleContextRestored() {
-      init(scene);
-      animate();
-    }
-  }
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>What we care about</h2>
-            <ol>
-              <li>Setup on CPU</li>
-              <li>Vertex Processor <b>(vertices -&gt; shapes)</b></li>
-              <li>Fragment Processor <b>(pixels -&gt; colored pixels)</b></li>
-            </ol>
-            <img class="white_bg" src="http://www.sjbaker.org/wiki/images/thumb/3/31/Graphics_pipeline.png/800px-Graphics_pipeline.png">
-          </section>
-
-          <section>
-            <h2>CPU: Javascript</h2>
-            <pre class="code medium"><code class="javascript">
-    var gl = WebGLUtils.setupWebGL(scene.canvas);
-
-    scene.program = simpleSetup(
-      gl,
-
-      "webgl_vshader", // id of the vertex shader
-
-      "webgl_bland_fshader", // id of fragment shader
-
-      [ "vPosition"], // Vertex attribute used by the shader
-
-      [ 0, 0, 0, 0 ], 10000); // The clear color and depth values
-
-    scene.box = makeBox(gl);
-
-    // Set up the vertex buffer
-    gl.bindBuffer(gl.ARRAY_BUFFER, scene.box.vertexObject);
-    ...
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>CPU: Javascript</h2>
-            <pre class="code medium" style="font-size:19px;"><code class="javascript">
-function drawPicture(scene, gl) {
-  // Clear the canvas
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-  // Construct the model-view * projection matrix
-  scene.mvpMatrix.load(scene.perspectiveMatrix);
-  scene.mvpMatrix.multiply(scene.mvMatrix);
-
-  // Pass the moel-view-proj matrix in to the Shaders
-  scene.mvpMatrix.setUniform(gl, scene.u_modelViewProjMatrix, false);
-
-  // Draw the cube
-  gl.drawElements(gl.TRIANGLES, scene.box.numIndices, gl.UNSIGNED_BYTE,0);
-}
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Vertex Processor: Vertex Shader</h2>
-            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
-    uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
-
-    attribute vec4 vPosition; // Information from vertex
-
-    void main()
-    {
-        gl_Position = u_modelViewProjMatrix * vPosition;
-    }
-            </code></pre>
-            <img class="float_left" style="width: 20%"
-            src="images/Vertices.png">
-            <canvas data-sample="webgl_spinning_wireframe_cube" style="display:inline"></canvas>
-          </section>
-
-          <section>
-            <h3>Fragment Processor: Fragment Shader</h3>
-            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="javascript">
-    void main()
-    {
-        gl_FragColor = vec4(1, 1, 1, 1); // RGBA
-    }
-            </code></pre>
-            <img class="float_left" style="width: 30%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            //<canvas data-sample="webgl_spinning_bland_cube" style="display:inline"></canvas>
-          </section>
-
-          <section>
-            <h2>GLSL</h2>
-            <br/>
-            <br/>
-            <ul>
-              <li>OpenGL Shading Language (GLSL): A high-level shading language based on the syntax of the C programming language.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Vertex Shader</h2>
-            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
-    uniform mat4 u_modelViewProjMatrix; // Passed in from CPU
-    uniform mat4 u_normalMatrix;
-    uniform vec3 lightDir;
-
-    attribute vec3 vNormal; // Received from Vertex Buffer
-    attribute vec4 vPosition;
-
-    varying float v_Dot; // Variables output to Fragment Shader
-    varying vec4 v_Color;
-
-    void main()
-    {
-        gl_Position = u_modelViewProjMatrix * vPosition;
-
-        v_Color = vec4(1, 1, 1, 1); // White
-
-        vec4 transNormal = u_normalMatrix * vec4(vNormal, 1);
-        v_Dot = max(dot(transNormal.xyz, lightDir), 0.0);
-    }
-            </code></pre>
-          </section>
-
-          <section>
-            <h3>Fragment Shader</h3>
-            <br/>
-            <pre style="font-size:18px; line-height: 24px;" class="code"><code class="cpp">
-    varying float v_Dot; // Passed in from Vertex Shader via Rasterizer
-    varying vec4 v_Color;
-
-    void main()
-    {
-        gl_FragColor = vec4(v_Color.xyz * v_Dot, v_Color.a);
-    }
-            </code></pre>
-            <canvas data-sample="webgl_spinning_colored_cube" style="display:inline"></canvas>
-          </section>
-
-        </section>
-
-        <section>
-          <section>
-            <h1>What is ThreeJS?</h1>
-            <blockquote class="medium" style="margin-top: 80px; width: 100%">
-              The aim of the project is to create a lightweight 3D library with a very low level of complexity — in other words, for dummies.
-              <br/>
-              The library provides &lt;canvas&gt;, &lt;svg&gt; and WebGL renderers.
-            </blockquote>
-            <canvas data-sample="lighted_spinning_cube"></canvas>
-          </section>
-
-          <section>
-            <h3>Intro to ThreeJS: Spinning Cube</h3>
-            <pre class="code"><code>
-  var scene = new THREE.Scene();
-
-  var camera = new THREE.PerspectiveCamera( 30, width / height, 1, 1000 );
-  camera.position.set(0, 3, 7);
-  camera.lookAt( new THREE.Vector3(0,0,0));
-
-  var scale = 2.5;
-  var geometry = new THREE.CubeGeometry( scale, scale, scale );
-  var material = new THREE.MeshBasicMaterial( { color: 0xdddddd } );
-
-  var mesh = new THREE.Mesh( geometry, material );
-  scene.add( mesh );
-
-  var renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
-  renderer.setSize( width, height );
-
-  function animate() {
-    requestAnimationFrame( animate, canvas );
-    mesh.rotation.y += 0.008;
-    renderer.render( scene, camera );
-  }
-  animate();
-}
-            </code></pre>
-            <p class="supersmall">16 lines of code</p>
-          </section>
-
-          <section>
-            <h3>Scene</h3>
-            <pre class="medium"><code>
-  var scene = new THREE.Scene();
-            </code></pre>
-            <br/>
-            <p>Encapsulates everything with regard to this rendering</p>
-            <ul>
-              <li>Matrices</li>
-              <li>Camera</li>
-              <li>Models</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>Camera</h3>
-            <pre class="medium"><code>
-var camera = new THREE.PerspectiveCamera(30, width/height, 1,1000);
-camera.position.set(0, 3, 7);
-camera.lookAt( new THREE.Vector3(0,0,0));
-            </code></pre>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
-          </section>
-
-          <section>
-            <h3>Geometry</h3>
-            <pre class="medium"><code>
-var scale = 2.5;
-var geometry = new THREE.CubeGeometry( scale, scale, scale );
-            </code></pre>
-            <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
-          </section>
-
-          <section>
-            <h3>Materials</h3>
-            <pre class="medium"><code>
-var material = new THREE.MeshBasicMaterial({ color: 0xdddddd });
-            </code></pre>
-            <p>Encapsulates:</p>
-            <ul>
-              <li>Texture</li>
-              <li>Attributes</li>
-              <li>Shaders</li>
-            </p>
-          </section>
-
-          <section>
-            <h3>Mesh</h3>
-            <pre class="medium"><code>
-var mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
-            </code></pre>
-            <br/>
-            <ul>
-              <br/>
-              <li>geometry: Vertices -&gt; Shapes</li>
-              <li>material: Pixels -&gt; Colored Pixels</li>
-              <br/>
-              <li>World Matrix</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>Renderer</h3>
-            <pre class="medium"><code>
-var renderer = new THREE.WebGLRenderer({canvas: canvas});
-renderer.setSize( width, height );
-            </code></pre>
-            <br/>
-            <canvas data-sample="wireframe_plane"></canvas>
-          </section>
-
-          <section>
-            <h3>request Animation Frame?</h3>
-            <p>Welcome to the Render Loop</p>
-            <pre class="medium"><code>
-  function animate() {
-    requestAnimationFrame( animate );
-
-    mesh.rotation.y += 0.008;
-    renderer.render( scene, camera );
-  }
-  animate();
-            </code></pre>
-            <canvas data-sample="spinning_cube"></canvas>
-          </section>
-
-          <section>
-            <h2>Materials: Phong</h2>
-            <p>Assignment: Add Light</p>
-            <pre class="medium"><code>
-  var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
-
-  ...
-  var directionalLight = new THREE.DirectionalLight ( 0xffffffff );
-  directionalLight.position.set(0, 3, 7);
-  scene.add( directionalLight );
-            </code></pre>
-            <canvas data-sample="todo_lighted_spinning_cube"></canvas>
-          </section>
-
-          <section>
-            <h3>Materials: Texture</h3>
-            <p>Assignment: Add Texture</p>
-            <pre class="medium"><code>
-var texture = THREE.ImageUtils.loadTexture(
-      'images/checker_large.gif',
-      {},
-      function() {
-        animate();
-      }
-);
-
-//var material = new THREE.MeshPhongMaterial({ color: 0xdddddd });
-var material = new THREE.MeshPhongMaterial({ map: texture });
-            </code></pre>
-            <canvas data-sample="todo_lighted_spinning_textured_cube"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>ThreeJS: Loading Meshes</h2>
-            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
-            <canvas data-sample="load_startrek_enterprise"></canvas>
-          </section>
-
-          <section>
-            <h2>Blender and ThreeJS</h2>
-            <br/>
-            <ul>
-              <li>Grab models from <a href="http://www.blendswap.com/blends/vehicles/star-trek-collection/">Blendswap: Startrek Collection</a></li>
-              <li>Blender: Content creation tool for 3D models</li>
-              <li>Can export to the Three js file format</li>
-              <li><a href="js/meshes/Startrek_Enterprise.js">Startrek Enterprise Mesh JSON</a></li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>ThreeJS: Importing Mesh</h2>
-            <br/>
-            <pre class="medium"><code>
-// REMOVED
-// var geometry = new THREE.CubeGeometry( 70, 70, 70 );
-// var material = new THREE.MeshBasicMaterial({color: 0xdddddd});
-
-var loader = new THREE.JSONLoader();
-loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
-
-  mesh = new THREE.Mesh( geometry, materials[0] );
-  scene.add( mesh );
-  ...
-            </code></pre>
-          </section>
-
-          <section data-state="loaded_apache">
-            <h2>with Textures</h2>
-            <p>Credit for model goes to <a href="http://www.blendswap.com/?author=3134">Chris Kuhn</a></p>
-            <a href="images/FinalApacheTexture.png">Apache Texture File</a>
-            <canvas data-sample="load_apache"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>ThreeJS: Particles</h2>
-            <canvas data-sample="particles"></canvas>
-          </section>
-
-          <section>
-            <h2>Primitives</h2>
-            <img style="width:850px;" src="http://3dgep.com/wp-content/uploads/2011/02/OpenGL-Primitives.png">
-          </section>
-
-          <section>
-            <h2>ThreeJS: Particles</h2>
-            <pre class="code medium"><code class="cpp">
-    geometry = new THREE.Geometry();
-
-    for ( i = 0; i < 20000; i ++ ) {
-      var vertex = new THREE.Vector3();
-      vertex.x = Math.random() * 2000 - 1000;
-      vertex.y = Math.random() * 2000 - 1000;
-      vertex.z = Math.random() * 2000 - 1000;
-
-      geometry.vertices.push( vertex );
-    }
-            </code></pre>
-            <br/>
-            <pre class="code medium"><code class="cpp">
-    particles = new THREE.ParticleSystem( geometry, materials[i] );
-
-    scene.add( particles );
-            </code></pre>
-          </section>
-
-          <section>
-            <canvas data-sample="particles"></canvas>
-            <h2>Only 20k, how about a million?</h2>
-            <ul>
-              <li><a href="http://mrdoob.com/lab/javascript/webgl/particles/magicdust.html">Magic Dust Particles</a></li>
-              <li><a href="http://www.html5rocks.com/en/tutorials/webgl/million_letters/million_letters.html">A Million Letters</a></li>
-            </ul>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>ThreeJS: Normal Mapping</h2>
-            <p>Using the RGB for your <b><u>normal's</u></b> XYZ</p>
-            <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
-            <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
-            <img src="images/normal_map_tile.jpg" class="float_left normal_map" style="width:200px">
-          </section>
-          <section>
-            <h3>Old school: Per Vertex Lighting</h3>
-            <canvas data-sample="per_vertex_lighting"></canvas>
-          </section>
-
-          <section>
-            <h2>New school: Per Pixel Lighting</h2>
-            <br/>
-            <img class="float_left" style="width: 25%"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <!-- <img style="width: 70%" src="images/reflection_vector.gif"> -->
-            <img class="white_bg" src="http://math.hws.edu/graphicsnotes/c4/light_eq.png">
-          </section>
-
-          <section>
-            <h2>Normal Map</h2>
-            <img src="images/normal_map_tile.jpg">
-          </section>
-
-          <section>
-            <h2>Normal Map</h2>
-            <canvas data-sample="normal_mapped_plane" class="float_left" style="display:inline"></canvas>
-            <canvas data-sample="wireframe_plane" class="float_left" style="display:inline"></canvas>
-            <img src="images/normal_map_tile.jpg" class="float_left normal_map" style="width:200px">
-          </section>
-
-          <section>
-            <h2>ThreeJS: Custom Shaders</h2>
-              <pre class="code medium"><code class="javascript">
-  // Grab shader code
-  var vertexShader = $('#normal_map_vs').text();
-  var fragmentShader = $('#normal_map_fs').text();
-
-  // Configure material parameters
-  var parameters = {
-    // Shaders
-    fragmentShader: fragmentShader,
-    vertexShader: vertexShader,
-
-    // Shader Data
-    uniforms: uniforms,
-    attributes: attributes
-  };
-
-  // Create custom shader material
-  var normal_material = new THREE.ShaderMaterial( parameters );
-
-  // Add mesh
-  var mesh = new THREE.Mesh( geometry, normal_material );
-  scene.add( mesh );
-              </code></pre>
-          </section>
-
-          <section>
-            <h2>Showcase: Skin Material</h2>
-            <a href="http://mrdoob.github.com/three.js/examples/webgl_materials_bumpmap_skin.html">WebGL Skin Material</a>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>ThreeJS: Post-Processing</h2>
-            <br/>
-            <br/>
-            <canvas class="float_left" data-sample="spinning_textured_cube"></canvas>
-            <canvas data-sample="blur_post_process"></canvas>
-          </section>
-
-          <section>
-            <h2>Render to Texture</h2>
-            <canvas data-sample="render_to_texture"></canvas>
-            <pre class="code medium"><code class="javascript">
-  var renderTarget = new THREE.WebGLRenderTarget(
-    sample_defaults.width,
-    sample_defaults.height,
-    renderTargetParameters);
-    ...
-
-  renderer.render( worldScene, camera, renderTarget );
-  planeMaterial.uniforms[ "tDiffuse" ].texture = renderTarget;
-  renderer.render( planeScene, camera );
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>2 Pass Blurring</h2>
-            <img src="http://www.gamerendering.com/wp-content/uploads/image13-bluring.jpg">
-          </section>
-
-          <section>
-            <p>Multiple passess...</p>
-            <br/>
-            <pre class="code medium"><code class="javascript">
-  var composer = new THREE.EffectComposer( renderer );
-
-  // 3 Passes...
-  var renderModel = new THREE.RenderPass(scene, camera);
-  var horizontalBlur = new THREE.ShaderPass(horizontalBlurShaders);
-  var verticalBlur = new THREE.ShaderPass(verticalBlurShaders);
-
-  verticalBlur.renderToScreen = true;
-
-  composer.addPass( renderModel );
-  composer.addPass( horizontalBlur );
-  composer.addPass( verticalBlur );
-
-  ...
-  // renderer.render( scene, camera ); REMOVED
-  composer.render(0.1);
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Showcase: Post-processing Filters</h2>
-            <a href="http://mrdoob.github.com/three.js/examples/webgl_postprocessing.html">Post Processing</a>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h3>Shadow Maps</h3>
-            <canvas data-sample="shadow_map"></canvas>
-          </section>
-
-          <section>
-            <h3>Render to texture</h3>
-            <p>Render a snap shot from the perspective of the light</p>
-            <img class="float_left" style="width:50%"
-            src="http://download.autodesk.com/global/docs/motionbuilder2013/en-us/images/GUID-48D90406-3DCC-4CF6-9A20-6EEC0DD2FBBC-low.png">
-            <canvas data-sample="render_to_texture"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h3>Height Map in Vertex Buffer</h3>
-            <canvas data-sample="height_map_image"></canvas>
-            <canvas data-sample="particle_height_map"></canvas>
-          </section>
-        </section>
-
-        <section>
-          <h3>John Carmack on WebGL</h3>
-          <br/>
-          <div class="ytapiplayer" id="ytplayer"
-            data-youtube-url="http://www.youtube.com/v/ozxRRPJzZ78?enablejsapi=1&amp;version=3&amp;border=0"></div>
-        </section>
-
-        <section>
-          <h2>Showcase</h2>
-          <ul style="margin-top: 40px;">
-            <li><a href="http://mrdoob.com/lab/javascript/webgl/voxels_liquid/index.html">Voxel Liquid</a></li>
-            <li><a href="http://codeflow.org/webgl/deferred-irradiance-volumes/www/">Big Boy Lighting: Deferred Irradiance Volumes</a></li>
-            <li><a href="http://www.chromeweblab.com/data-tracer">WebGL Tracert</a></li>
-            <li><a href="http://www.ro.me/">Rome Interactive Movie</a></li>
-            <li><a href="http://mrdoob.com/projects/code-editor/#B/bVRRT9swEH4uv8IrL2EqTuhUjTUtE2PdmDQ0BEjTHt342ngkduY4LQX1v+/sxJBAoqq27z7fd3e+u9m7r78u7v5cL0hq8uzsYFYvg1kKjOM6mOVgGElSpksw82FlVsenQ6cozS4DuxssFd+RJ7sbLFlyv9aqkvw4UZnSU3K4cl/s1DnTayGnJKqPagN6lantlKSCc5BOurfGQ299FjaezCxLTZxoURhS6mQ+TI0ppmGYa67Ukq6FSaslTVQemlQD0L9luKxExptjLiSKhmdo3tlomTs7sNxhSLZK3zMXAVkpjZFrlQNZVmt0siZLFAe6VmqdgaMqQgcSVR6KsqygDDnmTGSfBZ9/mHw6jQ6Tk7G1LlYkIFshudpSISXo34KblMzncxKRI/LUpyMF0yBNSxZ3YJcg1ql5hauFMdm7LONn1w3DaFgOmo1ImYCEEcEbHDTo2OvXgMEavRuRnBnQgmW4gzKNXXaEFCY4cmAmhUXYkz2uKpkYoSSpIU0xuL+aEh2UsCV3lzeLBb0GXRaAFzZw4bQB+TgZ9UQf9oQ6Iif4iyLMWNwioIUqhXWBPiLXJIpqxwYu0g77rZV4xwc+4g7kR6JKlgLXSn5v9AEZRxESe1afn869K0zVF1aK5KrRBvioTR9ED5H7bJwaVhq9nhKjK2gJfgq0ZSOfkjHZE++jfRn2IMpLyArQHcbzZ3HzMIMXIC0ThiX6gBfeCHd9Qpu5cfySNso4D9rM3iFbEm8CD3qqx2erZc7d9YZ8AXaMXTC5YeVNo/JxeSjFOXQrHqGnk0Z9neGpuEqq3HaInSOUFQXau0hxNgTPbUC5yhcZWJS/tu+W93PZY4U3Xv3DhjfnTo6Ib/YZA4/rJIxqZRzGvchXVFOptmjqPYkoFsYk7oHu+qAnr7JH603g27ppuXYIrYk3C+tJipPVzvr/">Code Editor</a></li>
-            <li><a href="http://cnn-ecosphere.com/">CNN EcoSphere</a></li>
-            <li><a href="http://dl.dropbox.com/u/6213850/WebGL/nyanCat/nyan.html">WebGL Nyan Cat</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>For next time...</h2>
-          <ul>
-            <li>GPGPU</li>
-            <li>Shadows</li>
-            <li>Animations</li>
-            <li>Terrain Rendering</li>
-            <li>Dynamic Level of Detail</li>
-            <li>Culling</li>
-            <li>Geometry Shaders</li>
-            <li>and more ...</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Credits</h2>
-          <ul>
-            <li><a href="http://www.khronos.org/webgl/">Khronos WebGL</a></li>
-            <li><a href="https://github.com/mrdoob/three.js/">Three JS</a></li>
-            <li><a href="https://www.e-education.psu.edu/geog486/l7_p9.html">Penn State Geography 486</a></li>
-            <li><a href="http://robertokoci.com/world-view-projection-matrix-unveiled/">Roberto Koci: wvpMatrix</a></li>
-            <li><a href="http://www.upvector.com/?section=Tutorials&subsection=Intro%20to%20Shaders">Up Vector</a></li>
-            <li><a href="http://www.chromeexperiments.com">Chrome Experiments</a></li>
-            <li><a href="http://www.wikipedia.com">Wikipedia</a></li>
-          </ul>
-        </section>
-
+      </section>
       </div>
 
       <!-- The navigational controls UI -->
@@ -1251,7 +455,7 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
             progress: true,
             history: true,
 
-            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+            transition: 'zoom', // default/cube/page/concave/linear(2d)
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
@@ -1267,5 +471,496 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
         });
 
     </script>
+        <script id="vertexShaderPerlin2" type="x-shader/x-vertex">
+           //
+  // GLSL textureless classic 3D noise "cnoise",
+  // with an RSL-style periodic variant "pnoise".
+  // Author:  Stefan Gustavson (stefan.gustavson@liu.se)
+  // Version: 2011-10-11
+  //
+  // Many thanks to Ian McEwan of Ashima Arts for the
+  // ideas for permutation and gradient selection.
+  //
+  // Copyright (c) 2011 Stefan Gustavson. All rights reserved.
+  // Distributed under the MIT license. See LICENSE file.
+  // https://github.com/ashima/webgl-noise
+  //
+
+  vec3 mod289(vec3 x)
+  {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec4 mod289(vec4 x)
+  {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec4 permute(vec4 x)
+  {
+    return mod289(((x*34.0)+1.0)*x);
+  }
+
+  vec4 taylorInvSqrt(vec4 r)
+  {
+    return 1.79284291400159 - 0.85373472095314 * r;
+  }
+
+  vec3 fade(vec3 t) {
+    return t*t*t*(t*(t*6.0-15.0)+10.0);
+  }
+
+  // Classic Perlin noise
+  float cnoise(vec3 P)
+  {
+    vec3 Pi0 = floor(P); // Integer part for indexing
+    vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
+    Pi0 = mod289(Pi0);
+    Pi1 = mod289(Pi1);
+    vec3 Pf0 = fract(P); // Fractional part for interpolation
+    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+    vec4 iy = vec4(Pi0.yy, Pi1.yy);
+    vec4 iz0 = Pi0.zzzz;
+    vec4 iz1 = Pi1.zzzz;
+
+    vec4 ixy = permute(permute(ix) + iy);
+    vec4 ixy0 = permute(ixy + iz0);
+    vec4 ixy1 = permute(ixy + iz1);
+
+    vec4 gx0 = ixy0 * (1.0 / 7.0);
+    vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;
+    gx0 = fract(gx0);
+    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+    vec4 sz0 = step(gz0, vec4(0.0));
+    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+    vec4 gx1 = ixy1 * (1.0 / 7.0);
+    vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;
+    gx1 = fract(gx1);
+    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+    vec4 sz1 = step(gz1, vec4(0.0));
+    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+    g000 *= norm0.x;
+    g010 *= norm0.y;
+    g100 *= norm0.z;
+    g110 *= norm0.w;
+    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+    g001 *= norm1.x;
+    g011 *= norm1.y;
+    g101 *= norm1.z;
+    g111 *= norm1.w;
+
+    float n000 = dot(g000, Pf0);
+    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+    float n111 = dot(g111, Pf1);
+
+    vec3 fade_xyz = fade(Pf0);
+    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
+    return 2.2 * n_xyz;
+  }
+
+  // Classic Perlin noise, periodic variant
+  float pnoise(vec3 P, vec3 rep)
+  {
+    vec3 Pi0 = mod(floor(P), rep); // Integer part, modulo period
+    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep); // Integer part + 1, mod period
+    Pi0 = mod289(Pi0);
+    Pi1 = mod289(Pi1);
+    vec3 Pf0 = fract(P); // Fractional part for interpolation
+    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+    vec4 iy = vec4(Pi0.yy, Pi1.yy);
+    vec4 iz0 = Pi0.zzzz;
+    vec4 iz1 = Pi1.zzzz;
+
+    vec4 ixy = permute(permute(ix) + iy);
+    vec4 ixy0 = permute(ixy + iz0);
+    vec4 ixy1 = permute(ixy + iz1);
+
+    vec4 gx0 = ixy0 * (1.0 / 7.0);
+    vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;
+    gx0 = fract(gx0);
+    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+    vec4 sz0 = step(gz0, vec4(0.0));
+    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+    vec4 gx1 = ixy1 * (1.0 / 7.0);
+    vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;
+    gx1 = fract(gx1);
+    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+    vec4 sz1 = step(gz1, vec4(0.0));
+    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+    g000 *= norm0.x;
+    g010 *= norm0.y;
+    g100 *= norm0.z;
+    g110 *= norm0.w;
+    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+    g001 *= norm1.x;
+    g011 *= norm1.y;
+    g101 *= norm1.z;
+    g111 *= norm1.w;
+
+    float n000 = dot(g000, Pf0);
+    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+    float n111 = dot(g111, Pf1);
+
+    vec3 fade_xyz = fade(Pf0);
+    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
+    return 1.5 * n_xyz;
+  }
+  
+  // Turbulence By Jaume Sanchez => https://codepen.io/spite/
+  
+  varying vec2 vUv;
+  varying float noise;
+  varying float qnoise;
+  varying float displacement;
+  
+  uniform float time;
+  uniform float pointscale;
+  uniform float decay;
+  uniform float complex;
+  uniform float waves;
+  uniform float eqcolor;
+  uniform bool fragment;
+
+  float turbulence( vec3 p) {
+    float t = - 0.1;
+    for (float f = 1.0 ; f <= 3.0 ; f++ ){
+      float power = pow( 2.0, f );
+      t += abs( pnoise( vec3( power * p ), vec3( 10.0, 10.0, 10.0 ) ) / power );
+    }
+    return t;
+  }
+
+  void main() {
+
+    vUv = uv;
+
+    noise = (1.0 *  - waves) * turbulence( decay * abs(normal + time));
+    qnoise = (2.0 *  - eqcolor) * turbulence( decay * abs(normal + time));
+    float b = pnoise( complex * (position) + vec3( 1.0 * time ), vec3( 100.0 ) );
+    
+    if (fragment == true) {
+      displacement = - sin(noise) + normalize(b * 0.5);
+    } else {
+      displacement = - sin(noise) + cos(b * 0.5);
+    }
+
+    vec3 newPosition = (position) + (normal * displacement);
+    gl_Position = (projectionMatrix * modelViewMatrix) * vec4( newPosition, 1.0 );
+    gl_PointSize = (pointscale);
+    //gl_ClipDistance[0];
+
+  }
+        </script>
+        <script id="fragmentShaderPerlin2" type="x-shader/x-fragment">
+          varying float qnoise;
+  
+  uniform float time;
+  uniform bool redhell;
+
+  void main() {
+    float r, g, b;
+
+    
+    if (!redhell == true) {
+      r = cos(qnoise + 0.5);
+      g = cos(qnoise - 0.5);
+      b = 0.0;
+    } else {
+      r = cos(qnoise + 0.5);
+      g = cos(qnoise - 0.5);
+      b = abs(qnoise);
+    }
+    gl_FragColor = vec4(r, g, b, 1.0);
+  }
+        </script>
+        <script id="vertexShaderPerlin3" type="x-shader/x-vertex">
+//
+  // GLSL textureless classic 3D noise "cnoise",
+  // with an RSL-style periodic variant "pnoise".
+  // Author:  Stefan Gustavson (stefan.gustavson@liu.se)
+  // Version: 2011-10-11
+  //
+  // Many thanks to Ian McEwan of Ashima Arts for the
+  // ideas for permutation and gradient selection.
+  //
+  // Copyright (c) 2011 Stefan Gustavson. All rights reserved.
+  // Distributed under the MIT license. See LICENSE file.
+  // https://github.com/ashima/webgl-noise
+  //
+
+  vec3 mod289(vec3 x)
+  {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec4 mod289(vec4 x)
+  {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec4 permute(vec4 x)
+  {
+    return mod289(((x*34.0)+1.0)*x);
+  }
+
+  vec4 taylorInvSqrt(vec4 r)
+  {
+    return 1.79284291400159 - 0.85373472095314 * r;
+  }
+
+  vec3 fade(vec3 t) {
+    return t*t*t*(t*(t*6.0-15.0)+10.0);
+  }
+  
+  // Classic Perlin noise
+  float cnoise(vec3 P)
+  {
+    vec3 Pi0 = floor(P); // Integer part for indexing
+    vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
+    Pi0 = mod289(Pi0);
+    Pi1 = mod289(Pi1);
+    vec3 Pf0 = fract(P); // Fractional part for interpolation
+    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+    vec4 iy = vec4(Pi0.yy, Pi1.yy);
+    vec4 iz0 = Pi0.zzzz;
+    vec4 iz1 = Pi1.zzzz;
+
+    vec4 ixy = permute(permute(ix) + iy);
+    vec4 ixy0 = permute(ixy + iz0);
+    vec4 ixy1 = permute(ixy + iz1);
+
+    vec4 gx0 = ixy0 * (1.0 / 5.0);
+    vec4 gy0 = fract(floor(gx0) * (1.0 / 5.0)) - 0.5;
+    gx0 = fract(gx0);
+    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+    vec4 sz0 = step(gz0, vec4(0.0));
+    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+    vec4 gx1 = ixy1 * (1.0 / 5.0);
+    vec4 gy1 = fract(floor(gx1) * (1.0 / 5.0)) - 0.5;
+    gx1 = fract(gx1);
+    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+    vec4 sz1 = step(gz1, vec4(0.0));
+    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+    g000 *= norm0.x;
+    g010 *= norm0.y;
+    g100 *= norm0.z;
+    g110 *= norm0.w;
+    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+    g001 *= norm1.x;
+    g011 *= norm1.y;
+    g101 *= norm1.z;
+    g111 *= norm1.w;
+
+    float n000 = dot(g000, Pf0);
+    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+    float n111 = dot(g111, Pf1);
+
+    vec3 fade_xyz = fade(Pf0);
+    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
+    return 2.2 * n_xyz;
+  }
+
+  // Classic Perlin noise, periodic variant
+  float pnoise(vec3 P, vec3 rep)
+  {
+    vec3 Pi0 = mod(floor(P), rep); // Integer part, modulo period
+    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep); // Integer part + 1, mod period
+    Pi0 = mod289(Pi0);
+    Pi1 = mod289(Pi1);
+    vec3 Pf0 = fract(P); // Fractional part for interpolation
+    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+    vec4 iy = vec4(Pi0.yy, Pi1.yy);
+    vec4 iz0 = Pi0.zzzz;
+    vec4 iz1 = Pi1.zzzz;
+
+    vec4 ixy = permute(permute(ix) + iy);
+    vec4 ixy0 = permute(ixy + iz0);
+    vec4 ixy1 = permute(ixy + iz1);
+
+    vec4 gx0 = ixy0 * (1.0 / 5.0);
+    vec4 gy0 = fract(floor(gx0) * (1.0 / 5.0)) - 0.5;
+    gx0 = fract(gx0);
+    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+    vec4 sz0 = step(gz0, vec4(0.0));
+    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+    vec4 gx1 = ixy1 * (1.0 / 5.0);
+    vec4 gy1 = fract(floor(gx1) * (1.0 / 5.0)) - 0.5;
+    gx1 = fract(gx1);
+    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+    vec4 sz1 = step(gz1, vec4(0.0));
+    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+    g000 *= norm0.x;
+    g010 *= norm0.y;
+    g100 *= norm0.z;
+    g110 *= norm0.w;
+    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+    g001 *= norm1.x;
+    g011 *= norm1.y;
+    g101 *= norm1.z;
+    g111 *= norm1.w;
+
+    float n000 = dot(g000, Pf0);
+    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+    float n111 = dot(g111, Pf1);
+
+    vec3 fade_xyz = fade(Pf0);
+    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);
+    return 1.5 * n_xyz;
+  }
+  
+  // Turbulence By Jaume Sanchez => https://codepen.io/spite/
+  
+  varying vec2 vUv;
+  varying float noise;
+  varying float qnoise;
+  varying float displacement;
+  
+  uniform float time;
+  uniform float displace;
+  uniform float pointscale;
+  uniform float decay;
+  uniform float size;
+  uniform float complex;
+  uniform float waves;
+  uniform float eqcolor;
+  uniform bool fragment;
+
+  float turbulence( vec3 p) {
+    float t = - 0.005;
+    for (float f = 1.0 ; f <= 1.0 ; f++ ){
+      float power = pow( 1.3, f );
+      t += abs( pnoise( vec3( power * p ), vec3( 10.0, 10.0, 10.0 ) ) / power );
+    }
+    return t;
+  }
+
+  void main() {
+
+    vUv = uv;
+
+    noise = (2.0 *  - waves) * turbulence( decay * abs(normal + time));
+    qnoise = (0.3 *  - eqcolor) * turbulence( decay * abs(normal + time));
+    float b = pnoise( complex * (position) + vec3( (decay * 2.0) * time ), vec3( 100.0 ) );
+    
+    displacement = - atan(noise) + tan(b * displace);
+
+    vec3 newPosition = (position) + (normal * displacement);
+    gl_Position = (projectionMatrix * modelViewMatrix) * vec4( newPosition, abs(size) );
+    gl_PointSize = (3.0);
+  }
+        </script>
+        <script id="fragmentShaderPerlin3" type="x-shader/x-fragment">
+          varying float qnoise;
+          varying float noise;
+          
+          uniform float time;
+          uniform bool redhell;
+          uniform float rcolor;
+          uniform float gcolor;
+          uniform float bcolor;
+        
+          void main() {
+            float r, g, b;
+            
+            if (!redhell == true) {
+              r = sin(qnoise + rcolor);
+              g = normalize(qnoise + (gcolor / 2.0));
+              b = tan(qnoise + bcolor);
+            } else {
+              r = normalize(qnoise + rcolor);
+              g = cos(qnoise + gcolor);
+              b = sin(qnoise + bcolor);
+            }
+            gl_FragColor = vec4(r, g, b, 1.0);
+          }
+        </script>
   </body>
 </html>
