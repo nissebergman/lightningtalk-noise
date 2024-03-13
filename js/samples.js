@@ -64,6 +64,7 @@
     "js/samples/webgl_spinning_colored_cube.js",
     "js/samples/webgl_spinning_bland_cube.js",
     "js/samples/spinning_wireframe_torus.js",
+    "js/samples/perlin_noise.js",
     "js/samples/spinning_wireframe_cube.js",
     "js/samples/spinning_cube.js",
     "js/samples/spinning_textured_cube.js",

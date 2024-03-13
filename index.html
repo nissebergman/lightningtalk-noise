@@ -34,11 +34,6 @@
   </head>
 
   <body>
-    <div class="github-fork-ribbon-wrapper left-bottom">
-      <div class="github-fork-ribbon">
-          <a href="https://github.com/dimroc/reveal.js-threejs">Fork me on GitHub</a>
-      </div>
-    </div>
 
     <div class="reveal">
 
@@ -48,79 +43,83 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>WebGL with Three JS</h1>
-          <h3>Real time rendering with javascript</h3>
-          <canvas data-sample="spinning_wireframe_torus"></canvas>
+          <h1>Noise</h1>
+          <h3 id="flicker">A presentation in randomness</h3>
+          <script>
+            var flicker = document.getElementById('flicker');
+              setInterval(function() {
+              var rnd = Math.random() * 100;
+              if (rnd > 90) {
+                flicker.style.visibility = 'hidden';
+              } else {
+                flicker.style.visibility = '';
+              }
+            }, 100);
+          </script>
+          <!-- <canvas data-sample="spinning_wireframe_torus"></canvas> -->
+        </section>
+        <section>
+          <section>
+            <h2>What is random?</h2>
+            <blockquote class="small">Randomness is the lack of pattern or predictability in events. A random sequence of events, symbols or steps has no order and does not follow an intelligible pattern or combination.</blockquote>
+          </section>
+          <section>
+            <h2>What is random?</h2>
+            <blockquote class="small">Life cannot be calculated. That's the big mistake our civilization made. We never accepted that randomness is not a mistake in the equation -- it is part of the equation.</blockquote><p class="small">Jeanette Winterson</p>
+          </section>
+          <section>
+            <h2>What is random?</h2>
+            <blockquote class="small">In the past, I used to rely on the randomness of working with samples, which was a good way because it threw you in a completely different direction. You just thought, 'What if I take this samba drum and combined it with an '80s synth line or something from this record?</blockquote><p class="small">Jens Lekman</p>
+          </section>
         </section>
 
         <section>
-          <h2>Rendering Techniques</h2>
+          <h2>How do we create random?</h2>
           <ul>
             <li>
-            Rasterization
-            <blockquote style="width:90%">
-              The task of taking an image described in a vector graphics format (shapes)
-              and converting it into a raster image (pixels or dots)
-            </blockquote>
+              C++
             </li>
-            <br/>
-            <br/>
-            <li>Ray Casting</li>
-            <li>Ray Tracing</li>
+            <li>
+              Java
+            </li>
+            <li>
+              Python
+            </li>
+            <li>
+              C#
+            </li>
           </ul>
+        </section>
+        <section>
+          <section>
+            <h2>What is noise?</h2>
+            <blockquote class="small">Noise is a sound, especially one that is loud or unpleasant or that causes disturbance.</blockquote>
+          </section>
         </section>
 
         <section>
           <section>
-            <h3>How do we get from<br/>vertices to a shape</h3>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
-            <div class="float_left" style="line-height: 5; padding: 20px">?</div>
-          </section>
-
-          <section>
-            <h2>What is a vertex?</h2>
-            <img class="white_bg" src="http://obviam.net/wp-content/uploads/2011/01/Vertices.png">
-          </section>
-
-          <section>
-            <h2>Model Space and World Space</h2>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
-            <!-- <img class="float_left" src="http://www.simulshop.com/product/nemethdesigns/ec135/tn_fsx2008-49-47.jpg" style="height: 70%"> -->
-          </section>
-
-          <section>
-            <h2>View Space</h2>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/WorldViewSpace.png">
-          </section>
-
-          <section>
-            <h2>Projection Space</h2>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ProjectionMatrix.png">
-          </section>
-
-          <section>
-            <h2>End in 2D</h2>
-            <img src="images/3dproj01.gif">
-            <!-- <img class="white_bg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Axonometric_projection.svg/467px-Axonometric_projection.svg.png"> -->
-          </section>
-
-          <section>
-           <h2>Vertices to a shape</h2>
-            <img class="float_left" style="display:inline" src="images/Vertices.png">
-            <div class="float_left" style="line-height: 8; padding: 20px">to</div>
-            <canvas data-sample="spinning_wireframe_cube" class="float_left" style="display:inline"></canvas>
-          </section>
-
-          <section>
-            <h2>But how do we ...</h2>
-            <br/>
-            <h3>transform between spaces?</h3>
-            <img src="http://robertokoci.com/images/posts/graphics/game/programming/matrix-unveiled/ObjectWorldSpace.png">
-            <br/>
-            <blockquote style="width:100%">Model -&gt; World -&gt; View -&gt; Projection Space</blockquote>
-          </section>
+          <h2>How do we create noise?</h2>
+          <ul>
+            <li>
+              Perlin noise
+            </li>
+            <li>
+              Simplex noise
+            </li>
+            <li>
+              Python
+            </li>
+            <li>
+              C#
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>How do we create noise?</h2>
+          <p>Algoritms</p>
+          <canvas data-sample="perlin_noise"></canvas>
+        </section>
         </section>
 
         <section>
@@ -591,7 +590,7 @@ function drawPicture(scene, gl) {
             </code></pre>
             <img class="float_left" style="width: 30%"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rasterisation-triangle_example.svg/450px-Rasterisation-triangle_example.svg.png">
-            <canvas data-sample="webgl_spinning_bland_cube" style="display:inline"></canvas>
+            //<canvas data-sample="webgl_spinning_bland_cube" style="display:inline"></canvas>
           </section>
 
           <section>
@@ -1212,7 +1211,9 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
         "lib/js/dat.gui.js",
         "lib/js/EventEmitter.js",
 
-        "lib/js/three.js",
+        // "lib/js/three.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js",
+        "lib/js/three/OrbitControls.js",
         "lib/js/three/EffectComposer.js",
         "lib/js/three/RenderPass.js",
         "lib/js/three/BloomPass.js",
@@ -1238,6 +1239,9 @@ loader.load("js/meshes/Startrek_Enterprise.js", function(geometry, materials) {
         "js/stats_bootstrap.js",
         "js/samples.js",
         "js/dat.gui.bootstrap.js",
+
+        // Noise stuff
+        "lib/js/three-noise.js",
 
         function() {
           // Full list of configuration options available here:
